@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>企业统计</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="css/common.css">
+        <link rel="stylesheet" type="text/css" href="css/statistics.css">
+    </head>
+    <body>
+        <div id="header">
+            <div id="header-main" class="w980">
+                    <a href="#" class="logo icon-bg"></a>
+                    <span class="copy green radius hei fl">企业版</span>
+                    <div class="company fr">
+                        <div class="company_logo fl">
+                            <img src="images/temp/logo.png"/>
+                        </div>
+                        <div class="company_infos fr">
+                            <div class="certification overhide">
+                                <span class="qiye green radius hei fl">企业</span>
+                                <span class="status fl">认证中</span>
+                            </div>
+                            <div class="name">
+                                <span class="fl">北京同达信恒知识产权代理有限公司</span>
+                                <i class="icon_down icon-bg fl"></i>
+                                <i class="icon_out icon-bg fl"></i>
+                                <a href="#" class="fl">退出</a>
+                           </div>                         
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div id="main" class="w980">
+            <div id="left">
+                <dl id="nav">
+                    <dt>
+                        <i class="icon_manage icon-bg fl"></i><span><a href="">管理</a></span>
+                    </dt>
+                    <dd><a href="#">花名册管理</a></dd>
+                    <dd><a href="#">标签管理</a></dd>
+                    <dt>
+                        <i class="icon_cf icon-bg fl"></i><span><a href="">财富</a></span>
+                    </dt>  
+                    <dd><a href="#">名片交换记录</a></dd>
+                    <dd><a href="#">通话记录</a></dd>
+                    <dd><a href="#">邮件记录</a></dd>
+                    <dt>
+                        <i class="icon_tj icon-bg fl"></i><span><a href="">统计</a></span>
+                    </dt>  
+                    <dd><a href="#">员工统计</a></dd>
+                    <dd><a href="#">名片统计</a></dd>
+                    <dd class="nav-cur"><a href="#">企业统计</a></dd>
+                    <dt>
+                        <i class="icon_kz icon-bg fl"></i><span><a href="">扩展</a></span>
+                    </dt>
+                    <dd><a href="#">机构实名验证</a></dd>
+                </dl>
+            </div>
+            <div id="right" class="rel">
+                <div id="company-stat" class="right-inner">
+                    <h2 class="right-header">
+                        <em class="icon-bg"></em>
+                        <span class="hei">名片统计（363人）</span>
+                        <br class="clr"/>
+                    </h2>
+                    <div class="right-body">
+                        <div id="figure-1" class="figure"></div>
+                        <div id="figure-2" class="figure"></div>
+                        <div class="figure auto-height">
+                            <div class="grey-box">
+                                <div class="fl">
+                                    <input type="button" value="企业总量" class="button">
+                                    <span class="num">145</span>个
+                                </div>
+                                <div class="fr">
+                                    低于同行 15%
+                                </div>
+                                <br class="clr"/>
+                                <div class="popular">
+                                    <span class="fl">热门行业</span>
+                                    <span class="white-button">金融</span>
+                                    <span class="white-button">贸易</span>
+                                    <span class="white-button">互联网</span>
+                                    <br class="clr"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="figure auto-height">
+                            <div class="grey-box">
+                                <div class="fl">
+                                    <input type="button" value="企业总量" class="button">
+                                    <span class="num">363</span>个
+                                </div>
+                                <div class="fr">
+                                    低于同行 5%
+                                </div>
+                                <br class="clr"/>
+                                <div class="popular">
+                                    <span class="fl">热门职业</span>
+                                    <span class="white-button">销售经理</span>
+                                    <span class="white-button">业务员</span>
+                                    <span class="white-button">产品经理</span>
+                                    <br class="clr"/>
+                                </div>
+                            </div>
+                        </div>
+                        <br class="clr"/>
+                        <div id="divider"></div>
+                    </div>
+                </div>
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div id="footer">   
+            <div class="w980">
+                <h1 class="hei">见安存 · 即见真实</h1>
+                版权所有：杭州安存网络科技有限公司 Copyright2008-2014 ICP证：浙ICP备11033732号 增值电信业务经营许可证：浙B2-20120278
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/highcharts.src.js"></script>
+    <script type="text/javascript">
+        $('#figure-1').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '名片交换量统计（按职位）'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '占比',
+                data: [
+                    ['产品经理', 8],
+                    ['软件工程师', 22],
+                    ['测试工程师', 16],
+                    ['市场专员', 13],
+                    ['部门经理', 12],
+                    ['总裁', 1],
+                    ['总裁助理', 5]
+                ]
+            }],
+            credits:{
+                 enabled:false // 禁用版权信息
+            }
+        });
+
+        $('#figure-2').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '名片交换量统计（按部门）'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '占比',
+                data: [
+                    ['商务部', 16],
+                    ['市场部', 15],
+                    ['技术部', 33],
+                    ['运营部', 4],
+                    ['财务部', 3],
+                    ['总经办', 6]
+                ]
+            }],
+            credits:{
+                 enabled:false // 禁用版权信息
+            }
+        });
+    </script>
+</html>

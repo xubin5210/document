@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pubTitle="http://schemas.android.com/apk/res/com.ciapc.anxin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.ciapc.anxin.common.view.PubTitle
+        android:id="@+id/account_safe_revisepwd_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pubTitle:leftIcon="@drawable/back"
+        pubTitle:text="修改密码" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="22dp"
+        android:paddingTop="15dp" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="请输入旧密码"
+            android:textColor="#a9a9a9"
+            android:textSize="@dimen/H4" />
+    </RelativeLayout>
+    <!-- 旧密码 -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="10dp" >
+
+        <com.ciapc.anxin.common.view.CustomEditText
+            android:id="@+id/old_pwd"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:background="@drawable/old_pwd"
+            android:drawableRight="@drawable/clear_input"
+            android:hint="@string/oldpwd"
+            android:inputType="textPassword"
+            android:maxLength="13"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColorHint="@color/C3" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="22dp"
+        android:paddingTop="30dp" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="请输入新密码"
+            android:textColor="#a9a9a9"
+            android:textSize="@dimen/H4" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="10dp" >
+
+        <com.ciapc.anxin.common.view.CustomEditText
+            android:id="@+id/new_pwd"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:background="@drawable/phone_rounded_text"
+            android:drawableRight="@drawable/clear_input"
+            android:hint="@string/newpwd"
+            android:inputType="textPassword"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColorHint="@color/C3" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp" >
+
+        <com.ciapc.anxin.common.view.CustomEditText
+            android:id="@+id/confirm_newpwd"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/phone_rouned_two"
+            android:drawableRight="@drawable/clear_input"
+            android:hint="@string/confirmnewpwd"
+            android:inputType="textPassword"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColorHint="@color/C3" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/revisepwd_ok"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/login_register_btn_style"
+        android:text="@string/revisepwdok"
+        android:textColor="@color/white" />
+
+</LinearLayout>

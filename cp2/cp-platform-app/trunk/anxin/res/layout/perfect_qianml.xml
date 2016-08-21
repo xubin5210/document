@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pubTitle="http://schemas.android.com/apk/res/com.ciapc.anxin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/C5"
+    android:orientation="vertical" >
+
+    <com.ciapc.anxin.common.view.PubTitle
+        android:id="@+id/email_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pubTitle:leftIcon="@drawable/back"
+        pubTitle:rightText="保存"
+        pubTitle:text="座右铭" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="@dimen/left_right"
+        android:layout_marginRight="@dimen/left_right"
+        android:layout_marginTop="20dp" >
+
+        <com.ciapc.anxin.common.view.CustomEditText
+            android:id="@+id/input_qianm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/input_bg"
+            android:hint="添加座右铭"
+            android:gravity="top|left"
+            android:maxLength="50"
+            android:padding="@dimen/left_right"
+            android:textColor="@color/C1"
+            android:textColorHint="@color/C3"
+            android:textSize="@dimen/H4" />
+    </LinearLayout>
+
+</LinearLayout>

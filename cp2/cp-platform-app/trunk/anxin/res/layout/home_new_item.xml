@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/anxin_new_img"
+                android:layout_width="47dp"
+                android:layout_height="47dp"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/left_right"
+                android:scaleType="center"
+                android:src="@drawable/home_business_card_new" />
+
+            <TextView
+                android:id="@+id/anxin_new_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@id/anxin_new_img"
+                android:text="新名片"
+                android:textColor="@color/C1"
+                android:textSize="@dimen/H4" />
+
+            <TextView
+                android:id="@+id/new_card_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/anxin_new_text"
+                android:layout_toRightOf="@id/anxin_new_img"
+                android:textColor="@color/C2"
+                android:textSize="@dimen/H5" />
+
+            <Button
+                android:id="@+id/new_card_red_point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="@dimen/left_right"
+                android:layout_marginRight="@dimen/left_right"
+                android:background="@drawable/red_point"
+                android:textColor="@color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@id/business_card_head"
+                android:background="@color/C4" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

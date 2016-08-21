@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/C5"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/C7"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_weight="5"
+            android:background="@drawable/home_search" >
+
+            <ImageView
+                android:id="@+id/home_search_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/left_right"
+                android:scaleType="center"
+                android:src="@drawable/saerch" />
+
+            <com.ciapc.anxin.common.view.CustomEditText
+                android:id="@+id/home_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/home_search_img"
+                android:background="@null"
+                android:drawableRight="@drawable/clear_input"
+                android:hint="找人/企业"
+                android:paddingLeft="10dp"
+                android:textColor="@color/C2"
+                android:textColorHint="@color/C4" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/home_search_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/left_right"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textColor="@color/C6"
+            android:textSize="@dimen/H2" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/home_search_qr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical"
+            android:visibility="visible" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/left_right"
+                android:scaleType="center"
+                android:src="@drawable/home_search_img" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/left_right"
+                android:gravity="center"
+                android:text="@string/exchange_sys"
+                android:textColor="@color/C3"
+                android:textSize="@dimen/H3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/left_right"
+                android:gravity="center"
+                android:text="@string/qr_str"
+                android:textColor="@color/C2"
+                android:textSize="@dimen/H4" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/show_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:text="@string/noDate"
+                    android:textColor="@color/C3"
+                    android:textSize="@dimen/H4" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:gravity="left"
+                    android:paddingLeft="@dimen/left_right"
+                    android:text="@string/recommend"
+                    android:textColor="@color/C3"
+                    android:textSize="@dimen/H5" />
+            </LinearLayout>
+
+            <com.ciapc.anxin.utils.ListView.XListView
+                android:id="@+id/person_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false"
+                android:listSelector="#00000000"
+                android:scrollbars="@null"
+                android:visibility="gone" >
+            </com.ciapc.anxin.utils.ListView.XListView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/condition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <include layout="@layout/search_condition" />
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

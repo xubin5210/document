@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+     http://www.springframework.org/schema/aop 
+     http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<!-- 要调用的工作类 -->
+	<bean id="cpInterfaceJob" class="com.ancun.xinhu.quartz.CPInterfaceQuartz"/>
+	
+	<!-- 定义调用对象和调用对象的方法 -->
+	<bean id="cpInterfaceJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+        <property name="targetObject" ref="cpInterfaceJob"/>  
+        <property name="targetMethod" value="execute"/>  <!-- 调用类中的方法,可以自定义 -->
+        <property name="concurrent" value="false"/>      <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+	</bean>  
+	
+	
+	<!-- 定义触发时间 -->
+	<bean id="cpInterfaceBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
+       <property name="jobDetail" ref="cpInterfaceJobDetail"/>  
+       <property name="cronExpression" value="0 0/10 * * * ?"/><!-- 每隔20分钟触发一次 -->  
+	</bean>  
+	
+	 <!-- 总管理类 -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+       <property name="triggers">  
+           <list>  
+              <ref bean="cpInterfaceBean"/>
+              <!--ref bean="ocard4EntBean"/-->
+             <!-- <ref bean="organizationImpBean"/>-->
+              <!--ref bean="cardInfoImpBean"/-->
+           </list>  
+       </property>  
+       <property name="autoStartup" value="true"/>  <!--初始化后是否马上启动Scheduler，默认是true. -->
+	</bean>  
+</beans>

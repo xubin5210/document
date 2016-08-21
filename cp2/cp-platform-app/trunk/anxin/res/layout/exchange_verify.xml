@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pubTitle="http://schemas.android.com/apk/res/com.ciapc.anxin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/C5"
+    android:orientation="vertical" >
+
+    <com.ciapc.anxin.common.view.PubTitle
+        android:id="@+id/send_verify_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pubTitle:leftIcon="@drawable/back"
+        pubTitle:rightText="@string/send"
+        pubTitle:text="添加验证" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/left_right"
+        android:layout_marginRight="@dimen/left_right"
+        android:layout_marginTop="20dp"
+        android:visibility="visible" >
+
+        <GridView
+            android:id="@+id/grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:horizontalSpacing="6dp"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="4"
+            android:verticalSpacing="@dimen/left_right" >
+        </GridView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@string/send_exchange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/left_right"
+        android:layout_marginTop="20dp"
+        android:text="@string/send_exchange"
+        android:textColor="@color/C3"
+        android:textSize="@dimen/H4" />
+
+    <com.ciapc.anxin.common.view.CustomEditText
+        android:id="@+id/exchange_verify_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/left_right"
+        android:background="@color/white"
+        android:hint="添加备注"
+        android:padding="@dimen/left_right"
+        android:textColor="@color/C1"
+        android:textColorHint="@color/C3"
+        android:textSize="@dimen/H4" />
+
+</LinearLayout>

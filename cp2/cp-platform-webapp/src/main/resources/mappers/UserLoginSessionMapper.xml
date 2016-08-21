@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.UserLoginSessionMapper">
+	
+	<resultMap id="userLoginSessionMap" type="userLoginSession">		
+		<result column="token_id" property="tokenId"/><!-- 会话id -->			
+		<result column="user_id" property="userId"/><!-- 用户id -->			
+		<result column="session_content" property="sessionContent"/><!-- 会话 -->			
+		<result column="gmt_create" property="gmtCreate"/><!-- 创建时间 -->			
+		<result column="gmt_modify" property="gmtModify"/><!-- 修改时间 -->			
+	</resultMap>
+
+	<insert id="insert" parameterType="userLoginSession">
+		insert into user_login_session(token_id,user_id,session_content,gmt_create,gmt_modify)
+		values(#{tokenId},#{userId},#{sessionContent}
+		,<include refid="common.now" />
+		,<include refid="common.now" />
+		)
+	</insert>
+
+	<update id="update" parameterType="userLoginSession">
+		update user_login_session set gmt_modify=<include refid="common.now" />
+		where token_id=#{tokenId}
+	</update>
+	
+	<select id="load" parameterType="int" resultMap="userLoginSessionMap" >
+    	select * from user_login_session where token_id=#{tokenId}
+    </select>
+	
+	<delete id="delete" parameterType="int">
+    	delete from user_login_session where token_id=#{tokenId}
+    </delete>
+    
+</mapper>

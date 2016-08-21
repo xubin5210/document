@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.CardApplyEntMapper">
+	<resultMap id="cardApplyEntMap" type="cardApplyEnt">		
+		<result column="ent_id" property="entId"/><!-- 企业ID -->			
+		<result column="card_id" property="cardId"/><!-- 用户id -->			
+		<result column="gmt_apply" property="gmtApply"/><!-- 申请时间 -->			
+		<result column="bind_status" property="bindStatus"/><!-- 绑定状态 -->			
+		<result column="gmt_bind" property="gmtBind"/><!-- 绑定时间 -->	
+		<result column="unpassmes" property="unpassMes"/><!-- 不通过原因 -->	
+	</resultMap>
+
+	<insert id="insert" parameterType="cardApplyEnt" >
+				insert into card_apply_ent(
+					ent_id ,card_id ,gmt_apply,bind_status,unpassmes
+					<if test="gmtBind != null">,gmt_bind</if>	
+				)values(
+					#{entId,jdbcType=INTEGER},
+					#{cardId,jdbcType=INTEGER},
+					<include refid="common.now" />,
+					#{bindStatus,jdbcType=INTEGER},
+					#{unpassMes,jdbcType=VARCHAR}
+					<if test="gmtBind != null">,#{gmtBind,jdbcType=TIMESTAMP}</if>	
+				)
+	</insert>
+
+	<update id="update" parameterType="cardApplyEnt">
+		update card_apply_ent
+		<set>			
+			<if test="entId != null">ent_id=#{entId,jdbcType=INTEGER},</if>	
+			<if test="cardId != null">card_id=#{cardId,jdbcType=INTEGER},</if>	
+			<if test="gmtApply != null">gmt_apply=#{gmtApply,jdbcType=TIMESTAMP},</if>	
+			<if test="bindStatus != null">bind_status=#{bindStatus,jdbcType=INTEGER},</if>	
+			<if test="gmtBind != null">gmt_bind=#{gmtBind,jdbcType=TIMESTAMP},</if>	
+			<if test="unpassMes != null">unpassmes=#{unpassMes,jdbcType=VARCHAR}</if>	
+		</set>		
+		where 		card_id = #{cardId}
+	</update>
+	
+	<update id="update2" parameterType="cardApplyEnt">
+		update card_apply_ent
+		<set>			
+			<if test="gmtApply != null">gmt_apply=#{gmtApply,jdbcType=TIMESTAMP},</if>	
+			<if test="bindStatus != null">bind_status=#{bindStatus,jdbcType=INTEGER},</if>	
+			<if test="gmtBind != null">gmt_bind=#{gmtBind,jdbcType=TIMESTAMP},</if>	
+			<if test="unpassMes != null">unpassmes=#{unpassMes,jdbcType=VARCHAR}</if>	
+		</set>		
+		where 		card_id = #{cardId} and ent_id = #{entId}
+	</update>
+	
+	<select id="load" parameterType="cardApplyEnt" resultMap="cardApplyEntMap" >
+    		select * from card_apply_ent where card_id = #{cardId} and  ent_id= #{entId}   		    	
+    </select>
+    		
+    <select id="loadByCardId" parameterType="int" resultMap="cardApplyEntMap" >
+    		select * from card_apply_ent where  card_id = #{cardId} and  bind_status != 2 		    	
+    </select>
+	
+	<sql id="queryCommonSql">
+		FROM card_apply_ent cae
+		<where>
+			<if test="entId != null">and cae.ent_id = #{entId}</if>												
+			<if test="cardId != null">and cae.card_id = #{cardId}</if>												
+			<if test="gmtApplyFrom != null">and cae.gmt_apply >= #{gmtApplyFrom}</if>
+			<if test="gmtApplyTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and cae.gmt_apply < #{gmtApplyTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and cae.gmt_apply < date_add(#{gmtApplyTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+			<if test="bindStatus != null">and cae.bind_status = #{bindStatus}</if>												
+			<if test="gmtBindFrom != null">and cae.gmt_bind >= #{gmtBindFrom}</if>
+			<if test="unpassMes != null">and cae.unpassmes >= #{unpassMes}</if>
+			<if test="gmtBindTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and cae.gmt_bind < #{gmtBindTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and cae.gmt_bind < date_add(#{gmtBindTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="sortSql">		
+		<choose>			
+			<when test="sort != null and sort.trim() !=''">
+				order by ${sort}
+			</when>
+			<otherwise>
+				<if test="sortByDefault">
+					order by cae.GMT_CREATE DESC
+				</if>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="queryList" parameterType="cardApplyEntQuery" resultMap="cardApplyEntMap">
+		<include refid="common.pageBegin" />
+		select 		<choose>
+			<when test="columns != null and columns.length>0">
+				<foreach collection="columns" index="index" item="item">,${item}</foreach>
+			</when>
+			<otherwise>
+        		        			,cae.ent_id
+        			        		        			,cae.card_id
+        			        		        			,cae.gmt_apply
+        			        		        			,cae.bind_status
+        			        		        			,cae.gmt_bind
+			</otherwise>
+		</choose>
+		<include refid="queryCommonSql" />
+		<include refid="sortSql" />
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryCount" parameterType="cardApplyEntQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryCommonSql" />
+	</select>
+	
+	<update id="updateStatus" parameterType="cardApplyEnt">		
+		update card_apply_ent set status=#{status} where 	</update>
+	
+	<delete id="delete" parameterType="cardApplyEnt">
+    	delete from card_apply_ent where     	
+    </delete>
+    
+    <delete id="deleteByCardId" parameterType="int">
+    	delete from card_apply_ent where  card_id =  #{cardId}   	
+    </delete>
+    
+    <delete id="deleteCardApplyEntNoAudit" parameterType="cardApplyEnt">
+    	delete from card_apply_ent where card_id =  #{cardId}  	
+    </delete>
+    
+    <!-- 获取未审核的名片申请企业记录 -->
+    <select id="getCardApplyEntNoAudit" parameterType="int" resultType="hashMap">
+    	select cae.ent_id,ei.org_name from card_apply_ent cae
+		left join ent_info ei on cae.ent_id=ei.id
+		where cae.bind_status=0 and card_id=#{cardId}
+    </select>
+    
+    
+    <!-- 获取申请绑定或已绑定的企业id -->
+    <select id="getCardApplyEntNoOrYesAudit" parameterType="int" resultType="string">
+    	select cae.ent_id from card_apply_ent cae
+		left join ent_info ei on cae.ent_id=ei.id
+		where (cae.bind_status=0 or (cae.bind_status=1)) and card_id=#{cardId}
+    </select>
+    
+</mapper>

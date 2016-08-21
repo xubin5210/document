@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/pop_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="20dip" >
+
+        <Button
+            android:id="@+id/btn_take_photo"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/input_border_selector6"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:text="@string/take_photo"
+            android:textColor="@color/C3"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_pick_photo"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dip"
+            android:background="@drawable/input_border_selector6"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:text="@string/album"
+            android:textColor="@color/C3"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dip"
+            android:layout_marginBottom="20dip"
+            android:background="@drawable/input_border_selector6"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:text="@string/cancel"
+            android:textColor="@color/C3"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</RelativeLayout>

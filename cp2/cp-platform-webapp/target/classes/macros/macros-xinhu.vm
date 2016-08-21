@@ -1,0 +1,46 @@
+#macro(xinhuWebappIndexHtmlHeader)
+	#htmlHeador("信乎")
+		<link rel="shortcut icon" href="#getWebresourcesUrl()/userIndex/images/favicon.ico" />	
+    	#if($appContextTool.isDebug())
+		<link href="#getWebresourcesUrl()/css/common.css" rel="stylesheet" type="text/css">
+        <link href="#getWebresourcesUrl()/css/index.css" rel="stylesheet" type="text/css">
+		<script src="#getWebresourcesUrl()/js/common.js" type="text/javascript"></script>
+    	#else
+		<link href="#getWebresourcesUrl()/css/index.min.css" rel="stylesheet" type="text/css"/>
+		<link href="#getWebresourcesUrl()/css/index.css" rel="stylesheet" type="text/css">
+		<script src="#getWebresourcesUrl()/js/index.min.js" type="text/jscript"></script>
+    	#end
+#end
+
+#macro(xinhuWebappRegisterHtmlHeader)
+	#htmlHeador("信乎")
+	<link rel="shortcut icon" href="#getWebresourcesUrl()/userIndex/images/favicon.ico" />	
+	#if($appContextTool.isDebug())
+		<link href="#getWebresourcesUrl()/css/common.css" rel="stylesheet" type="text/css">
+        <link href="#getWebresourcesUrl()/css/registration.css" rel="stylesheet" type="text/css">
+		<script src="#getWebresourcesUrl()/js/common.js" type="text/javascript"></script>
+	#else
+		<link href="#getWebresourcesUrl()/css/register.min.css" rel="stylesheet" type="text/css"/>
+        <link href="#getWebresourcesUrl()/css/registration.css" rel="stylesheet" type="text/css">
+		<script src="#getWebresourcesUrl()/js/register.min.js" type="text/jscript"></script>
+	#end
+#end
+
+#macro(xinhuWebappUsercenterHtmlHeader)
+	#htmlHeador("信乎")
+	<link rel="shortcut icon" href="#getWebresourcesUrl()/userIndex/images/favicon.ico" />	
+	#if($appContextTool.isDebug())
+		<link href="#getWebresourcesUrl()/css/common.css" rel="stylesheet" type="text/css">
+        <link href="#getWebresourcesUrl()/css/admin.css" rel="stylesheet" type="text/css">
+		<link href="#getWebresourcesUrl()/css/user-define.css" rel="stylesheet" type="text/css">
+		<script src="#getWebresourcesUrl()/js/common.js" type="text/javascript"></script>
+	#else
+		<link href="#getWebresourcesUrl()/css/usercenter.min.css" rel="stylesheet" type="text/css"/>
+		<script src="#getWebresourcesUrl()/js/usercenter.min.js" type="text/jscript"></script>
+	#end
+#end
+
+
+#macro(getImageRoot)
+$context_webresourcesUrl/userAdmin/images##
+#end

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+	 #xinhuWebappIndexHtmlHeader() 
+	 #loadAppRes()
+	<script> var _server = '#getAppServer()';  </script>
+</head>
+<body>
+	$screen_content
+</body>
+</html>

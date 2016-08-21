@@ -1,0 +1,91 @@
+#set($layout="commons/layout-usercenter-head.vm")
+<div id="right">
+    <div class="roster_title hei">
+        <i class="icon_hmc icon-bg fl"></i>
+        <span class="fl c_green">花名册</span>
+        <span class="fr btn blue radius"><a href="javascript:history.go(-1);"><i class="icon_back icon-bg fl"></i>返回</a></span>
+    </div>
+    <div class="r_title c_blue">"$!card.trueName" 的个人资料</div> 
+    <div class="profile">
+        <div class="fl user">
+        	<div class="u_profile overhide">
+				#if($!card.iconUrl)
+					<img id="iconb" src="$!storeUrl$!card.iconUrl" onload="AutoResizeImage(100,100,this)" class="u_pic fl"/>
+				#else 
+					<img id="iconb" src="#getWebresourcesUrl()/images/admin/head.gif" class="u_pic fl"/>
+				#end
+                <div class="fl u_msg">
+                	<p ><strong style="color:green">$!card.trueName</strong>#if($!card.ename=="")  #elseif($!card.ename) ($!card.ename)  #else  #end<span class="fr"><i #if($!card.sex=="女") class="icon_girl icon-bg fl" #else class="icon_boy icon-bg fl" #end></i>#if($!card.ifOnJob==0)在职#else 离职 #end</span></p>
+                    <p>
+						
+						
+						
+                    	名片号：$!card.id<br>昵称：$!card.nickName
+                    </p>
+                    <div class="edit_btn">
+                		<a href="card-edit?id=$!card.id" class="blue fl hei"><i class="icon_edit icon-bg fl"></i>修 改</a>
+                    </div>
+                </div>
+            </div>
+            <div class="clr"></div>
+            <div class="personality"><strong>格言</strong>$!card.motto</div> 
+            <div class="personality overhide">
+            	<strong class="fl">职位</strong>
+            	<ul class="fl">
+                	<li>$!card.entPositionStr</li>
+                    <li>$!card.entDepartmentStr</li> 
+            	</ul>
+           </div>
+           <div class="t c_blue">电话</div>
+           <div class="nr">
+                <p><label>移动电话</label><span>$!card.mobile</span><em>自填写</em></p>
+                <p><label>座机</label><span>#if($!card.phone.length()!=1) $!card.phone #end </span><em>自填写</em></p>
+                <p><label>传真</label><span>#if($!card.fax.length()!=1)  $!card.fax #end </span><em>自填写</em></p>
+            </div>
+            <div class="t c_blue">邮件</div>
+           <div class="nr">
+                <p><label>工作</label><span>$!card.email</span><em>自填写</em></p>
+            </div>
+            <div class="t c_blue">身份认证</div>
+           <div class="nr">
+                <p><label>身份证号</label><span>$!card.userIdcard</span><em>自填写</em></p>
+            </div>
+        </div>
+        <div class="fr u_card">
+        	<div class="u_title">TA交换的名片</div>
+            <ul class="card_nums overhide">
+            	<li>
+                	<span>$!counts.cardExchangeCount</span>
+                	<p>名片</p>
+                </li>
+                <li>
+                	<span>$!counts.cardExchangePositionCount</span>
+                	<p>职位</p>
+                </li>
+                <li class="last">
+                	<span>$!counts.cardExchangeEntCount</span>
+                	<p>企业</p>
+                </li>
+            </ul>
+            <div class="u_title">TA的排名</div>
+            <ul class="ranking overhide">
+                <li class="cur">
+                    <label class="fl">部门</label>
+                    <span class="hei"><em>#if($!counts.userIdcard)$!counts.userIdcard #else 0 #end</em>st</span>
+                </li>
+                 <li>
+                    <label class="fl">公司</label>
+                    <span class="hei"><em>#if($!counts.cardExchangeEntOrder)$!counts.cardExchangeEntOrder #else 0 #end</em>th</span>
+                </li>
+                 <li>
+                    <label class="fl">同行</label>
+                    <span class="hei"><em>#if($!counts.cardExchangeIndustryOrder)$!counts.cardExchangeIndustryOrder #else 0 #end</em>th</span>
+                </li>
+                 <li>
+                    <label class="fl">信乎</label>
+                    <span class="hei"><em>#if($!counts.cardExchangeXinhuOrder)$!counts.cardExchangeXinhuOrder #else 0 #end</em> th</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

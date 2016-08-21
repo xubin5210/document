@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/home_left_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/left_right"
+        android:drawableLeft="@drawable/home_person"
+        android:drawablePadding="@dimen/left_right"
+        android:gravity="center_vertical"
+        android:text="@string/person_info"
+        android:textColor="@color/C6"
+        android:textSize="@dimen/H4" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginLeft="@dimen/left_right"
+        android:layout_marginTop="8dp"
+        android:background="@color/C3" />
+
+    <RelativeLayout
+        android:id="@+id/home_left_new_card_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" >
+
+        <TextView
+            android:id="@+id/home_new_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/left_right"
+            android:drawableLeft="@drawable/home_new_card"
+            android:drawablePadding="@dimen/left_right"
+            android:gravity="center_vertical"
+            android:text="@string/new_card"
+            android:textColor="@color/C6"
+            android:textSize="@dimen/H4" />
+
+        <Button
+            android:id="@+id/home_left_red_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/left_right"
+            android:layout_marginRight="100dp"
+            android:background="@drawable/red_point"
+            android:text="3"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginLeft="@dimen/left_right"
+        android:layout_marginTop="8dp"
+        android:background="@color/C3" />
+
+    <TextView
+        android:id="@+id/home_left_contacts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/left_right"
+        android:layout_marginTop="30dp"
+        android:drawableLeft="@drawable/home_contacts"
+        android:drawablePadding="@dimen/left_right"
+        android:gravity="center_vertical"
+        android:text="@string/contacts"
+        android:textColor="@color/C6"
+        android:textSize="@dimen/H4" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginLeft="@dimen/left_right"
+        android:layout_marginTop="8dp"
+        android:background="@color/C4" />
+
+    <RelativeLayout
+        android:id="@+id/home_left_company_contacts_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" >
+
+        <TextView
+            android:id="@+id/home_left_company_contacts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/left_right"
+            android:drawableLeft="@drawable/home_company_contacts"
+            android:drawablePadding="@dimen/left_right"
+            android:gravity="center_vertical"
+            android:text="@string/company_contact"
+            android:textColor="@color/C6"
+            android:textSize="@dimen/H4" />
+
+        <Button
+            android:id="@+id/new_card_accept"
+            android:layout_width="68dp"
+            android:layout_height="36dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_toRightOf="@id/home_left_company_contacts"
+            android:background="@drawable/add_new_card_style"
+            android:text="绑定企业"
+            android:textColor="@color/C6"
+            android:textSize="@dimen/H5" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginLeft="@dimen/left_right"
+        android:layout_marginTop="8dp"
+        android:background="@color/C3" />
+
+    <TextView
+        android:id="@+id/home_left_share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/left_right"
+        android:layout_marginTop="8dp"
+        android:drawableLeft="@drawable/home_share"
+        android:drawablePadding="@dimen/left_right"
+        android:gravity="center_vertical"
+        android:text="@string/home_share"
+        android:textColor="@color/C6"
+        android:textSize="@dimen/H4"
+        android:visibility="gone" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginLeft="@dimen/left_right"
+        android:layout_marginTop="8dp"
+        android:background="@color/C3"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/home_left_set"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/left_right"
+        android:layout_marginTop="30dp"
+        android:drawableLeft="@drawable/home_set"
+        android:drawablePadding="@dimen/left_right"
+        android:gravity="center_vertical"
+        android:text="@string/home_set"
+        android:textColor="@color/C6"
+        android:textSize="@dimen/H4" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginLeft="@dimen/left_right"
+        android:layout_marginTop="8dp"
+        android:background="@color/C4" />
+
+</LinearLayout>

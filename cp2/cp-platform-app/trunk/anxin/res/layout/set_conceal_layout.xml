@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pubTitle="http://schemas.android.com/apk/res/com.ciapc.anxin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <com.ciapc.anxin.common.view.PubTitle
+        android:id="@+id/set_conceal_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pubTitle:leftIcon="@drawable/back"
+        
+        pubTitle:text="隐私"/>
+     
+     <RelativeLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:paddingTop="18dp"
+         android:background="@drawable/exchange_bg_bottom"
+         >
+         <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="陌生人搜索我的方式"
+             android:layout_marginLeft="15dp"
+             android:paddingBottom="5dp"
+             android:textColor="#a9a9a9"
+             />
+         
+     </RelativeLayout>
+    
+     <!-- 通过名片搜索到我 -->
+     <RelativeLayout 
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         
+         android:paddingLeft="15dp"
+         android:paddingRight="15dp"
+         android:background="@drawable/exchange_bg_bottom">
+         <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="通过名片搜索到我"
+             android:paddingTop="8dp"
+             android:paddingBottom="8dp"
+             android:layout_centerVertical="true"
+             android:textSize="15dp"
+             />
+         <CheckBox 
+            android:id="@+id/ck_cardId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/checkbox_selector"
+            android:button="@null"/>
+     </RelativeLayout>
+    
+     <!--通过昵称搜索到我 -->
+    <RelativeLayout 
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         
+         android:paddingLeft="15dp"
+         android:paddingRight="15dp"
+         android:background="@drawable/exchange_bg_bottom">
+         <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="通过昵称搜索到我"
+             android:paddingTop="8dp"
+             android:paddingBottom="8dp"
+             android:layout_centerVertical="true"
+             android:textSize="15dp"
+             />
+         <CheckBox 
+             android:id="@+id/ck_nickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/checkbox_selector"
+            android:button="@null"/>
+     </RelativeLayout>
+    
+      <!--通过手机号搜索到我 -->
+     <RelativeLayout 
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         
+         android:paddingLeft="15dp"
+         android:paddingRight="15dp"
+         android:background="@drawable/exchange_bg_bottom">
+         <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="通过手机号搜索到我"
+             android:paddingTop="8dp"
+             android:paddingBottom="8dp"
+             android:layout_centerVertical="true"
+             android:textSize="15dp"
+             />
+         <CheckBox 
+             android:id="@+id/ck_mobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/checkbox_selector"
+            android:button="@null"/>
+     </RelativeLayout>
+     
+      <!--通过职位搜索到我 -->
+      <RelativeLayout 
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         
+         android:paddingLeft="15dp"
+         android:paddingRight="15dp"
+         android:background="@drawable/exchange_bg_bottom">
+         <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="通过职位搜索到我 "
+             android:paddingTop="8dp"
+             android:paddingBottom="8dp"
+             android:layout_centerVertical="true"
+             android:textSize="15dp"
+             />
+         <CheckBox 
+             android:id="@+id/ck_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/checkbox_selector"
+            android:button="@null"/>
+     </RelativeLayout>
+    
+     <!--通过邮箱搜索到我 -->
+      <RelativeLayout 
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         
+         android:paddingLeft="15dp"
+         android:paddingRight="15dp"
+         android:background="@drawable/exchange_bg_bottom">
+         <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="通过邮箱搜索到我 "
+             android:paddingTop="8dp"
+             android:paddingBottom="8dp"
+             android:layout_centerVertical="true"
+             android:textSize="15dp"
+             />
+         <CheckBox 
+             android:id="@+id/ck_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/checkbox_selector"
+            android:button="@null"/>
+     </RelativeLayout>
+    
+     
+</LinearLayout>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pubTitle="http://schemas.android.com/apk/res/com.ciapc.anxin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/C5"
+    android:orientation="vertical" >
+
+    <com.ciapc.anxin.common.view.PubTitle
+        android:id="@+id/contact_detalis_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pubTitle:leftIcon="@drawable/back"
+        pubTitle:text="同事名片" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/exchange_bg_bottom"
+        android:paddingBottom="20dp" >
+
+        <com.ciapc.anxin.common.view.RoundView
+            android:id="@+id/business_card_head"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_marginTop="@dimen/left_right"
+            android:scaleType="fitXY"
+            android:src="@drawable/toux_default" />
+
+        <TextView
+            android:id="@+id/contact_true_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/business_card_head"
+            android:textColor="@color/C1"
+            android:textSize="@dimen/H4" />
+
+        <TextView
+            android:id="@+id/contact_qianm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/contact_true_name"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_toRightOf="@id/business_card_head"
+            android:textColor="@color/C2"
+            android:textSize="@dimen/H5" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/exchange_bg_bottom" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_vertical|right"
+            android:paddingBottom="@dimen/left_right"
+            android:paddingTop="@dimen/left_right"
+            android:text="@string/tel_phone"
+            android:textColor="@color/C3"
+            android:textSize="@dimen/H5" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/contacts_detail_mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_vertical|left"
+                android:paddingLeft="@dimen/left_right"
+                android:textColor="@color/C1"
+                android:textSize="@dimen/H5" />
+
+            <TextView
+                android:id="@+id/for_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableRight="@drawable/home_detail_phone"
+                android:gravity="center_vertical|right"
+                android:paddingRight="@dimen/left_right" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/exchange_bg_bottom"
+        android:visibility="visible" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_vertical|right"
+            android:paddingBottom="@dimen/left_right"
+            android:paddingTop="@dimen/left_right"
+            android:text="@string/tel"
+            android:textColor="@color/C3"
+            android:textSize="@dimen/H5" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/contacts_detail_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_vertical|left"
+                android:paddingLeft="@dimen/left_right"
+                android:textColor="@color/C1"
+                android:textSize="@dimen/H5" />
+
+            <TextView
+                android:id="@+id/for_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableRight="@drawable/home_detail_phone"
+                android:gravity="center_vertical|right"
+                android:paddingRight="@dimen/left_right" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/exchange_bg_bottom"
+        android:visibility="visible" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_vertical|right"
+            android:paddingBottom="@dimen/left_right"
+            android:paddingTop="@dimen/left_right"
+            android:text="短号"
+            android:textColor="@color/C3"
+            android:textSize="@dimen/H5" />
+
+        <TextView
+            android:id="@+id/contacts_detail_fax"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="7"
+            android:gravity="center_vertical|left"
+            android:paddingLeft="@dimen/left_right"
+            android:textColor="@color/C1"
+            android:textSize="@dimen/H5" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/exchange_bg_bottom"
+        android:visibility="visible" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_vertical|right"
+            android:paddingBottom="@dimen/left_right"
+            android:paddingTop="@dimen/left_right"
+            android:text="@string/exchange_mail"
+            android:textColor="@color/C3"
+            android:textSize="@dimen/H5" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_vertical|left"
+                android:paddingLeft="@dimen/left_right"
+                android:textColor="@color/C1"
+                android:textSize="@dimen/H5" />
+
+            <TextView
+                android:id="@+id/contacts_detail_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableRight="@drawable/person_detail_email"
+                android:gravity="center_vertical|left"
+                android:paddingRight="@dimen/left_right" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/exchange_card"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/add_new_card_style"
+        android:gravity="center"
+        android:text="交换名片"
+        android:textColor="@color/white"
+        android:textSize="@dimen/H4" />
+
+</LinearLayout>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>ancun-xinhu-webapp</display-name>
+	
+	<filter>  
+    	<filter-name>CharacterEncodingFilter</filter-name>  
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  
+ 		<init-param>  
+ 			<param-name>encoding</param-name>  
+ 			<param-value>UTF-8</param-value>  
+ 		</init-param>  
+ 	</filter>  
+ 	<filter-mapping>  
+		<filter-name>CharacterEncodingFilter</filter-name>  
+		<url-pattern>/*</url-pattern>  
+	</filter-mapping>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>			
+			classpath*:spring/core-bean.xml		
+			classpath*:spring/cache-bean.xml			
+			classpath*:spring/base-biz-bean.xml	
+			classpath*:spring/web-bean.xml	
+			classpath*:spring/xinhu-bean.xml
+			classpath*:spring/spring-quartz.xml
+		</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/log4j.properties</param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>ancun-xinhu-webui</servlet-name>
+		<servlet-class>com.ancun.products.core.web.servlet.AncunDispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:mvc/xinhu-webui-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ancun-xinhu-webui</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 信乎api servlet begin -->
+	<servlet>
+		<servlet-name>ancun-xinhu-api</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:mvc/xinhu-api-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ancun-xinhu-api</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+	<!-- 信乎api servlet end -->
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/pagenotfind</location>
+	</error-page>
+</web-app>

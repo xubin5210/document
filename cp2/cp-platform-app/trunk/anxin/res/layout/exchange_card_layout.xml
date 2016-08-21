@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pubTitle="http://schemas.android.com/apk/res/com.ciapc.anxin"
+    android:layout_width="match_parent"
+     android:id="@+id/exchange_layout"
+    android:layout_height="match_parent"
+    android:background="@color/C5"
+    android:orientation="vertical" >
+
+    <com.ciapc.anxin.common.view.PubTitle
+        android:id="@+id/exchange_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pubTitle:leftIcon="@drawable/back"
+        pubTitle:text="交换名片" >
+    </com.ciapc.anxin.common.view.PubTitle>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/C4"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/exchange_search"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_marginRight="@dimen/left_right"
+            android:background="@drawable/home_search" >
+	
+            <TextView 
+                android:drawableLeft="@drawable/saerch"
+                android:layout_width="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/C3"
+                android:textSize="@dimen/H4"
+                android:text="@string/search"
+                android:gravity="center"
+                android:layout_height="match_parent"/>
+            
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/exchange_scan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/exchange_bg_top_bottom"
+        android:padding="@dimen/left_right" >
+
+        <ImageView
+            android:id="@+id/sys"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:src="@drawable/exchange_qr" />
+
+        <TextView
+            android:id="@+id/sys_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_toRightOf="@id/sys"
+            android:text="@string/exchange_sys"
+            android:textColor="@color/C2"
+            android:textSize="@dimen/H3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sys_text"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/sys"
+            android:text="@string/exchange_sys_text"
+            android:textColor="@color/C1"
+            android:textSize="@dimen/H4" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/exchange_wx"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/exchange_bg_top_bottom"
+        android:padding="@dimen/left_right" >
+
+        <ImageView
+            android:id="@+id/wx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:src="@drawable/exchange_wx" />
+
+        <TextView
+            android:id="@+id/wx_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_toRightOf="@id/wx"
+            android:text="@string/exchange_wx"
+            android:textColor="@color/C2"
+            android:textSize="@dimen/H3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/wx_text"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/wx"
+            android:text="@string/exchange_wx_text"
+            android:textColor="@color/C1"
+            android:textSize="@dimen/H4" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/exchange_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/exchange_bg_bottom"
+        android:padding="@dimen/left_right" >
+
+        <ImageView
+            android:id="@+id/msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:src="@drawable/exchange_msg" />
+
+        <TextView
+            android:id="@+id/msg_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_toRightOf="@id/msg"
+            android:text="@string/exchange_message"
+            android:textColor="@color/C2"
+            android:textSize="@dimen/H3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/msg_text"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/msg"
+            android:text="@string/exchange_message_text"
+            android:textColor="@color/C1"
+            android:textSize="@dimen/H4" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/exchange_mail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/exchange_bg_bottom"
+        android:padding="@dimen/left_right" >
+
+        <ImageView
+            android:id="@+id/mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:src="@drawable/email" />
+
+        <TextView
+            android:id="@+id/mail_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_toRightOf="@id/mail"
+            android:text="@string/exchange_mail"
+            android:textColor="@color/C2"
+            android:textSize="@dimen/H3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mail_text"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/mail"
+            android:text="@string/exchange_mail_text"
+            android:textColor="@color/C1"
+            android:textSize="@dimen/H4" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/home_item"
+    android:orientation="vertical" >
+
+    <com.ciapc.anxin.utils.ListView.ZSwipeItem
+        android:id="@+id/swipe_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/home_business_card_del"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/red"
+            android:gravity="center" >
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/trash" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <com.ciapc.anxin.common.view.RoundView
+                android:id="@+id/business_card_head"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/left_right"
+                android:layout_marginBottom="@dimen/left_right"
+                android:layout_marginTop="@dimen/left_right"
+                android:scaleType="fitXY"
+                android:src="@drawable/toux_default" />
+
+            <TextView
+                android:id="@+id/business_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/business_card_head"
+                android:textColor="@color/C1"
+                android:textSize="@dimen/H4" />
+
+            <TextView
+                android:id="@+id/business_company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/business_name"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@id/business_card_head"
+                android:textColor="@color/C2"
+                android:textSize="@dimen/H5" />
+
+            <TextView
+                android:id="@+id/business_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/left_right"
+                android:layout_marginRight="@dimen/left_right"
+                android:textColor="@color/C2"
+                android:textSize="@dimen/H5" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/C4" />
+        </RelativeLayout>
+    </com.ciapc.anxin.utils.ListView.ZSwipeItem>
+
+</LinearLayout>

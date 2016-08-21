@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.CardPositionLinkMapper">
+	<resultMap id="cardPositionLinkMap" type="cardPositionLink">		
+		<result column="position_id" property="positionId"/><!-- 职位id -->			
+		<result column="card_id" property="cardId"/><!-- 用户id -->			
+		<result column="gmt_bind" property="gmtBind"/><!-- 绑定时间 -->			
+	</resultMap>
+
+	<insert id="insert" parameterType="cardPositionLink" >
+				insert into
+		card_position_link(
+		<if test="positionId != null">position_id</if>
+		<if test="cardId != null">,card_id</if>
+		,gmt_bind
+									)values(
+		<if test="positionId != null">#{positionId,jdbcType=INTEGER}</if>
+		<if test="cardId != null">,#{cardId,jdbcType=INTEGER}</if>
+		,<include refid="common.now" />
+					        		)
+	</insert>
+
+	<update id="update" parameterType="cardPositionLink">
+		update card_position_link
+		<set>			
+			<if test="positionId != null">position_id=#{positionId,jdbcType=INTEGER},</if>	
+			<if test="cardId != null">card_id=#{cardId,jdbcType=INTEGER},</if>	
+			<if test="gmtBind != null">gmt_bind=#{gmtBind,jdbcType=TIMESTAMP},</if>	
+		</set>		
+		where 			</update>
+	
+	<select id="load" parameterType="int" resultMap="cardPositionLinkMap" >
+    		select * from card_position_link where card_id = #{id}   		    	</select>
+	
+	<sql id="queryCommonSql">
+		FROM card_position_link cpl
+		<where>
+			<if test="positionId != null">and cpl.position_id = #{positionId}</if>												
+			<if test="cardId != null">and cpl.card_id = #{cardId}</if>												
+			<if test="gmtBindFrom != null">and cpl.gmt_bind >= #{gmtBindFrom}</if>
+			<if test="gmtBindTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and cpl.gmt_bind < #{gmtBindTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and cpl.gmt_bind < date_add(#{gmtBindTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="sortSql">		
+		<choose>			
+			<when test="sort != null and sort.trim() !=''">
+				order by ${sort}
+			</when>
+			<otherwise>
+				<if test="sortByDefault">
+					order by cpl.GMT_CREATE DESC
+				</if>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="queryList" parameterType="cardPositionLinkQuery" resultMap="cardPositionLinkMap">
+		<include refid="common.pageBegin" />
+		select 		<choose>
+			<when test="columns != null and columns.length>0">
+				<foreach collection="columns" index="index" item="item">,${item}</foreach>
+			</when>
+			<otherwise>
+        		        			,cpl.position_id
+        			        		        			,cpl.card_id
+        			        		        			,cpl.gmt_bind
+			</otherwise>
+		</choose>
+		<include refid="queryCommonSql" />
+		<include refid="sortSql" />
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryCount" parameterType="cardPositionLinkQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryCommonSql" />
+	</select>
+	
+	<update id="updateStatus" parameterType="cardPositionLink">		
+		update card_position_link set status=#{status} where 	</update>
+	
+	<delete id="delete" parameterType="int">
+    		delete from card_position_link where  card_id = #{id}   
+	</delete>
+	
+	<!-- 获取名片职位数量 -->
+	<select id="getCardPositionCount" parameterType="int" resultType="java.lang.Integer">
+		select count(1) from card_position_link where  card_id = #{cardId}
+	</select>
+	
+</mapper>

@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.UserCardApplyMapper">
+	<resultMap id="userCardApplyMap" type="userCardApply">		
+		<id column="id" property="id"/><!-- 申请id -->			
+		<result column="card_id_from" property="cardIdFrom"/><!-- 申请人 -->			
+		<result column="card_id" property="cardId"/><!-- 申请对象 -->			
+		<result column="apply_type" property="applyType"/><!-- 申请类型 -->
+		<result column="apply_note" property="applyNote"/><!-- 申请说明 -->
+		<result column="gmt_apply" property="gmtApply"/><!-- 申请时间 -->			
+		<result column="is_exchange" property="isExchange"/><!-- 是否交换 -->			
+		<result column="gmt_exchange" property="gmtExchange"/><!-- 交换时间 -->			
+		<result column="is_delete" property="isDelete"/><!-- 是否删除 -->			
+		<result column="card_id_delete" property="cardIdDelete"/><!-- 删除人 -->			
+		<result column="gmt_delete" property="gmtDelete"/><!-- 删除时间 -->			
+	</resultMap>
+
+	<insert id="insert" parameterType="userCardApply"  useGeneratedKeys="true" keyProperty="id" >
+		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+			select SEQ_user_card_apply.nextval from dual
+		</selectKey>
+		insert into user_card_apply(
+		<if test="_databaseId == 'oracle'">ID,</if>
+		<trim prefix="" prefixOverrides=",">
+			<if test="cardIdFrom != null">,card_id_from</if>
+			<if test="cardId != null">,card_id</if>
+			<if test="applyType != null">,apply_type</if>
+			
+			<if test="gmtExchange != null">,gmt_exchange</if>
+			
+			<if test="applyNote != null">,apply_note</if>
+					,gmt_apply
+			<if test="isExchange != null">,is_exchange</if>
+					,is_delete
+		</trim>		)values(
+		<if test="_databaseId == 'oracle'">#{id},</if>
+		<trim prefix="" prefixOverrides=",">
+			<if test="cardIdFrom != null">,#{cardIdFrom,jdbcType=INTEGER}</if>
+			<if test="cardId != null">,#{cardId,jdbcType=INTEGER}</if>
+			<if test="applyType != null">,#{applyType,jdbcType=VARCHAR}</if>
+			
+			<if test="gmtExchange != null">,#{gmtExchange,jdbcType=TIMESTAMP}</if>
+			
+			<if test="applyNote != null">,#{applyNote,jdbcType=VARCHAR}</if>
+			,<include refid="common.now" />
+			<if test="isExchange != null">,#{isExchange,jdbcType=VARCHAR}</if>
+			,0
+		</trim>		)
+	</insert>
+
+	<update id="update" parameterType="userCardApply">
+		update user_card_apply
+		<set>			
+			<if test="cardIdFrom != null">card_id_from=#{cardIdFrom,jdbcType=INTEGER},</if>	
+			<if test="cardId != null">card_id=#{cardId,jdbcType=INTEGER},</if>	
+			<if test="gmtApply != null">gmt_apply=#{gmtApply,jdbcType=TIMESTAMP},</if>	
+			<if test="isExchange != null">is_exchange=#{isExchange,jdbcType=VARCHAR},</if>	
+			<if test="gmtExchange != null">gmt_exchange=#{gmtExchange,jdbcType=TIMESTAMP},</if>	
+			<if test="isDelete != null">is_delete=#{isDelete,jdbcType=INTEGER},</if>	
+			<if test="cardIdDelete != null">card_id_delete=#{cardIdDelete,jdbcType=INTEGER},</if>	
+			<if test="gmtDelete != null">gmt_delete=#{gmtDelete,jdbcType=TIMESTAMP},</if>	
+		</set>		
+		where 					 id=#{id}
+	</update>
+	
+	<select id="load" parameterType="int" resultMap="userCardApplyMap" >
+    		select * from user_card_apply where id=#{id}
+	</select>
+	
+	<sql id="queryCommonSql">
+		FROM user_card_apply uca
+		<where>
+			<if test="idArray != null">
+						uca.id in
+				<foreach collection="idArray" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+			</if>
+			<if test="cardIdFrom != null">and uca.card_id_from = #{cardIdFrom}</if>												
+			<if test="cardId != null">and uca.card_id = #{cardId}</if>												
+			<if test="gmtApplyFrom != null">and uca.gmt_apply >= #{gmtApplyFrom}</if>
+			<if test="gmtApplyTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and uca.gmt_apply < #{gmtApplyTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and uca.gmt_apply < date_add(#{gmtApplyTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+			<if test="isExchange != null and isExchange.trim() !=''">and uca.is_exchange = #{isExchange}</if>
+			<if test="gmtExchangeFrom != null">and uca.gmt_exchange >= #{gmtExchangeFrom}</if>
+			<if test="gmtExchangeTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and uca.gmt_exchange < #{gmtExchangeTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and uca.gmt_exchange < date_add(#{gmtExchangeTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+			<if test="isDelete != null">and uca.is_delete = #{isDelete}</if>												
+			<if test="cardIdDelete != null">and uca.card_id_delete = #{cardIdDelete}</if>												
+			<if test="gmtDeleteFrom != null">and uca.gmt_delete >= #{gmtDeleteFrom}</if>
+			<if test="gmtDeleteTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and uca.gmt_delete < #{gmtDeleteTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and uca.gmt_delete < date_add(#{gmtDeleteTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="sortSql">		
+		<choose>			
+			<when test="sort != null and sort.trim() !=''">
+				order by ${sort}
+			</when>
+			<otherwise>
+				<if test="sortByDefault">
+					order by uca.GMT_CREATE DESC
+				</if>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="queryList" parameterType="userCardApplyQuery" resultMap="userCardApplyMap">
+		<include refid="common.pageBegin" />
+		select uca.id				<choose>
+			<when test="columns != null and columns.length>0">
+				<foreach collection="columns" index="index" item="item">,${item}</foreach>
+			</when>
+			<otherwise>
+        		        			,uca.card_id_from
+        			        		        			,uca.card_id
+        			        		        			,uca.gmt_apply
+        			        		        			,uca.is_exchange
+        			        		        			,uca.gmt_exchange
+        			        		        			,uca.is_delete
+        			        		        			,uca.card_id_delete
+        			        		        			,uca.gmt_delete
+			</otherwise>
+		</choose>
+		<include refid="queryCommonSql" />
+		<!--
+		<include refid="sortSql" />
+		-->
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryCount" parameterType="userCardApplyQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryCommonSql" />
+	</select>
+	
+	<update id="updateStatus" parameterType="userCardApply">		
+		update user_card_apply set status=#{status} where   id=#{id} 	
+	</update>
+	
+	<delete id="delete" parameterType="int">
+    	delete from user_card_apply where id=#{id}
+	</delete>
+    
+	<!-- 修改交换状态 -->
+	<update id="updateExchangeStatus" parameterType="userCardApply">		
+		update user_card_apply set is_exchange=#{isExchange},gmt_exchange=<include refid="common.now" /> 
+		where (( card_id_from=#{cardIdFrom} and card_id=#{cardId} )
+		or ( card_id_from=#{cardId} and card_id=#{cardIdFrom} ) ) and is_exchange='0'
+	</update>
+    
+	<!-- 通过两张名片号获取对一个的名片申请记录 -->
+	<select id="getUserCardApplyByTwoCardId" parameterType="userCardApply" resultMap="userCardApplyMap" >
+    	select * from user_card_apply 
+		where (( card_id_from=#{cardIdFrom} and card_id=#{cardId} ) 
+		or ( card_id_from=#{cardId} and card_id=#{cardIdFrom} ))
+		and is_delete=0 and is_exchange=#{isExchange}
+	</select>
+    
+	<!-- 修改删除信息 -->
+	<update id="updateDeleteInfo" parameterType="userCardApply">
+		update user_card_apply set is_delete=1,card_id_delete=#{cardIdDelete}
+		,gmt_delete=<include refid="common.now" />
+		where (card_id_from=#{cardIdFrom} and card_id=#{cardId})
+		or (card_id_from=#{cardId} and card_id=#{cardIdFrom})
+	</update>
+	
+	<select id="getCardExchangeCount" parameterType="int" resultType="java.lang.Integer" >
+    	select count(DISTINCT(card_id_from)) from user_card_apply 
+		where card_id = #{id} and is_exchange = 1
+	</select>
+    
+	<select id="getCardExchangePositionCount" parameterType="int" resultType="java.lang.Integer" >
+    	SELECT
+			count(DISTINCT(position_id))
+		FROM
+			card_position_link t
+		WHERE
+			card_id IN (
+				SELECT DISTINCT
+					(card_id_from)
+				FROM
+					user_card_apply
+				WHERE is_exchange = 1 and 
+					card_id = #{id}
+			)
+	</select>
+    
+	<select id="getCardExchangeEntCount" parameterType="int" resultType="java.lang.Integer" >
+		SELECT
+			count(DISTINCT(t.ent_id))
+		FROM
+			card_info t
+		WHERE
+			id IN (
+				SELECT DISTINCT
+					(card_id_from)
+				FROM
+					user_card_apply
+				WHERE is_exchange = 1 and
+					card_id = #{id}
+			)
+	</select>
+	
+	 
+	<select id="getCardExchangeEntOrder" parameterType="map" resultType="Integer" >
+		
+		SELECT
+			num
+		FROM
+			(
+				SELECT
+					*,@rownum := @rownum + 1 AS num
+				FROM
+					(
+						SELECT
+							card_id,
+							count(DISTINCT(card_id_from))
+						FROM
+							user_card_apply where is_exchange = 1
+						GROUP BY
+							card_id
+						ORDER BY
+							count(DISTINCT(card_id_from)) DESC
+					) t,
+			(Select (@rowNum :=0) ) b
+			) j
+		WHERE
+			j.card_id IN (
+				SELECT
+					id
+				FROM
+					card_info
+				WHERE
+					ent_id = #{entId}
+			)
+		AND j.card_id = #{id}
+	</select>
+	
+	<select id="getCardExchangeDeptOrder" parameterType="map" resultType="Integer" >
+	
+	</select>
+	
+		
+	<select id="getCardExchangeIndustryOrder" parameterType="map" resultType="Integer" >
+		SELECT
+				num
+			FROM
+				(
+					SELECT
+						*,@rownum := @rownum + 1 AS num
+					FROM
+						(
+							SELECT
+								card_id,
+								count(DISTINCT(card_id_from))
+							FROM
+								user_card_apply
+							WHERE
+								is_exchange = 1
+							GROUP BY
+								card_id
+							ORDER BY
+								count(DISTINCT(card_id_from)) DESC
+						) t,
+						(SELECT(@rowNum := 0)) b
+				) j
+			WHERE
+				j.card_id IN (
+					SELECT DISTINCT
+						(n.id)
+					FROM
+						ent_info m
+					LEFT JOIN card_info n ON m.id = n.ent_id
+					WHERE
+						m.org_type = (
+							SELECT
+								org_type
+							FROM
+								ent_info
+							WHERE
+								id = #{entId}
+						)
+				)
+			AND j.card_id = #{id}
+	</select>
+	
+		
+	<select id="getCardExchangeXinhuOrder" parameterType="map" resultType="Integer" >
+		SELECT
+				num
+			FROM
+				(
+					SELECT
+						*,@rownum := @rownum + 1 AS num
+					FROM
+						(
+							SELECT
+								card_id,
+								count(DISTINCT(card_id_from))
+							FROM
+								user_card_apply
+							WHERE
+								is_exchange = 1
+							GROUP BY
+								card_id
+							ORDER BY
+								count(DISTINCT(card_id_from)) DESC
+						) t,
+						(SELECT(@rowNum := 0)) b
+				) j
+			WHERE j.card_id = #{id}
+	</select>
+    
+</mapper>

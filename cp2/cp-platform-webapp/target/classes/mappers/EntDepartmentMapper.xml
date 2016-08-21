@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.EntDepartmentMapper">
+	<resultMap id="entDepartmentMap" type="entDepartment">		
+		<id column="id" property="id"/><!-- 部门id -->			
+		<result column="ent_id" property="entId"/><!-- 企业ID -->			
+		<result column="dept_name" property="deptName"/><!-- 部门名称 -->			
+		<result column="gmt_create" property="gmtCreate"/><!-- 创建时间 -->			
+		<result column="gmt_modify" property="gmtModify"/><!-- 修改时间 -->			
+	</resultMap>
+
+	<insert id="insert" parameterType="entDepartment"  useGeneratedKeys="true" keyProperty="id" >
+		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+			select SEQ_ent_department.nextval from dual
+		</selectKey>
+				insert into
+		ent_department(
+		<if test="_databaseId == 'oracle'">ID,</if>
+		<trim prefix="" prefixOverrides=",">
+			<if test="entId != null">,ent_id</if>
+			<if test="deptName != null">,dept_name</if>
+			,gmt_create
+			<if test="gmtModify != null">,gmt_modify</if>
+		</trim>		)values(
+		<if test="_databaseId == 'oracle'">#{id},</if>
+		<trim prefix="" prefixOverrides=",">
+			<if test="entId != null">,#{entId,jdbcType=INTEGER}</if>
+			<if test="deptName != null">,#{deptName,jdbcType=VARCHAR}</if>
+			,<include refid="common.now" />
+			<if test="gmtModify != null">,#{gmtModify,jdbcType=TIMESTAMP}</if>
+		</trim>		)
+	</insert>
+
+	<update id="update" parameterType="entDepartment">
+		update ent_department
+		<set>			
+			<if test="entId != null">ent_id=#{entId,jdbcType=INTEGER},</if>	
+			<if test="deptName != null">dept_name=#{deptName,jdbcType=VARCHAR},</if>	
+			<if test="gmtCreate != null">gmt_create=#{gmtCreate,jdbcType=TIMESTAMP},</if>	
+			gmt_modify=<include refid="common.now" />
+		</set>		
+		where 					 id=#{id}
+	</update>
+	
+	<select id="load" parameterType="int" resultMap="entDepartmentMap" >
+    		select * from ent_department where id=#{id}
+	</select>
+	
+	<sql id="queryCommonSql">
+		FROM ent_department ed
+		<where>
+			<if test="idArray != null">
+						ed.id in
+				<foreach collection="idArray" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+			</if>
+			<if test="entId != null">and ed.ent_id = #{entId}</if>												
+			<if test="deptName != null and deptName.trim() !=''">and ed.dept_name = #{deptName}</if>
+			<if test="gmtCreateFrom != null">and ed.gmt_create >= #{gmtCreateFrom}</if>
+			<if test="gmtCreateTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and ed.gmt_create < #{gmtCreateTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and ed.gmt_create < date_add(#{gmtCreateTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+			<if test="gmtModifyFrom != null">and ed.gmt_modify >= #{gmtModifyFrom}</if>
+			<if test="gmtModifyTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and ed.gmt_modify < #{gmtModifyTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and ed.gmt_modify < date_add(#{gmtModifyTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="sortSql">		
+		<choose>			
+			<when test="sort != null and sort.trim() !=''">
+				order by ${sort}
+			</when>
+			<otherwise>
+				<if test="sortByDefault">
+					order by ed.GMT_CREATE DESC
+				</if>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="queryList" parameterType="entDepartmentQuery" resultMap="entDepartmentMap">
+		<include refid="common.pageBegin" />
+		select ed.id				<choose>
+			<when test="columns != null and columns.length>0">
+				<foreach collection="columns" index="index" item="item">,${item}</foreach>
+			</when>
+			<otherwise>
+        		        			,ed.ent_id
+        			        		        			,ed.dept_name
+        			        		        			,ed.gmt_create
+        			        		        			,ed.gmt_modify
+			</otherwise>
+		</choose>
+		<include refid="queryCommonSql" />
+		<include refid="sortSql" />
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryCount" parameterType="entDepartmentQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryCommonSql" />
+	</select>
+	
+	<update id="updateStatus" parameterType="entDepartment">		
+		update ent_department set status=#{status} where   id=#{id} 	</update>
+	
+	<delete id="delete" parameterType="int">
+    		delete from ent_department where id=#{id}
+	</delete>
+	
+	<select id="queryCode" parameterType="entDepartment" resultType="Integer">
+		select id from ent_department where ent_id = #{entId} and dept_name = #{deptName}
+	</select>
+    
+    <!-- 获取用户名片部门列表 -->
+    <select id="getUserCardDeptList" parameterType="int" resultMap="entDepartmentMap">
+		select * from <include refid="common.card_dept_link_UNION_ALL_card_dept_link_log" /> a 
+		where card_id = #{cardId}
+    </select>
+    
+	<select id="queryAllList" parameterType="int"  resultMap="entDepartmentMap">
+		SELECT
+			j.*
+		FROM
+			card_dept_link t
+		LEFT JOIN ent_department j ON t.dept_id = j.id
+		WHERE
+			card_id = #{id}
+	</select>
+	
+	<select id="queryExistCount" parameterType="int" resultType="Integer">
+		select count(1) from card_dept_link where dept_id = #{id}
+	</select>
+	
+	</mapper>

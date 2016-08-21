@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/C5"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/C7"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_weight="5"
+            android:background="@drawable/home_search" >
+
+            <ImageView
+                android:id="@+id/home_search_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/left_right"
+                android:scaleType="center"
+                android:src="@drawable/saerch" />
+
+            <EditText
+                android:id="@+id/home_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/home_search_img"
+                android:background="@null"
+                android:paddingLeft="10dp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/home_search_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/left_right"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textColor="@color/C6"
+            android:textSize="@dimen/H2" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/home_search_qr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:scaleType="center"
+                    android:src="@drawable/home_search_img" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/left_right"
+                    android:gravity="center"
+                    android:text="@string/exchange_sys"
+                    android:textColor="@color/C3"
+                    android:textSize="@dimen/H3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/left_right"
+                    android:gravity="center"
+                    android:text="@string/qr_str"
+                    android:textColor="@color/C2"
+                    android:textSize="@dimen/H4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/search_company_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingLeft="@dimen/left_right"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/company_name"
+                    android:textColor="@color/C3"
+                    android:textSize="@dimen/H5" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:background="@color/C3" />
+
+                <com.ciapc.anxin.common.view.AxListView
+                    android:id="@+id/company_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@null"
+                    android:scrollbars="@null" >
+                </com.ciapc.anxin.common.view.AxListView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/exchange_bg_bottom"
+                    android:gravity="center_vertical|left"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="@dimen/left_right"
+                    android:paddingTop="5dp"
+                    android:text="@string/more"
+                    android:textColor="@color/C3"
+                    android:textSize="@dimen/H5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/search_person_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingLeft="@dimen/left_right"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/peopen_name"
+                    android:textColor="@color/C3"
+                    android:textSize="@dimen/H5" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:background="@color/C3" />
+
+                <com.ciapc.anxin.common.view.AxListView
+                    android:id="@+id/person_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@null"
+                    android:scrollbars="@null" >
+                </com.ciapc.anxin.common.view.AxListView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/exchange_bg_bottom"
+                    android:gravity="center_vertical|left"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="@dimen/left_right"
+                    android:paddingTop="5dp"
+                    android:text="@string/more"
+                    android:textColor="@color/C3"
+                    android:textSize="@dimen/H5" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<toolbox>
+	<tool>
+		<key>date</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.DateTool</class>
+		<parameter name="format" value="yyyy-MM-dd HH:MM"/>
+		<parameter name="depth" value="2"/>
+		<parameter name="skip" value="month"/>
+	</tool>
+	<tool>
+		<key>math</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.MathTool</class>
+	</tool>
+	<tool>
+		<key>number</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.NumberTool</class>
+		<parameter name="format" value="#0.0"/>
+	</tool>
+	<tool>
+		<key>sorter</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.SortTool</class>
+	</tool>
+	<tool>
+		<key>esc</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.EscapeTool</class>
+	</tool>
+	<tool>
+		<key>esc</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.EscapeTool</class>
+	</tool>
+	<tool>
+		<key>contain</key>
+		<scope>request</scope>
+		<class>com.ancun.products.core.web.contain.Contain</class>
+	</tool>		
+	<tool>
+		<key>hostUtil</key>
+		<scope>application</scope>
+		<class>com.ancun.products.core.utils.HostUtil</class>
+	</tool>
+	<tool>
+		<key>dataDictTool</key>
+		<scope>application</scope>
+		<class>com.ancun.products.core.web.velocity.tools.DataDictTool</class>
+	</tool>
+	<tool>
+		<key>regionTool</key>
+		<scope>application</scope>
+		<class>com.ancun.products.core.web.velocity.tools.RegionTool</class>
+	</tool>
+	<tool>
+		<key>stringUtil</key>
+		<scope>application</scope>
+		<class>com.ancun.products.core.utils.StringUtils</class>
+	</tool>
+	<tool>
+		<key>appContextTool</key>
+		<scope>application</scope>
+		<class>com.ancun.products.core.web.velocity.tools.AppContextTool</class>
+	</tool>
+	<tool>
+		<key>beanTool</key>
+		<scope>application</scope>
+		<class>com.ancun.products.core.web.velocity.tools.BeanTool</class>
+	</tool>
+	<tool>
+		<key>sysConfigTool</key>
+		<scope>application</scope>
+		<class>com.ancun.products.core.web.velocity.tools.SysConfigTool</class>
+	</tool>	
+	
+	<tool>
+		<key>subSystemTool</key>
+		<scope>application</scope>
+		<class>com.ancun.products.core.web.velocity.tools.SubSystemTool</class>
+	</tool>
+</toolbox>

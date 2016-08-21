@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.CardInfoMapper">
+	<resultMap id="cardInfoMap" type="cardInfo">		
+		<id column="id" property="id"/><!-- 用户id -->			
+		<result column="user_id" property="userId"/><!-- 用户id -->			
+		<result column="ent_id" property="entId"/><!-- 企业ID -->			
+		<result column="ent_entry_date" property="entEntryDate"/><!-- 入职时间 -->			
+		<result column="card_type" property="cardType"/><!-- 名片类型(0:官方,1:普通) -->			
+		<result column="mobile" property="mobile"/><!-- 手机号 -->			
+		<result column="activation_status" property="activationStatus"/><!-- 激活状态 -->			
+		<result column="user_idcard" property="userIdcard"/><!-- 身份证号 -->			
+		<result column="true_name" property="trueName"/><!-- 姓名 -->			
+		<result column="nick_name" property="nickName"/><!-- 昵称 -->			
+		<result column="sex" property="sex"/><!-- 性别 -->			
+		<result column="icon_url" property="iconUrl"/><!-- 头像url -->			
+		<result column="motto" property="motto"/><!-- 座右铭 -->			
+		<result column="ename" property="ename"/><!-- 英文名称 -->			
+		<result column="phone" property="phone"/><!-- 座机 -->			
+		<result column="phone_short" property="phoneShort"/><!-- 短号 -->			
+		<result column="fax" property="fax"/><!-- 传真 -->			
+		<result column="qq" property="qq"/><!-- QQ号码 -->			
+		<result column="wei_xin" property="weiXin"/><!-- 微信号码 -->			
+		<result column="email" property="email"/><!-- 邮箱 -->			
+		<result column="email2" property="email2"/><!-- 邮箱2 -->			
+		<result column="qrcode_url" property="qrcodeUrl"/><!-- 二维码url -->			
+		<result column="search_control_switch" property="searchControlSwitch"/><!-- 搜索控制开关 -->			
+		<result column="gmt_create" property="gmtCreate"/><!-- 创建时间 -->			
+		<result column="gmt_modify" property="gmtModify"/><!-- 信息更改时间 -->	
+		<result column="tn_first_spell" property="tnFirstSpell"/><!-- 申请说明 -->
+		<result column="position_name" property="entPositionStr"/><!-- 职位集合 -->
+		<result column="dept_name" property="entDepartmentStr"/><!-- 职位集合 -->
+		<result column="if_on_job" property="ifOnJob"/><!-- 是否离职 -->
+		
+		
+		<result column="gmt_dynamic_last_read" property="gmtDynamicLastRead"/><!-- 动态最后读取时间 -->	
+	</resultMap>
+
+	<insert id="insert" parameterType="cardInfo"  useGeneratedKeys="true" keyProperty="id" >
+		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+			select SEQ_card_info.nextval from dual
+		</selectKey>
+				insert into
+		card_info(
+		<if test="_databaseId == 'oracle'">ID,</if>
+		<trim prefix="" prefixOverrides=",">
+			<if test="userId != null">,user_id</if>
+			<if test="entId != null">,ent_id</if>
+			<if test="entEntryDate != null">,ent_entry_date</if>
+			<if test="cardType != null">,card_type</if>
+			<if test="mobile != null">,mobile</if>
+			<if test="activationStatus != null">,activation_status</if>
+			<if test="userIdcard != null">,user_idcard</if>
+			<if test="trueName != null">,true_name</if>
+			<if test="nickName != null">,nick_name</if>
+			<if test="sex != null">,sex</if>
+			<if test="iconUrl != null">,icon_url</if>
+			<if test="motto != null">,motto</if>
+			<if test="ename != null">,ename</if>
+			<if test="phone != null">,phone</if>
+			<if test="phoneShort != null">,phone_short</if>
+			<if test="fax != null">,fax</if>
+			<if test="qq != null">,qq</if>
+			<if test="weiXin != null">,wei_xin</if>
+			<if test="email != null">,email</if>
+			<if test="email2 != null">,email2</if>
+			<if test="tnFirstSpell != null">,tn_first_spell</if>
+			<if test="qrcodeUrl != null">,qrcode_url</if>
+			<if test="ifOnJob != null">,if_on_job</if>
+			<if test="searchControlSwitch != null">,search_control_switch</if>
+			,gmt_create
+			<if test="gmtModify != null">,gmt_modify</if>
+			,gmt_dynamic_last_read
+		</trim>		)values(
+		<if test="_databaseId == 'oracle'">#{id},</if>
+		<trim prefix="" prefixOverrides=",">
+			<if test="userId != null">,#{userId,jdbcType=INTEGER}</if>
+			<if test="entId != null">,#{entId,jdbcType=INTEGER}</if>
+			<if test="entEntryDate != null">,#{entEntryDate,jdbcType=TIMESTAMP}</if>
+			<if test="cardType != null">,#{cardType,jdbcType=INTEGER}</if>
+			<if test="mobile != null">,#{mobile,jdbcType=VARCHAR}</if>
+			<if test="activationStatus != null">,#{activationStatus,jdbcType=INTEGER}</if>
+			<if test="userIdcard != null">,#{userIdcard,jdbcType=VARCHAR}</if>
+			<if test="trueName != null">,#{trueName,jdbcType=VARCHAR}</if>
+			<if test="nickName != null">,#{nickName,jdbcType=VARCHAR}</if>
+			<if test="sex != null">,#{sex,jdbcType=VARCHAR}</if>
+			<if test="iconUrl != null">,#{iconUrl,jdbcType=VARCHAR}</if>
+			<if test="motto != null">,#{motto,jdbcType=VARCHAR}</if>
+			<if test="ename != null">,#{ename,jdbcType=VARCHAR}</if>
+			<if test="phone != null">,#{phone,jdbcType=VARCHAR}</if>
+			<if test="phoneShort != null">,#{phoneShort,jdbcType=VARCHAR}</if>
+			<if test="fax != null">,#{fax,jdbcType=VARCHAR}</if>
+			<if test="qq != null">,#{qq,jdbcType=VARCHAR}</if>
+			<if test="weiXin != null">,#{weiXin,jdbcType=VARCHAR}</if>
+			<if test="email != null">,#{email,jdbcType=VARCHAR}</if>
+			<if test="email2 != null">,#{email2,jdbcType=VARCHAR}</if>
+			<if test="qrcodeUrl != null">,#{qrcodeUrl,jdbcType=VARCHAR}</if>
+			<if test="tnFirstSpell != null">,#{tnFirstSpell,jdbcType=VARCHAR}</if>
+			<if test="searchControlSwitch != null">,#{searchControlSwitch,jdbcType=VARCHAR}</if>
+			,<include refid="common.now" />
+			<if test="gmtModify != null">,#{gmtModify,jdbcType=TIMESTAMP}</if>
+			,<include refid="common.now" />
+		</trim>		)
+	</insert>
+
+	<update id="update" parameterType="cardInfo">
+		update card_info
+		<set>			
+			<if test="userId != null">user_id=#{userId,jdbcType=INTEGER},</if>	
+			<if test="entId != null">ent_id=#{entId,jdbcType=INTEGER},</if>	
+			<if test="entEntryDate != null">ent_entry_date=#{entEntryDate,jdbcType=TIMESTAMP},</if>	
+			<if test="cardType != null">card_type=#{cardType,jdbcType=INTEGER},</if>	
+			<if test="mobile != null">mobile=#{mobile,jdbcType=VARCHAR},</if>	
+			<if test="activationStatus != null">activation_status=#{activationStatus,jdbcType=INTEGER},</if>	
+			<if test="userIdcard != null">user_idcard=#{userIdcard,jdbcType=VARCHAR},</if>	
+			<if test="trueName != null">true_name=#{trueName,jdbcType=VARCHAR},</if>	
+			<if test="nickName != null">nick_name=#{nickName,jdbcType=VARCHAR},</if>	
+			<if test="sex != null">sex=#{sex,jdbcType=VARCHAR},</if>	
+			<if test="iconUrl != null">icon_url=#{iconUrl,jdbcType=VARCHAR},</if>	
+			<if test="motto != null">motto=#{motto,jdbcType=VARCHAR},</if>	
+			<if test="ename != null">ename=#{ename,jdbcType=VARCHAR},</if>	
+			<if test="phone != null">phone=#{phone,jdbcType=VARCHAR},</if>	
+			<if test="phoneShort != null">phone_short=#{phoneShort,jdbcType=VARCHAR},</if>	
+			<if test="fax != null">fax=#{fax,jdbcType=VARCHAR},</if>	
+			<if test="qq != null">qq=#{qq,jdbcType=VARCHAR},</if>	
+			<if test="weiXin != null">wei_xin=#{weiXin,jdbcType=VARCHAR},</if>	
+			<if test="email != null">email=#{email,jdbcType=VARCHAR},</if>	
+			<if test="email2 != null">email2=#{email2,jdbcType=VARCHAR},</if>	
+			<if test="qrcodeUrl != null">qrcode_url=#{qrcodeUrl,jdbcType=VARCHAR},</if>	
+			<if test="ifOnJob != null">if_on_job=#{ifOnJob,jdbcType=INTEGER},</if>	
+			<if test="searchControlSwitch != null">search_control_switch=#{searchControlSwitch,jdbcType=VARCHAR},</if>
+			<if test="tnFirstSpell != null">tn_first_spell=#{tnFirstSpell,jdbcType=VARCHAR},</if>		
+			<if test="gmtCreate != null">gmt_create=#{gmtCreate,jdbcType=TIMESTAMP},</if>	
+			gmt_modify=<include refid="common.now" />,	
+		</set>		
+		where 					 id=#{id}
+	</update>
+	
+	<select id="load" parameterType="int" resultMap="cardInfoMap" >
+    		select * from card_info where id=#{id}
+	</select>
+	
+	<select id="loadByMobile" parameterType="String" resultMap="cardInfoMap" >
+    		select * from card_info where mobile=#{mobile}
+	</select>
+	
+	<sql id="queryCommonSql">
+		FROM card_info ci
+		left join card_dept_link cdl on ci.id=cdl.card_id
+		left join card_position_link cpl on ci.id=cpl.card_id
+		<where>
+			<if test="idArray != null">
+						ci.id in
+				<foreach collection="idArray" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+			</if>
+			<if test="userId != null">and ci.user_id = #{userId}</if>												
+			<if test="entId != null">and ci.ent_id = #{entId}</if>												
+			<if test="entEntryDateFrom != null">and ci.ent_entry_date >= #{entEntryDateFrom}</if>
+			<if test="entEntryDateTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and ci.ent_entry_date < #{entEntryDateTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and ci.ent_entry_date < date_add(#{entEntryDateTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+			<if test="ifOnJob != null"> and ci.if_on_job=#{ifOnJob,jdbcType=INTEGER} </if>
+			<if test="id != null">and ci.id = #{id}</if>		
+			<if test="cardType != null">and ci.card_type = #{cardType}</if>												
+			<if test="mobile != null and mobile.trim() !=''">and ci.mobile = #{mobile}</if>
+			<if test="activationStatus != null">and ci.activation_status = #{activationStatus}</if>												
+			<if test="userIdcard != null and userIdcard.trim() !=''">and ci.user_idcard = #{userIdcard}</if>
+			<if test="trueName != null and trueName.trim() !=''">and ci.true_name like  CONCAT(CONCAT('%', trim(#{trueName})), '%')</if>
+			<if test="keyword != null and keyword.trim() !=''">and (ci.true_name like  CONCAT(CONCAT('%', trim(#{keyword})), '%') or ci.nick_name like  CONCAT(CONCAT('%', trim(#{keyword})), '%') or ci.ename like  CONCAT(CONCAT('%', trim(#{keyword})), '%') or ci.mobile like  CONCAT(CONCAT('%', trim(#{keyword})), '%') or ci.email like  CONCAT(CONCAT('%', trim(#{keyword})), '%') or ci.id like  CONCAT(CONCAT('%', trim(#{keyword})), '%'))</if>
+			<if test="nickName != null and nickName.trim() !=''">and ci.nick_name = #{nickName}</if>
+			<if test="sex != null and sex.trim() !=''">and ci.sex = #{sex}</if>
+			<if test="iconUrl != null and iconUrl.trim() !=''">and ci.icon_url = #{iconUrl}</if>
+			<if test="motto != null and motto.trim() !=''">and ci.motto = #{motto}</if>
+			<if test="ename != null and ename.trim() !=''">and ci.ename = #{ename}</if>
+			<if test="phone != null and phone.trim() !=''">and ci.phone = #{phone}</if>
+			<if test="phoneShort != null and phoneShort.trim() !=''">and ci.phone_short = #{phoneShort}</if>
+			<if test="fax != null and fax.trim() !=''">and ci.fax = #{fax}</if>
+			<if test="qq != null and qq.trim() !=''">and ci.qq = #{qq}</if>
+			<if test="weiXin != null and weiXin.trim() !=''">and ci.wei_xin = #{weiXin}</if>
+			<if test="email != null and email.trim() !=''">and ci.email = #{email}</if>
+			<if test="email2 != null and email2.trim() !=''">and ci.email2 = #{email2}</if>
+			<if test="qrcodeUrl != null and qrcodeUrl.trim() !=''">and ci.qrcode_url = #{qrcodeUrl}</if>
+			<if test="searchControlSwitch != null and searchControlSwitch.trim() !=''">and ci.search_control_switch = #{searchControlSwitch}</if>
+			<if test="gmtCreateFrom != null">and ci.gmt_create >= #{gmtCreateFrom}</if>
+			<if test="gmtCreateTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and ci.gmt_create < #{gmtCreateTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and ci.gmt_create < date_add(#{gmtCreateTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+			<if test="gmtModifyFrom != null">and ci.gmt_modify >= #{gmtModifyFrom}</if>
+			<if test="gmtModifyTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and ci.gmt_modify < #{gmtModifyTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and ci.gmt_modify < date_add(#{gmtModifyTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+			<if test="activaArray != null and activaArray.length==1">
+				<if test ="activaArray[0]==1">
+					and ci.user_id is not null
+				</if>
+				<if test ="activaArray[0]==0">
+					and ci.user_id is null
+				</if>
+			</if>
+			<if test="deptArray != null">
+					and cdl.dept_id in
+				<foreach collection="deptArray" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+			</if>
+			<if test="positionArray != null">
+					and cpl.position_id in
+				<foreach collection="positionArray" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="sortSql">		
+		<choose>			
+			<when test="sort != null and sort.trim() !=''">
+				order by ${sort}
+			</when>
+			<otherwise>
+				<if test="sortByDefault">
+					order by ci.GMT_CREATE DESC
+				</if>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="queryList" parameterType="cardInfoQuery" resultMap="cardInfoMap">
+		<include refid="common.pageBegin" />
+		select distinct ci.id				<choose>
+			<when test="columns != null and columns.length>0">
+				<foreach collection="columns" index="index" item="item">,${item}</foreach>
+			</when>
+			<otherwise>
+    			,ci.user_id
+    			,ci.ent_id
+    			,ci.ent_entry_date
+    			,ci.card_type
+    			,ci.mobile
+    			,ci.activation_status
+    			,ci.user_idcard
+    			,ci.true_name
+    			,ci.nick_name
+    			,ci.sex
+    			,ci.icon_url
+    			,ci.motto
+    			,ci.ename
+    			,ci.phone
+    			,ci.phone_short
+    			,ci.fax
+    			,ci.qq
+    			,ci.wei_xin
+    			,ci.email
+    			,ci.email2
+    			,ci.qrcode_url
+    			,ci.search_control_switch
+    			,ci.gmt_create
+    			,ci.gmt_modify
+    			,ci.if_on_job
+			</otherwise>
+		</choose>
+		<include refid="queryCommonSql" />
+		<include refid="sortSql" />
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryCount" parameterType="cardInfoQuery" resultType="java.lang.Integer">
+		select count(distinct ci.id)
+		<include refid="queryCommonSql" />
+	</select>
+	
+	<update id="updateStatus" parameterType="String">		
+		update card_info set ent_entry_date=#{status} where   id=#{id} 	</update>
+	
+	<delete id="delete" parameterType="int">
+    		delete from card_info where id=#{id}
+	</delete>
+	
+	<select id="queryCardInfo" parameterType="cardInfo"  resultMap="cardInfoMap" >
+		select * from card_info where ent_id = #{entId} and mobile = #{mobile} limit 1
+	</select>
+	
+	<select id="getUserCodeByName" parameterType="String" resultType="Integer">
+		select id from card_info where true_name = #{name} limit 1
+	</select>
+	
+	
+	<select id="queryAppList" parameterType="cardInfoQuery"  resultMap="cardInfoMap">
+		<include refid="common.pageBegin" />
+		select j.id				<choose>
+			<when test="columns != null and columns.length>0">
+				<foreach collection="columns" index="index" item="item">,${item}</foreach>
+			</when>
+			<otherwise>
+    			,j.user_id
+    			,j.ent_id
+    			,j.ent_entry_date
+    			,j.card_type
+    			,j.mobile
+    			,t.bind_status activation_status
+    			,j.user_idcard
+    			,j.true_name
+    			,j.nick_name
+    			,j.sex
+    			,j.icon_url
+    			,j.motto
+    			,j.ename
+    			,j.phone
+    			,j.phone_short
+    			,j.fax
+    			,j.qq
+    			,j.wei_xin
+    			,j.email
+    			,j.email2
+    			,j.qrcode_url
+    			,j.search_control_switch
+    			,t.gmt_apply gmt_create
+    			,j.gmt_modify
+    			,j.if_on_job
+    			,(
+					SELECT
+						GROUP_CONCAT(y.position_name)
+					FROM
+						card_position_link x,
+						ent_position y
+					WHERE
+						x.position_id = y.id
+					AND x.card_id = t.card_id
+				) position_name,
+				(
+					SELECT
+						GROUP_CONCAT(y.dept_name)
+					FROM
+						card_dept_link x,
+						ent_department y
+					WHERE
+						x.dept_id = y.id
+					AND x.card_id = t.card_id
+				) dept_name
+			</otherwise>
+		</choose>
+			FROM
+				card_apply_ent t
+			LEFT JOIN card_info j ON t.card_id = j.id
+			WHERE t.ent_id = #{entId}
+			<if test="status != 0 ">and t.bind_status != 0 </if>
+			<if test="status == 0 ">and t.bind_status = 0 </if>
+			<if test="trueName != null  and trueName.trim() !=''" >and j.true_name = #{trueName}</if>	
+		order by j.gmt_create desc
+		<include refid="common.pageEnd" />
+	</select>
+	
+	<select id="queryAppCount" parameterType="cardInfoQuery" resultType="java.lang.Integer">
+		select count(1)
+			FROM
+				card_apply_ent t
+			LEFT JOIN card_info j ON t.card_id = j.id
+			WHERE t.ent_id=#{entId}
+			<if test="status == 1" > and t.bind_status != 0</if>	
+			<if test="status == 0" > and t.bind_status = 0</if>	
+	</select>
+	
+	<!-- 搜索企业个人的接口 -->
+    <sql id="queryEntStaffCommonSql">
+		from card_info ci
+		left join (
+		select cdl.card_id,group_concat(ed.dept_name) dept_name,group_concat(ed.id) dept_ids from ent_department ed
+		inner join card_dept_link cdl on ed.id=cdl.dept_id
+		where ed.ent_id=#{entId}
+		group by cdl.card_id
+		) cd on ci.id=cd.card_id
+		left join (
+				select id apply_id, card_id,gmt_exchange,(case when is_exchange='0' then '2' else is_exchange end) is_exchange
+				,apply_type,apply_note,gmt_apply from user_card_apply 
+				where card_id_from=#{id} and is_delete=0 
+				union all 
+				select id apply_id, card_id_from,gmt_exchange,is_exchange,apply_type,apply_note,gmt_apply from user_card_apply 
+				where card_id=#{id} and is_delete=0 
+			) uca on ci.id=uca.card_id
+		where ci.ent_id=#{entId} and (ci.id = #{content} or ci.true_name like concat('%',#{content},'%')) 
+	</sql>
+	
+	<!-- 根据部门号搜索企业个人的接口 -->
+    <sql id="queryEntStaffByDeptCommonSql">
+		from card_info ci
+		inner join (
+				select
+					t2.card_id,
+					group_concat(t1.dept_name) dept_name
+				from
+					ent_department t1
+				inner join card_dept_link t2 on t1.id = t2.dept_id
+				and t2.card_id in (
+					select
+						cdl.card_id
+					from
+						ent_department ed
+					inner join card_dept_link cdl on ed.id = cdl.dept_id
+					where
+						ed.ent_id = #{entId}
+					and ed.id = #{content}
+				)
+				group by t2.card_id
+		) cd on ci.id=cd.card_id
+		left join (
+				select id apply_id, card_id,gmt_exchange,(case when is_exchange='0' then '2' else is_exchange end) is_exchange
+				,apply_type,apply_note,gmt_apply from user_card_apply 
+				where card_id_from=#{id} and is_delete=0 
+				union all 
+				select id apply_id, card_id_from,gmt_exchange,is_exchange,apply_type,apply_note,gmt_apply from user_card_apply 
+				where card_id=#{id} and is_delete=0 
+			) uca on ci.id=uca.card_id
+		where ci.ent_id=#{entId} 			  
+	</sql>
+	
+	<select id="queryEntStaffList" parameterType="com.ancun.xinhu.domain.dto.XinHuQuery" resultType="map">
+		<include refid="common.pageBegin" />
+		select ci.id cardId,ci.icon_url iconUrl,ci.true_name trueName,ci.nick_name nickName,cd.dept_name deptName,cd.dept_ids deptIds
+		,ifnull(uca.is_exchange,'0') isExchange 
+		,(case when ci.tn_first_spell is null or ci.tn_first_spell='' then '#' else substr(ci.tn_first_spell,1,1) end) tnFirstSpell
+		<include refid="queryEntStaffCommonSql" />
+		order by ci.tn_first_spell
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryEntStaffCount" parameterType="com.ancun.xinhu.domain.dto.XinHuQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryEntStaffCommonSql" />
+	</select>
+	
+	<select id="queryEntStaffListByDept" parameterType="com.ancun.xinhu.domain.dto.XinHuQuery" resultType="map">
+		<include refid="common.pageBegin" />
+		select ci.id cardId,ci.icon_url iconUrl,ci.true_name trueName,ci.nick_name nickName,cd.dept_name deptName
+		,ifnull(uca.is_exchange,'0') isExchange 
+		,(case when ci.tn_first_spell is null or ci.tn_first_spell='' then '#' else substr(ci.tn_first_spell,1,1) end) tnFirstSpell
+		<include refid="queryEntStaffByDeptCommonSql" />
+		order by ci.tn_first_spell
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryEntStaffListByDeptCount" parameterType="com.ancun.xinhu.domain.dto.XinHuQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryEntStaffByDeptCommonSql" />
+	</select>
+	
+	<!-- 隐私接口（禁止通关手机号或名片号等搜索到） -->
+	<update id="setIsEnableSearch" parameterType="map">
+		update card_info set search_control_switch=concat(SUBSTR(search_control_switch,1,${index}),#{status},SUBSTR(search_control_switch,${index}+2,length(search_control_switch)-(${index}+1))) where id=#{id}
+	</update>
+	
+	<!-- 修改手机号 -->
+	<update id="updateMobile" parameterType="cardInfo">
+		update card_info set mobile=#{mobile} where id=#{id}
+	</update>
+	
+	<select id="getCardExchangingRecord" parameterType="cardInfoQuery" resultType="map">
+		<include refid="common.pageBegin" />
+			select ci.* 
+		<include refid="queryRecordCommonSql" />
+		<include refid="sortSql" />
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryExchangRecordCount" parameterType="cardInfoQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryRecordCommonSql" />
+	</select>
+	
+	
+	<sql id="queryRecordCommonSql">
+		from (
+				SELECT
+			(
+				SELECT
+					true_name
+				FROM
+					card_info
+				WHERE
+					id = t.card_id
+			) card_name,
+			(
+				SELECT
+					REPLACE (
+						GROUP_CONCAT(y.position_name),
+						',',
+						'|'
+					)
+				FROM
+					card_position_link x,
+					ent_position y
+				WHERE
+					x.position_id = y.id
+				AND x.card_id = t.card_id_from
+			) position_name,
+			t.gmt_exchange gmt_create,
+			t.card_id,
+			t.card_id_from,
+			j.true_name,
+			m.org_name
+		FROM
+			(
+			select t.card_id,t.card_id_from,t.is_exchange,t.gmt_exchange from user_card_apply t
+			where t.card_id in (select id from card_info where ent_id = #{entId})
+			 and t.card_id_from not in (select id from card_info where ent_id = #{entId})
+			UNION ALL
+			select t.card_id_from,t.card_id,t.is_exchange,t.gmt_exchange from user_card_apply t
+			where t.card_id_from in (select id from card_info where ent_id = #{entId})
+			 and t.card_id not in (select id from card_info where ent_id = #{entId})
+			 ) t
+		LEFT JOIN card_info j ON t.card_id_from = j.id
+		LEFT JOIN ent_info m ON j.ent_id = m.id
+		WHERE
+			t.is_exchange = 1
+		) ci
+		
+		<if test="keyword != null and keyword.trim() !=''"> where ci.card_name  like  CONCAT(CONCAT('%', trim(#{keyword})), '%')  or ci.org_name  like  CONCAT(CONCAT('%', trim(#{keyword})), '%') or ci.true_name  like  CONCAT(CONCAT('%', trim(#{keyword})), '%') or ci.position_name  like  CONCAT(CONCAT('%', trim(#{keyword})), '%')</if>				
+	</sql>
+	
+	
+	<select id="getOneRecord" parameterType="map" resultType="map">
+			SELECT
+			(
+				SELECT
+					REPLACE (
+						GROUP_CONCAT(y.position_name),
+						',',
+						'|'
+					)
+				FROM
+					card_position_link x,
+					ent_position y
+				WHERE
+					x.position_id = y.id
+				AND x.card_id = t.card_id_from
+			) position_name,
+			(
+				SELECT
+					REPLACE (
+						GROUP_CONCAT(y.dept_name),
+						',',
+						'|'
+					)
+				FROM
+					card_dept_link x,
+					ent_department y
+				WHERE
+					x.dept_id = y.id
+				AND x.card_id = t.card_id_from
+			) dept_name,
+			t.card_id,
+			t.card_id_from,
+			t.gmt_exchange gmt_create,
+			j.true_name,
+			j.nick_name,
+			j.ename,
+			j.mobile,
+			j.phone cardphone,
+			j.email cardemail,
+			j.motto,
+			j.if_on_job ifOnJob,
+			j.icon_url iconUrl,
+			m.org_name,
+			m.ent_address,
+			m.alias_name,
+			m.official_website,
+			m.phone,
+			m.org_ename,
+			m.email,
+			m.org_introduction,
+			m.logo_url logoUrl
+		FROM
+			(
+			select t.card_id,t.card_id_from,t.is_exchange,t.gmt_exchange from user_card_apply t
+			where t.card_id = #{cardId} and t.card_id_from = #{cardIdFrom}
+			UNION ALL
+			select t.card_id_from,t.card_id,t.is_exchange,t.gmt_exchange from user_card_apply t
+			where t.card_id = #{cardIdFrom} and t.card_id_from = #{cardId}
+			 ) t
+		LEFT JOIN card_info j ON t.card_id_from = j.id
+		LEFT JOIN ent_info m ON j.ent_id = m.id
+		WHERE
+			t.is_exchange = 1
+	</select>
+	
+	<!-- 获取名片个数通过手机号或身份证号，非绑定用户名片 -->
+	<select id="getCardCountByMobileOrIdCardNotUserId" parameterType="cardInfo" resultType="java.lang.Integer">
+		select count(1) num from card_info where (mobile=#{mobile} or user_idcard=#{userIdcard}) and ent_id is not null and user_id is null
+	</select>
+	
+	<!-- 修改头像url -->
+	<update id="updateIconUrl" parameterType="cardInfo">
+		update card_info set icon_url=#{iconUrl} where id=#{id}
+	</update>
+	
+	<select id="querychangeCount" parameterType="cardInfoQuery" resultType="java.lang.Integer">
+		
+		SELECT
+			count(DISTINCT(t.card_id_from))
+		FROM
+			(
+			select t.card_id,t.card_id_from,t.is_exchange,t.gmt_exchange from user_card_apply t
+			where t.card_id in (select id from card_info where ent_id = #{entId})
+			 and t.card_id_from not in (select id from card_info where ent_id = #{entId})
+			UNION ALL
+			select t.card_id_from,t.card_id,t.is_exchange,t.gmt_exchange from user_card_apply t
+			where t.card_id_from in (select id from card_info where ent_id = #{entId})
+			 and t.card_id not in (select id from card_info where ent_id = #{entId})
+			) t
+		WHERE
+			t.card_id IN (
+				SELECT
+					id
+				FROM
+					card_info
+				WHERE
+					ent_id = #{entId}
+			)
+	</select>
+	
+	<!-- 获取名片ID(随机取一个)通过手机号或身份证号，非绑定用户名片 -->
+	<select id="getCardIdByMobileOrIdCardNotUserId" parameterType="cardInfo" resultType="Integer">
+		select id from card_info where mobile=#{mobile} and ent_id is not null and user_id is null
+		limit 1
+	</select>
+	
+	<!-- 获取名片ID(随机取一个)通过手机号或身份证号，非绑定用户名片 -->
+	<select id="getCardIdByMobileOrIdCardNotUserId_new" parameterType="cardInfo" resultType="Integer">
+		select id from card_info where mobile=#{mobile} and ent_id is null and user_id is null
+		limit 1
+	</select>
+	
+	<!-- 获取动态最后读取时间 -->
+	<select id="getGmtDynamicLastRead" parameterType="int" resultType="java.util.Date">
+		select gmt_dynamic_last_read from card_info where id=#{id}
+	</select>
+	
+	<!-- 修改动态最后读取时间 -->
+	<update id="updateGmtDynamicLastRead" parameterType="int">
+		update card_info set gmt_dynamic_last_read=<include refid="common.now" /> where id=#{id}
+	</update>
+	
+	<select id="checkMobile" parameterType="String" resultType="java.lang.Integer">
+		select count(1) from card_info where mobile=#{mobile} and if_on_job = 0
+	</select>
+	
+	
+</mapper>

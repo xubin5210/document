@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.UserInfoMapper">
+	<resultMap id="userInfoMap" type="userInfo">		
+		<id column="id" property="id"/><!-- 用户id -->			
+		<result column="mobile" property="mobile"/><!-- 手机号 -->			
+		<result column="pwd" property="pwd"/><!-- 密码 -->			
+		<result column="default_card_id" property="defaultCardId"/><!-- 默认名片id -->			
+		<result column="gmt_message_read" property="gmtMessageRead"/><!-- 消息读取时间 -->			
+		<result column="id_card" property="idCard"/><!-- 身份证号 -->			
+		<result column="gmt_create" property="gmtCreate"/><!-- 创建时间 -->			
+		<result column="gmt_modify" property="gmtModify"/><!-- 修改时间 -->
+		<result column="client_id" property="clientId"/><!-- 客户端id -->	
+	</resultMap>
+
+	<insert id="insert" parameterType="userInfo"  useGeneratedKeys="true" keyProperty="id" >
+	
+		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+			select SEQ_user_info.nextval from dual
+		</selectKey>
+		insert into user_info(
+			<if test="_databaseId == 'oracle'">ID,</if>
+			<trim prefix="" prefixOverrides=",">
+				<if test="mobile != null">,mobile</if>
+				<if test="pwd != null">,pwd</if>
+				<if test="defaultCardId != null">,default_card_id</if>
+				<if test="gmtMessageRead != null">,gmt_message_read</if>
+				<if test="idCard != null">,id_card</if>
+				,gmt_create
+				<if test="gmtModify != null">,gmt_modify</if>
+			</trim>
+			)values(
+			<if test="_databaseId == 'oracle'">#{id},</if>
+			<trim prefix="" prefixOverrides=",">
+				<if test="mobile != null">,#{mobile,jdbcType=VARCHAR}</if>
+				<if test="pwd != null">,#{pwd,jdbcType=VARCHAR}</if>
+				<if test="defaultCardId != null">,#{defaultCardId,jdbcType=INTEGER}</if>
+				<if test="gmtMessageRead != null">,#{gmtMessageRead,jdbcType=TIMESTAMP}</if>
+				<if test="idCard != null">,#{idCard,jdbcType=VARCHAR}</if>
+				,<include refid="common.now" />
+				<if test="gmtModify != null">,#{gmtModify,jdbcType=TIMESTAMP}</if>
+			</trim>
+			)
+	</insert>
+
+	<update id="update" parameterType="userInfo">
+		update user_info
+		<set>			
+			<if test="mobile != null">mobile=#{mobile,jdbcType=VARCHAR},</if>	
+			<if test="pwd != null">pwd=#{pwd,jdbcType=VARCHAR},</if>	
+			<if test="defaultCardId != null">default_card_id=#{defaultCardId,jdbcType=INTEGER},</if>	
+			<if test="gmtMessageRead != null">gmt_message_read=#{gmtMessageRead,jdbcType=TIMESTAMP},</if>	
+			<if test="idCard != null">id_card=#{idCard,jdbcType=VARCHAR},</if>	
+			<if test="gmtCreate != null">gmt_create=#{gmtCreate,jdbcType=TIMESTAMP},</if>	
+			<if test="gmtModify != null">gmt_modify=#{gmtModify,jdbcType=TIMESTAMP},</if>
+			<if test="clientId != null">client_id=#{clientId,jdbcType=VARCHAR},</if>	
+		</set>		
+		where id=#{id}
+	</update>
+	
+	<select id="load" parameterType="int" resultMap="userInfoMap" >
+    	select * from user_info where id=#{id}
+    </select>
+	
+	<sql id="queryCommonSql">
+		FROM user_info ui
+		<where>
+			<if test="idArray != null">
+				ui.id in
+				<foreach collection="idArray" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+			</if>
+			<if test="mobile != null and mobile.trim() !=''">and ui.mobile = #{mobile}</if>
+    			<if test="pwd != null and pwd.trim() !=''">and ui.pwd = #{pwd}</if>
+				<if test="defaultCardId != null">and ui.default_card_id = #{defaultCardId}</if>												
+				<if test="gmtMessageReadFrom != null">and ui.gmt_message_read >= #{gmtMessageReadFrom}</if>
+						<if test="gmtMessageReadTo != null">
+							<choose>
+            					<when test="_databaseId == 'oracle'"><![CDATA[and ui.gmt_message_read < #{gmtMessageReadTo} + 1]]></when>
+            					<when test="_databaseId == 'mysql'"><![CDATA[and ui.gmt_message_read < date_add(#{gmtMessageReadTo}, interval 1 day)]]></when>
+            				</choose>							
+																																											</if>
+																													        									    			            		            			<if test="idCard != null and idCard.trim() !=''">and ui.id_card = #{idCard}</if>
+        			        									    			            								<if test="gmtCreateFrom != null">and ui.gmt_create >= #{gmtCreateFrom}</if>
+						<if test="gmtCreateTo != null">
+							<choose>
+            					<when test="_databaseId == 'oracle'"><![CDATA[and ui.gmt_create < #{gmtCreateTo} + 1]]></when>
+            					<when test="_databaseId == 'mysql'"><![CDATA[and ui.gmt_create < date_add(#{gmtCreateTo}, interval 1 day)]]></when>
+            				</choose>							
+																																											</if>
+																													        									    			            								<if test="gmtModifyFrom != null">and ui.gmt_modify >= #{gmtModifyFrom}</if>
+						<if test="gmtModifyTo != null">
+							<choose>
+            					<when test="_databaseId == 'oracle'"><![CDATA[and ui.gmt_modify < #{gmtModifyTo} + 1]]></when>
+            					<when test="_databaseId == 'mysql'"><![CDATA[and ui.gmt_modify < date_add(#{gmtModifyTo}, interval 1 day)]]></when>
+            				</choose>							
+																																											</if>
+																													        							</where>
+	</sql>
+	
+	<sql id="sortSql">		
+		<choose>			
+			<when test="sort != null and sort.trim() !=''">
+				order by ${sort}
+			</when>
+			<otherwise>
+				<if test="sortByDefault">
+					order by ui.GMT_CREATE DESC
+				</if>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="queryList" parameterType="userInfoQuery" resultMap="userInfoMap">
+		<include refid="common.pageBegin" />
+		select ui.id				<choose>
+			<when test="columns != null and columns.length>0">
+				<foreach collection="columns" index="index" item="item">,${item}</foreach>
+			</when>
+			<otherwise>
+        		        			,ui.mobile
+        			        		        			,ui.pwd
+        			        		        			,ui.default_card_id
+        			        		        			,ui.gmt_message_read
+        			        		        			,ui.id_card
+        			        		        			,ui.gmt_create
+        			        		        			,ui.gmt_modify
+        			        					</otherwise>
+		</choose>
+		<include refid="queryCommonSql" />
+		<include refid="sortSql" />
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryCount" parameterType="userInfoQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryCommonSql" />
+	</select>
+	
+	<update id="updateStatus" parameterType="userInfo">		
+		update user_info set status=#{status} where   id=#{id} 	
+	</update>
+	
+	<delete id="delete" parameterType="int">
+    	delete from user_info where id=#{id}
+    </delete>
+    
+    <!-- 通过手机号码和密码获取用户信息 -->
+    <select id="getUserInfoByMobileAndPwd" parameterType="userInfo" resultMap="userInfoMap" >
+    	select * from user_info where mobile=#{mobile} and pwd=#{pwd}
+    	limit 1 
+    </select>
+    
+    <!-- 通过手机号码获取用户信息 -->
+    <select id="getUserInfoByMobile" parameterType="userInfo" resultMap="userInfoMap" >
+    	select * from user_info where mobile=#{mobile}
+    	limit 1 
+    </select>
+    
+    <!-- 重置密码 -->
+    <update id="resetPwd" parameterType="userInfo">
+		update user_info
+		<set>			
+			pwd=#{pwd,jdbcType=VARCHAR}	
+			,gmt_modify=<include refid="common.now" />
+		</set>		
+		where mobile=#{mobile}
+	</update>
+    
+    <!-- 通过ID获取用户信息 -->
+    <select id="getUserInfoById" parameterType="userInfo" resultMap="userInfoMap" >
+    	select * from user_info where id=#{id}
+    	limit 1 
+    </select>
+    
+    <!-- 修改密码 -->
+    <update id="updatePwd" parameterType="userInfo">
+		update user_info
+		<set>			
+			pwd=#{pwd,jdbcType=VARCHAR}	
+			,gmt_modify=<include refid="common.now" />
+		</set>		
+		where id=#{id}
+	</update>
+	
+	<!-- 修改手机号 -->
+	<update id="updateMobile" parameterType="userInfo">
+		update user_info set mobile=#{mobile} where id=#{id}
+	</update>
+	
+	<!-- 消息已读接口 -->
+	<update id="updateMessageReadTime" parameterType="int">
+		update user_info set gmt_message_read=<include refid="common.now" /> where id=#{id}
+	</update>
+	
+	<!-- 通过名片id获取clientId -->
+	<select id="getClientIdByCardId" parameterType="int" resultMap="userInfoMap">
+		select ci.id default_card_id,ui.client_id from card_info ci
+		left join user_info ui on ui.id=ci.user_id
+		where ci.id=#{cardId}
+	</select>
+	
+	<!-- 通过名片id获取好友clientId -->
+	<select id="getFriendClientIdListByCardId" parameterType="int" resultMap="userInfoMap">
+		select ci.id default_card_id,ui.client_id from card_info ci 
+		inner join (
+			select card_id_from card_id from user_card_link where card_id=#{cardId}
+			union all 
+			select card_id from user_card_link where card_id_from=#{cardId}
+		) ucl on ci.id= ucl.card_id
+		<!-- XYY 不关联 user_info 表 ， 关联 user_client_info 表
+		left join user_info ui on ui.id=ci.user_id
+		-->
+		inner join user_client_info ui on ui.user_id=ci.user_id
+	</select>
+    
+</mapper>

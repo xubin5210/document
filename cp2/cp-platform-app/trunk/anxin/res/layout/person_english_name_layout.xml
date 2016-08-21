@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pubTitle="http://schemas.android.com/apk/res/com.ciapc.anxin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+      
+    <com.ciapc.anxin.common.view.PubTitle
+        android:id="@+id/person_english_name_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pubTitle:leftIcon="@drawable/back"
+        pubTitle:rightText="保存"
+        pubTitle:text="英文名"/>
+
+     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/login_input_pwd_style"
+        android:layout_marginTop="20dp" >
+
+        <com.ciapc.anxin.common.view.CustomEditText
+            android:id="@+id/et_person_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:drawableRight="@drawable/clear_input"
+            android:gravity="center_vertical"
+            android:hint="给自己取一个好听的英文名字吧"
+            android:padding="5dp"
+            android:maxLength="12"
+            android:inputType="textPhonetic"
+            android:textColor="@color/C1"
+            android:textColorHint="@color/C3"
+            android:textSize="@dimen/H4" />
+    </RelativeLayout>
+</LinearLayout>

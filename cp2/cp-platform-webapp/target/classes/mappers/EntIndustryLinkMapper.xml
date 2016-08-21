@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.EntIndustryLinkMapper">
+	<resultMap id="entIndustryLinkMap" type="entIndustryLink">		
+		<result column="ent_id" property="entId"/><!-- 企业id -->			
+		<result column="industry_id" property="industryId"/><!-- 行业性质id -->			
+	</resultMap>
+
+	<insert id="insert" parameterType="entIndustryLink" >
+				insert into
+		ent_industry_link(
+		<if test="entId != null">ent_id</if>
+		<if test="industryId != null">,industry_id</if>
+									)values(
+		<if test="entId != null">#{entId,jdbcType=INTEGER}</if>
+		<if test="industryId != null">,#{industryId,jdbcType=VARCHAR}</if>
+					        		)
+	</insert>
+
+	<update id="update" parameterType="entIndustryLink">
+		update ent_industry_link
+		<set>			
+			<if test="entId != null">ent_id=#{entId,jdbcType=INTEGER},</if>	
+			<if test="industryId != null">industry_id=#{industryId,jdbcType=VARCHAR},</if>	
+		</set>		
+		where 			</update>
+	
+	<select id="load" parameterType="entIndustryLink" resultMap="entIndustryLinkMap" >
+    		select * from ent_industry_link where    		    	</select>
+	
+	<sql id="queryCommonSql">
+		FROM ent_industry_link eil
+		<where>
+			<if test="entId != null">and eil.ent_id = #{entId}</if>												
+			<if test="industryId != null">and eil.industry_id = #{industryId}</if>												
+		</where>
+	</sql>
+	
+	<sql id="sortSql">		
+		<choose>			
+			<when test="sort != null and sort.trim() !=''">
+				order by ${sort}
+			</when>
+			<otherwise>
+				<if test="sortByDefault">
+					order by eil.GMT_CREATE DESC
+				</if>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="queryList" parameterType="entIndustryLinkQuery" resultMap="entIndustryLinkMap">
+		<include refid="common.pageBegin" />
+		select 		<choose>
+			<when test="columns != null and columns.length>0">
+				<foreach collection="columns" index="index" item="item">,${item}</foreach>
+			</when>
+			<otherwise>
+        		        			eil.ent_id
+        			        		        			,eil.industry_id
+			</otherwise>
+		</choose>
+		<include refid="queryCommonSql" />
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryCount" parameterType="entIndustryLinkQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryCommonSql" />
+	</select>
+	
+	<update id="updateStatus" parameterType="entIndustryLink">		
+		update ent_industry_link set status=#{status} where 	</update>
+	
+	<delete id="delete" parameterType="entIndustryLink">
+    		delete from ent_industry_link where     	</delete>
+</mapper>

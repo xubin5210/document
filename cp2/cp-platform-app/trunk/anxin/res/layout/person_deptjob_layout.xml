@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pubTitle="http://schemas.android.com/apk/res/com.ciapc.anxin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.ciapc.anxin.common.view.PubTitle
+        android:id="@+id/person_job_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pubTitle:leftIcon="@drawable/back"
+        pubTitle:rightText="提交"
+        pubTitle:text="部门职位" />
+
+    <!-- 部门 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        android:background="@drawable/login_input_pwd_style" >
+
+        <TextView
+            android:id="@+id/textdept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/et_person_dept"
+            android:textColor="@color/C3"
+            android:textSize="@dimen/H4" />
+
+        <com.ciapc.anxin.common.view.CustomEditText
+            android:id="@+id/et_person_dept"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:drawableRight="@drawable/clear_input"
+            android:padding="5dp"
+            android:textColor="@color/C1"
+            android:textColorHint="@color/C3"
+            android:textSize="@dimen/H4" />
+    </LinearLayout>
+
+    <!-- 职位 -->
+
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:visibility="gone"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        android:background="@drawable/login_input_pwd_style" >
+
+        <TextView
+            android:id="@+id/textjob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/et_person_job"
+            android:textColor="@color/C3"
+            android:textSize="@dimen/H4" />
+
+    <com.ciapc.anxin.common.view.CustomEditText
+            android:id="@+id/et_person_job"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:drawableRight="@drawable/clear_input"
+            android:padding="5dp"
+            android:textColor="@color/C1"
+            android:textColorHint="@color/C3"
+            android:textSize="@dimen/H4" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:text="变更职位/部门，需要企业管理员审核通过的"
+        android:textColor="@color/C3"
+        android:textSize="@dimen/H6" />
+
+</LinearLayout>

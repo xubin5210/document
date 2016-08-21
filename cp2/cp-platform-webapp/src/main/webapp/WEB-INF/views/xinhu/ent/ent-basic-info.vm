@@ -1,0 +1,391 @@
+#set($layout="")
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>  - 信乎 </title>
+    	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<script type="text/javascript" src="#getComponentUrl()/jquery/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="#getComponentUrl()/jquery/form/jquery.form.js"></script>
+		<script type="text/javascript" src="#getComponentUrl()/jquery/boxy/javascripts/jquery.boxy.js"></script>
+		<script type="text/javascript" src="#getComponentUrl()/jquery/jquery-validate/jquery.validate.js"></script>
+		<script type="text/javascript" src="#getComponentUrl()/jquery/jquery-validate/localization/messages_cn.js"></script>
+		<script type="text/javascript" src="#getComponentUrl()/jquery/jquery-validate/lib/jquery.metadata.js"></script>
+		<script type="text/javascript" src="#getComponentUrl()/ancun/core.js"></script>
+		<script type="text/javascript" src="#getComponentUrl()/ancun/core.validate.js"></script>
+		<script type="text/javascript" src="#getComponentUrl()/ancun/core.list.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="#getComponentUrl()/imagecust/imgareaselect-default.css">
+		<script type="text/javascript" src="#getComponentUrl()/imagecust/jquery.imgareaselect.min.js"></script>
+		<script type="text/javascript" src="#getComponentUrl()/imagecust/jquery.imgareaselect.pack.js"></script>
+		<script type="text/javascript" src="#getWebresourcesUrl()/js/common.js"></script>
+		<script type="text/javascript" src="scripts/ent/ent-basic-info.js"></script>
+		<link rel="stylesheet" type="text/css" href="#getWebresourcesUrl()/css/common.css">
+        <link rel="stylesheet" type="text/css" href="#getWebresourcesUrl()/css/security-center.css">
+        <link rel="stylesheet" type="text/css" href="#getWebresourcesUrl()/css/admin.css">
+		<link rel="stylesheet" type="text/css" href="#getWebresourcesUrl()/css/account-security.css">
+
+		
+    	 #loadAppRes()
+		<script type="text/javascript">
+			var storeUrl = '$!storeUrl';
+			var _backUrl='ent-basic-info';
+			var _index = '$!index';
+			var isclick = '$!isclick';
+			var previewUrl = '$!previewUrl';
+		</script>
+	</head>
+	<body>
+		 <div id="header">
+            <div id="header-main" class="w980">
+				<input id="entId" value="$!{entInfo.id}" style="display:none">			
+                    <a href="system-notice"  class="logo icon-bg"></a>
+                    <span class="copy green radius hei fl">企业版</span>
+                    <div class="company fr">
+						 <div class="company_logo fl">
+                          #if($!{entInfo.logoUrl}) 
+                              <img id="head_img" src="$!storeUrl$!{entInfo.logoUrl}"  onload="AutoResizeImage(60,60,this)" />
+							  #else
+								<img src="#getWebresourcesUrl()/images/temp/logo.png"/>
+    						#end 
+						 </div>
+                        <div class="company_infos fr">
+                            <div class="certification overhide">
+                                <span class="qiye green radius hei fl">$!entInfo.orgType</span>
+                                <span class="status fl">认证中</span>
+                            </div>
+                            <div class="name">
+                                <span class="fl" id="gsmc">$!{entInfo.orgName}</span>
+                                <i class="icon_down icon-bg fl"></i>
+								<span class="fr">
+                                <i class="icon_out icon-bg fl"></i>
+                                <a class="fl" href="javascript:void(0);" onclick="App.userLogout('#getAppServer()');">退出</a>
+								</span>
+                           </div>                         
+                        </div>
+                    </div>
+            </div>
+        </div>
+		<!--End 导航 -->  
+		 <div id="main" class="w980">
+           <div id="left">
+                <dl id="nav">
+                    <dt>
+                        <i class="icon_manage icon-bg fl"></i><span><a href="javascript:void();">账户信息</a></span>
+                    </dt>
+                    <dd class="nav-cur"><a href="javascript:void();">基本信息</a></dd>
+                    <dd id="kzxx"><a href="javascript:void();" >扩展信息</a></dd>
+                    <dt>
+                        <i class="icon_cf icon-bg fl"></i><span><a href="javascript:void();">账户安全</a></span>
+                    </dt>
+                    <dd id="upwd"><a href="javascript:void();">修改密码</a></dd>
+                    <dd id="uphone"><a href="javascript:void();">绑定手机</a></dd>
+                </dl>
+            </div>
+
+<div id="right" class="basic-info" name="infoDiv">
+    <div class="right-inner">
+        <h2 class="right-header">
+            <em class="icon-bg"></em>
+            <span class="hei">基本信息</span>
+            <br class="clr"/>
+        </h2>
+        <div class="right-body">
+		<ul id="basic-info-ul">
+			<li>
+				<label for="">帐号</label>
+				<span id="mobile">$!entInfo.mobile</span>
+			</li>
+			<li>
+				<label for="">机构代码</label>
+				<span>$!entInfo.orgCode<em>$!entInfo.orgType</em></span>
+			</li>
+			<li>
+				<label for="">机构名称</label>
+				<span>$!entInfo.orgName</span>
+			</li>
+			<li>
+				<label for="">法定代表人</label>
+				<span>$!entInfo.artificialPerson</span>
+			</li>
+			<li>
+				<label for="">登记号</label>
+				<span>$!entInfo.registrationno</span>
+			</li>
+			<li>
+				<label for="">有效期</label>
+				<span>自$!entInfo.validDateFrom至$!entInfo.validDateTo</span>
+			</li>
+			<li class="whole-line">
+				<label for="">地址</label>
+				<span>$!entInfo.entAddress</span>
+			</li>
+			<li id="scanning-copy" class="whole-line">
+				<label for="">代码证扫描件</label>
+				<span>
+					<img src="$!storeUrl$!{entInfo.entImage}"  onload="AutoResizeImage(250,250,this)" >
+				</span>
+			</li>
+		</ul>
+		<p class="industry">
+		   行业领域：  #if($!entInfo.industryList.size()>0)
+                    #foreach($p in $!entInfo.industryList)
+						#if($velocityCount == $!entInfo.industryList.size())$p.industryId #else $p.industryId, #end
+					#end
+				 #end
+		</p>
+           <em class="icon-bg verifying"></em>
+        </div>
+    </div>
+</div>
+
+<div  style="display:none"  id="right"  class="basic-info" name="phoneDiv">
+    <div class="right-inner">
+        <h2 class="right-header">
+            <em class="icon-bg"></em>
+            <span class="hei">绑定手机</span>
+            <br class="clr"/>
+        </h2>
+        <div  id="" class="right-body">
+            <ul id="user-info-table">
+                <li>
+                    <label for="">当前手机号：</label>
+                    <input type="text" id="oldPhone" value="$!entInfo.mobile" disabled="disabled" class="text">
+                </li>
+                <li>
+                    <label for="">新手机号：</label>
+                    <input type="text" class="text" id="phone">
+                </li>
+                <li>
+                    <label for="">短信验证码：</label>
+                    <input type="text" class="text shorter" id="code">
+					<input type="button" value="免费获取验证码" id="phonecode" class="button"  style="font-size:10px"/>
+                    
+                </li>
+            </ul>
+            <input type="button" value="绑定新手机" id="commitPhone" class="button"/>
+        </div>
+    </div>
+</div>
+
+
+<div id="right" style="display:none"  id="right"  class="basic-info" name="pwdDiv">
+    <div class="right-inner">
+        <h2 class="right-header">
+            <em class="icon-bg"></em>
+            <span class="hei">修改密码</span>
+            <br class="clr"/>
+        </h2>
+        <div  id="" class="right-body">
+            <ul id="user-info-table">
+                <li>
+                    <label for="">原密码：</label>
+                    <input type="password" id="oldpwd" class="text">
+                </li>
+                <li>
+                    <label for="">新密码：</label>
+                    <input type="password" id="newpwd" class="text">
+                </li>
+                <li>
+                    <label for="">确认密码：</label>
+                    <input type="password" id="repwd" class="text">
+                </li>
+            </ul>
+            <input type="button" value="保存" id="commitPwd" class="button"/>
+        </div>
+    </div>
+</div>
+
+<div id="right" style="display:none"  id="right"  class="basic-info" name="expandDiv">
+    <div class="right-inner">
+        <h2 class="right-header">
+            <em class="icon-bg"></em>
+            <span class="hei">扩展信息</span>
+            <br class="clr"/>
+        </h2>
+        <div  id="expand-info" class="right-body">
+            <ul>
+                <li>
+                    <label for="">机构logo</label>
+					
+                    <span>#if($!entInfo.logoUrl)<img id="img5"  onload="AutoResizeImage(60,60,this)" src="$!storeUrl$!entInfo.logoUrl" class="head"/>  #else 未上传 #end</span>
+                </li>
+                <li>
+                    <label for="">机构英文名称</label>
+                    <span id="ename">#if($!entInfo.orgEname)$!entInfo.orgEname #else 未填写 #end</span>
+                </li>
+                <li>
+                    <label for="">机构简介</label>
+                    <span id="resume" style="float: left;width: 550px;line-height:22px;">#if($!entInfo.orgIntroduction)$!entInfo.orgIntroduction #else 未填写 #end</span>
+                </li>
+                <li>
+                    <label for="">企业官网</label>
+                    <span id="website">#if($!entInfo.officialWebsite)$!entInfo.officialWebsite #else 未填写 #end</span>
+                </li>
+                <li>
+                    <label for="">客服电话</label>
+                    <span id="kfphone">#if($!entInfo.phone)$!entInfo.phone #else 未填写 #end</span>
+                </li>
+                <li>
+                    <label for="">企业邮箱</label>
+                    <span id="entemail">#if($!entInfo.email)$!entInfo.email #else 未填写 #end</span>
+                </li>
+                <li>
+                    <label for="">微信公众号</label>
+                    <span id="entweixin">$!entInfo.weiXin</span>
+                </li>
+				 <li>
+                    <label for="">二维码</label>
+                    <span id="weiXinUrl">#if($!entInfo.weiXinUrl) <img src="$!storeUrl$!entInfo.weiXinUrl" id="wxewm" class="head"   onload="AutoResizeImage(200,200,this)"/>#else  未上传   #end</span>
+                </li>
+				
+            </ul>
+            <input type="button" class="button hei" id="updateexpand" value="修改"/>
+        </div>
+        <div id="remould-box" class="hidden">
+            <div id="remould-box-inner">
+				<form id="entinfos"  enctype="multipart/form-data">
+					<input type="hidden" name="imageType" id="imageType"/>
+					<input name="id" value="$!{entInfo.id}" style="display:none">	
+                    <ul class="fl">
+						<li>
+                            <label for="">机构英文名称</label>
+                            <input type="text" name="orgEname"  class="text placeholder"  value="$!entInfo.orgEname"  />
+							#if($!entInfo.orgEname=="") <i class="input_tips">其他通用名称或英文名称</i>  #elseif($!entInfo.orgEname)  <i class="input_tips" style="display:none">其他通用名称或英文名称</i> #else <i class="input_tips">其他通用名称或英文名称</i> #end 
+                        </li>
+                        <li>
+                            <label for="">机构简介</label>
+                            <textarea name="orgIntroduction" style="height: 170px;line-height: 20px;resize: none;"  class="text  placeholder">$!entInfo.orgIntroduction</textarea>
+							#if($!entInfo.orgIntroduction=="") <i class="input_tips">文化  / 使命  /   责任</i>  #elseif($!entInfo.orgIntroduction)  <i class="input_tips" style="display:none">文化  / 使命  /   责任</i> #else <i class="input_tips">文化  / 使命  /   责任</i> #end 
+                        </li>
+                        <li>
+                            <label for="">企业官网</label>
+                            <input type="text"  name="officialWebsite" value="$!entInfo.officialWebsite"  class="text  placeholder" />
+										#if($!entInfo.officialWebsite=="") <i class="input_tips">http://www.</i>  #elseif($!entInfo.officialWebsite)  <i class="input_tips" style="display:none">http://www.</i> #else <i class="input_tips">http://www.</i> #end 
+                        </li>
+                        <li>
+                            <label for="">客服电话</label>
+                            <input type="text" name="phone" value="$!entInfo.phone" class="text"/>
+                        </li>
+                        <li>
+                            <label for="">企业邮箱</label>
+                            <input type="text" name="email" value="$!entInfo.email" class="text"/>
+                        </li>
+                        <li>
+                            <label for="">微信公众号</label>
+                            <input type="text" name="weiXin" value="$!entInfo.weiXin" class="text"/>
+                        </li>
+                        <li>
+                            <label for="">公众号二维码</label>
+							#if($!entInfo.weiXinUrl)
+								<img src="$!storeUrl$!entInfo.weiXinUrl"  id="weixin1"   onload="AutoResizeImage(200,200,this)"/> 
+								<input value="$!storeUrl$!entInfo.weiXinUrl" id="iPath1" type="hidden"/>
+								#else
+									<img src="$!storeUrl$!entInfo.weiXinUrl" id="weixin1"  onload="AutoResizeImage(200,200,this)" style="display:none"/> <span class="weixin1" style="line-height: 40px;">未上传 </span>
+									<input value="" id="iPath1" type="hidden"/>
+								#end
+                                <input type="button" class="button qrcode-button" value="上传二维码" onclick="document.getElementById('upfile').click()">
+								<input id="upfile" type="file"  name="weiXinUrl"  value="$!entInfo.weiXinUrl" class="hidden"  onchange="document.getElementById('imageType').value=1;preImg('entinfos','weixin1',this,'iPath1');"/>
+                        </li>
+                    </ul>
+                    <div class="fr pvw">
+						#if($!entInfo.logoUrl)
+							<img src="$!storeUrl$!entInfo.logoUrl" id="img4"   onload="AutoResizeImage(105,105,this)"/> 
+							<input value="$!storeUrl$!entInfo.logoUrl" id="iPath2" type="hidden"/>
+						#else
+							<img src="#getWebresourcesUrl()/images/admin/ancun-logo.png" id="img4"   onload="AutoResizeImage(105,105,this)"/> 
+							<input value="#getWebresourcesUrl()/images/admin/ancun-logo.png" id="iPath2" type="hidden"/>
+						#end
+                        <br/>
+						<input type="button" value="LOGO上传" class="button" style="width: 105px;margin: 0;"   onclick="document.getElementById('uplogo').click()">
+						<input id="uplogo"  name="logoUrl"  value="$!entInfo.logoUrl"  type="file"  class="hidden" onchange="document.getElementById('imageType').value=2;preImg('entinfos','img4',this,'iPath2');"/>
+                    </div>
+                    <br class="clr" />
+					<input type="submit" value="保存" id="saveexpand" class="button save-button">
+				</form>
+            </div>
+        </div>
+    </div>
+</div>
+
+		</div>
+        <div id="footer">   
+            <div class="w980">
+                <h1 class="hei">见安存 · 即见真实</h1>
+                版权所有：杭州安存网络科技有限公司 Copyright2008-2014 ICP证：浙ICP备11033732号 增值电信业务经营许可证：浙B2-20120278
+            </div>
+        </div>
+		<!--End footer -->      
+	</body>
+	
+	
+
+<div class="pop-up c-info-2">
+            <div class="title hei">
+                <span class="fl">企业基本信息</span>
+                <em class="fr close-button">X</em>
+                <br class="clr"/>
+            </div>
+            <div class="content">
+                <div class="c-name">
+                    <span>$!{entInfo.orgName}（$!{entInfo.orgCode}）</span>
+                </div>
+                <div class="fl lce">
+                    <img src="$!storeUrl$!{entInfo.entImage}"  onload="AutoResizeImage(310,300,this)">
+                    <p>
+                        你提交的组织企业代码证书在三个工作日之内完成信息审核。
+                    </p>
+                </div>
+                <br class="clr"/>
+            </div>
+            <em class="icon-bg verifying"></em>
+        </div> 
+		
+<div class="pop-up  logo-setting" id="logoSetting">
+	     <div class="title hei">
+	         <span class="fl">企业logo设置</span>
+	         <em class="fr close-button">X</em>
+	         <br class="clr"/>
+	     </div>
+	      <div class="content">
+	         <div class="c-name">
+	             <span>$!{entInfo.orgName}（$!{entInfo.orgCode}）</span>
+	             <input type="button" onclick="window.location.href ='ent-basic-info';" value="进入账户中心"/>
+	         </div>
+	        <div class="fl uplaod-area">
+	             <p class="tip-1">清晰的logo会让客户更加信任你哦！！！</p>
+				 #if($!{entInfo.logoUrl}) <img id="img1" src="$!storeUrl$!{entInfo.logoUrl}"   onload="AutoResizeImage(180,180,this)"/> #else 
+						
+	             <div class="origin-img"><img id="img1" src="#getWebresourcesUrl()/images/big_default_logo.gif"  onload="AutoResizeImage(300,220,this)"/></div> #end
+					<br/>
+					<input type="button" class="button logo-upload-button"  id="file" value="选择本地图片">
+	             <p class="tip-2">支持jpg、jpeg、gif、png、bmp格式的图片</p>
+	         </div>
+	         <div class="fl upload-result">
+	             <h4 >头像预览</h4>
+    	          <div class="big-logo" style="width: 100px; height: 100px; overflow: hidden;">#if($!{entInfo.logoUrl})<img src="$!storeUrl$!{entInfo.logoUrl}"  id="img2" onload="AutoResizeImage(100,100,this)"/> #else <img id="img2" src="#getWebresourcesUrl()/images/default_logo.gif" onload="AutoResizeImage(100,100,this)"/> #end</div>
+    			  <p>大头像100*100</p>
+    			  <div class="small-logo" style="width: 55px; height: 55px; overflow: hidden;">#if($!{entInfo.logoUrl})<img src="$!storeUrl$!{entInfo.logoUrl}"   id="img3" onload="AutoResizeImage(55,55,this)"/> #else <img id="img3" src="#getWebresourcesUrl()/images/default_logo.gif" onload="AutoResizeImage(55,55,this)"/> #end</div>
+    	          <p>小头像  55*55</p>
+				  <input type="button" value="保存" id="saveIcon" style="background-color: #2d6eac;width:55px;font-size:17px;color:white"  />
+	         </div>
+			 
+	         <br class="clr"/>
+	     </div>
+	 </div>	
+	 
+	 <div style="display:none">
+    	  <form id="uploadForm"  enctype="multipart/form-data" class="main-type" >
+    			<input id="id" name="id" value="$!{entInfo.id}" style="display:none">	
+        		<input type="file" name="logoUrl" id="file1" onchange="setNewImage(this)" value="选择本地图片"/>
+				<input type="hidden" name="x"/>
+				<input type="hidden" name="y"/>
+				<input type="hidden" name="w"/>
+				<input type="hidden" name="h"/>
+        		<input type="submit" id="uploadIcon" style="display:none"/>
+          </form>
+	  </div>
+	  <div>
+	  </div> 
+</html>

@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	#bqbhWebappFrontHtmlHeader() 
+	#loadAppRes()
+<script>
+	jQuery(function($){
+		var url = window.location.href;
+		if(url.indexOf("services-range")>0){
+			$("#services-range").addClass("current");
+		}else if(url.indexOf("cooperation")>0){
+			$("#cooperation").addClass("current");
+		}else if(url.indexOf("ancunintro")>0){
+			$("#ancunintro").addClass("current");
+		}else if(url.indexOf("query_evidence_form")>0){
+			$("#query_evidence").addClass("current");
+		}else{
+			$("#firstpage").addClass("current");
+		}
+		
+	});
+</script>
+</head>
+<body class="setcolor">
+	#if(!$login)
+	<div class="topbar">
+		<ul class="topmenu">
+			<li><a href="#getAppServer()/register">注册</a></li>
+			<li><a href="#getAppServer()">登录</a>&nbsp;|&nbsp;</li>
+		</ul>
+	</div>
+	#end
+	<div class="header">
+		<div class="header_acc">
+			<div class="logo">
+				<a href="#getAppServer()"><img src="#getWebresourcesUrl()/userIndex/images/logo.png" title="无忧保全" /></a>
+			</div>
+			<ul class="account_nav">
+				<li><a href="#getAppServer()" id="firstpage">首页</a></li>
+				<li><a href="#getAppServer()/package/query_evidence_form" id="query_evidence">存证查询</a></li>
+				<li><a href="#getAppServer()/introduce/services-range" id="services-range">服务</a></li>
+				<li><a href="#getAppServer()/introduce/cooperation" id="cooperation">合作</a></li>
+				<li><a href="#getAppServer()/introduce/ancunintro" id="ancunintro">关于我们</a>
+					<div class="subnav" style="display: none;">
+						<dl>
+							<dt>
+								<a href="#getAppServer()/introduce/ancunintro">安存简介</a>
+							</dt>
+							<dt>
+								<a href="#getAppServer()/introduce/help">FAQ帮助</a>
+							</dt>
+						</dl>
+					</div></li>
+			</ul>
+		</div>
+	</div>
+	
+	#if($front=="1")
+	#else
+	<div class="fl_content">
+      <div class="fl_w980">
+	#end
+	
+	$screen_content
+	
+	#if($front=="1")
+	#else
+	</div>
+	</div>
+	#end
+	
+	#if(!$login)
+	<div class="footer" style="margin-top:20px;">
+	#else
+	<div class="footer">
+	#end
+	
+	#*
+		<ul class="footer_hrefs">
+			<li><a href="#">关于我们</a>&nbsp;|&nbsp;</li>
+			<li><a href="#">诚聘英才</a>&nbsp;|&nbsp;</li>
+			<li><a href="#">官方微博</a>&nbsp;|&nbsp;</li>
+			<li><a href="#">联系我们</a></li>
+		</ul>
+	*#
+		<br />
+		<p>版权所有：杭州安存网络科技有限公司 Copyright &copy; 2014 - 2016浙ICP备11033732号-25</p>
+		<div class="hide">
+		<script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F39190982a480d87eadbafeb02da4e0e0' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+		</div>
+	</div>
+</body>
+</html>

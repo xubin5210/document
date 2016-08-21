@@ -1,0 +1,33 @@
+<resources>
+
+    <declare-styleable name="roundedimageview">
+        <attr name="border_thickness" format="dimension" />
+        <attr name="border_inside_color" format="color" />
+        <attr name="border_outside_color" format="color"></attr>
+    </declare-styleable>
+
+    <string-array name="post">
+        <item>销售专员</item>
+        <item>市场专员</item>
+        <item>文案策划</item>
+        <item>产品经理</item>
+        <item>UI设计</item>
+        <item>市场总监</item>
+        <item>销售经理</item>
+        <item>用户体验</item>
+        <item>人事专员</item>
+        <item>CEO</item>
+        <item>前端开发</item>
+        <item>安卓开发</item>
+        <item>总裁助理</item>
+        <item>人事总监</item>
+        <item>客服专员</item>
+    </string-array>
+    <string-array name="exchange">
+        <item>交友</item>
+        <item>谈合作</item>
+        <item>求职</item>
+        <item>招聘</item>
+    </string-array>
+
+</resources>

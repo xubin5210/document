@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.UserClientInfoMapper">
+	<resultMap id="userClientInfoMap" type="userClientInfo">		
+		<id column="client_id" property="clientId"/><!-- 客户端id -->			
+		<id column="user_id" property="userId"/><!-- 用户id -->
+		<id column="channel" property="channel"/><!-- 渠道 -->
+		<id column="versions" property="versions"/><!-- 版本 -->
+		<id column="platform" property="platform"/><!-- 平台 -->
+		<id column="gmt_create" property="gmtCreate"/><!-- 创建时间 -->
+		<id column="gmt_modify" property="gmtModify"/><!-- 更改时间 -->		
+	</resultMap>
+
+	<insert id="insert" parameterType="userClientInfo" >
+		insert into user_client_info(client_id,user_id,channel,versions,platform,gmt_create,gmt_modify)
+		values(#{clientId},#{userId},#{channel},#{versions},#{platform}
+		,<include refid="common.now" />
+		,<include refid="common.now" />)
+	</insert>
+
+	<update id="update" parameterType="userClientInfo">
+		update user_client_info 
+		<set>			
+			gmt_modify=<include refid="common.now" />,
+			user_id=#{userId,jdbcType=INTEGER} 
+		</set>		
+		where client_id=#{clientId}
+				
+	</update>
+	
+	<select id="load" parameterType="userClientInfo" resultMap="userClientInfoMap" >
+    		select * from user_client_info where client_id=#{clientId}	
+		<!-->保证client_id值唯一， 注释掉下面的代码
+			 and  user_id=#{userId}	
+			<-->		
+	</select>
+	
+	<sql id="queryCommonSql">
+		FROM user_client_info uci
+		<where>
+			<if test="clientIdArray != null">
+						uci.client_id in
+				<foreach collection="clientIdArray" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+			</if>
+			<if test="userIdArray != null">
+						and uci.user_id in
+				<foreach collection="userIdArray" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="sortSql">		
+		<choose>			
+			<when test="sort != null and sort.trim() !=''">
+				order by ${sort}
+			</when>
+			<otherwise>
+				<if test="sortByDefault">
+					order by uci.GMT_CREATE DESC
+				</if>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="queryList" parameterType="userClientInfoQuery" resultMap="userClientInfoMap">
+		<include refid="common.pageBegin" />
+		select uci.client_id		,uci.user_id				<choose>
+			<when test="columns != null and columns.length>0">
+				<foreach collection="columns" index="index" item="item">,${item}</foreach>
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+		
+		<include refid="queryCommonSql" />
+		<!-->
+		<include refid="sortSql" />
+		<-->
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryCount" parameterType="userClientInfoQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryCommonSql" />
+	</select>
+	
+	<update id="updateStatus" parameterType="userClientInfo">		
+		update user_client_info set status=#{status} where   client_id=#{clientId}   and  user_id=#{userId} 	</update>
+	
+	<delete id="delete" parameterType="userClientInfo">
+    		delete from user_client_info where   client_id=#{clientId}   and  user_id=#{userId}     	</delete>
+    		
+    <select id="queryListFClient" parameterType="userClientInfo" resultMap="userClientInfoMap">
+    	select * from user_client_info where client_id=#{clientId}   or  user_id=#{userId} 
+	</select>
+</mapper>

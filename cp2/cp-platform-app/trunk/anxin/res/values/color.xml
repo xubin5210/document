@@ -1,0 +1,33 @@
+<resources>
+
+    <!-- 常用色值  用颜色来命名 -->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red">#FF0033</color>
+    <color name="bule">#6F00D2</color>
+    <color name="green">#6bb523</color>
+    <color name="yellow">#FE7F2B</color>
+    
+
+    <!-- 全局 -->
+    <color name="C1">#222222</color>
+    <color name="C2">#666666</color>
+    <color name="C3">#a9a9a9</color>
+    <color name="C4">#dddddd</color>
+    <color name="C5">#f3f3f3</color>
+    <color name="C6">#ffffff</color>
+    <color name="C7">#1f9bfb</color>
+    <color name="C8">#77c927</color>
+    <color name="C9">#fea100</color>
+    <color name="C10">#f24806</color>
+
+    <!-- 特殊控件需要 -->
+    <color name="backgroundColor">#E8E8E0</color>
+    <color name="backgroundColorPress">#DBDBD3</color>
+    <color name="float_transparent">#66000000</color>
+    <color name="sweet_dialog_bg_color">#FFFFFF</color>
+
+    <color name="input_border_color">#d3d3d3</color>
+     <color name="drawablecolor">#e8e8e8</color>
+       <color name="tv_click_color">#e8e8e8</color>
+</resources>

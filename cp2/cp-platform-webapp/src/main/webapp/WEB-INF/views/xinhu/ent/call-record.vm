@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>通话记录</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="css/common.css">
+        <link rel="stylesheet" type="text/css" href="css/wealth.css">
+    </head>
+    <body>
+        <div id="header">
+            <div id="header-main" class="w980">
+                    <a href="#" class="logo icon-bg"></a>
+                    <span class="copy green radius hei fl">企业版</span>
+                    <div class="company fr">
+                        <div class="company_logo fl">
+                            <img src="images/temp/logo.png"/>
+                        </div>
+                        <div class="company_infos fr">
+                            <div class="certification overhide">
+                                <span class="qiye green radius hei fl">企业</span>
+                                <span class="status fl">认证中</span>
+                            </div>
+                            <div class="name">
+                                <span class="fl">北京同达信恒知识产权代理有限公司</span>
+                                <i class="icon_down icon-bg fl"></i>
+                                <i class="icon_out icon-bg fl"></i>
+                                <a href="#" class="fl">退出</a>
+                           </div>                         
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div id="main" class="w980">
+            <div id="left">
+                <dl id="nav">
+                    <dt>
+                        <i class="icon_manage icon-bg fl"></i><span><a href="">管理</a></span>
+                    </dt>
+                    <dd><a href="#">花名册管理</a></dd>
+                    <dd><a href="#">标签管理</a></dd>
+                    <dt>
+                        <i class="icon_cf icon-bg fl"></i><span><a href="">财富</a></span>
+                    </dt>  
+                    <dd><a href="#">名片交换记录</a></dd>
+                    <dd class="nav-cur"><a href="#">通话记录</a></dd>
+                    <dd><a href="#">邮件记录</a></dd>
+                    <dt>
+                        <i class="icon_tj icon-bg fl"></i><span><a href="">统计</a></span>
+                    </dt>  
+                    <dd><a href="#">员工统计</a></dd>
+                    <dd><a href="#">名片统计</a></dd>
+                    <dd><a href="#">企业统计</a></dd>
+                    <dt>
+                        <i class="icon_kz icon-bg fl"></i><span><a href="">扩展</a></span>
+                    </dt>
+                    <dd><a href="#">机构实名验证</a></dd>
+                </dl>
+            </div>
+            <div id="right" class="rel">
+                <div id="call-history" class="right-inner">
+                    <div class="right-header">
+                        <em class="icon-bg fl"></em>
+                        <div class="fl">通话记录</div>
+                        <input type="button" value="搜索" class="fr button"/>
+                        <div class="fr text">
+                            <input type="text" placeholder="&nbsp;请输入关键字搜索" class="fr text"/>
+                            <br class="clr"/>
+                        </div>
+                        <br class="clr"/>
+                    </div>
+                    <table cellpadding=0 cellspacing=2 class="table">
+                        <tr>
+                            <th>员工姓名（名片号）</th>
+                            <th>对方电话</th>
+                            <th>客户电话（名片号）</th>
+                            <th>客户企业名称</th>
+                            <th>通话时间</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr class="odd">
+                            <td>林通（10003234）</td>
+                            <td>13843543455</td>
+                            <td>王达（4544434344）</td>
+                            <td>杭州上上签</td>
+                            <td class="holding-time">2015-01-30 09:00:48~<br/>2015-01-30 09:02:00</td>
+                            <td class="operation">
+                                <span>试听</span>
+                                <span>下载</span>
+                            </td>
+                        </tr>
+                        <tr class="even">
+                            <td>林通（10003234）</td>
+                            <td>13843543455</td>
+                            <td>王达（4544434344）</td>
+                            <td>杭州上上签</td>
+                            <td class="holding-time">2015-01-30 09:00:48~<br/>2015-01-30 09:02:00</td>
+                            <td class="operation">
+                                <span>试听</span>
+                                <span>下载</span>
+                            </td>
+                        </tr>
+                        <tr class="odd">
+                            <td>林通（10003234）</td>
+                            <td>13843543455</td>
+                            <td>王达（4544434344）</td>
+                            <td>杭州上上签</td>
+                            <td class="holding-time">2015-01-30 09:00:48~<br/>2015-01-30 09:02:00</td>
+                            <td class="operation">
+                                <span>试听</span>
+                                <span>下载</span>
+                            </td>
+                        </tr>
+                        <tr class="even">
+                            <td>林通（10003234）</td>
+                            <td>13843543455</td>
+                            <td>王达（4544434344）</td>
+                            <td>杭州上上签</td>
+                            <td class="holding-time">2015-01-30 09:00:48~<br/>2015-01-30 09:02:00</td>
+                            <td class="operation">
+                                <span>试听</span>
+                                <span>下载</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="table-nav">
+                        <span><</span>
+                        <ul class="lateral-ul">
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                            <li>...</li>
+                            <li>22</li>
+                        </ul>
+                        <span class="last-item">></span>
+                        <br class="clr"/>
+                    </div>
+                </div>
+                <div class="hidden abs">
+                </div>
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div id="footer">   
+            <div class="w980">
+                <h1 class="hei">见安存 · 即见真实</h1>
+                版权所有：杭州安存网络科技有限公司 Copyright2008-2014 ICP证：浙ICP备11033732号 增值电信业务经营许可证：浙B2-20120278
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript">
+        
+    </script>
+</html>

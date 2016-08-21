@@ -1,0 +1,168 @@
+#loadBaseWebResources();
+#set($layout="")
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>机构实名验证</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="#getWebresourcesUrl()/css/common.css">
+        <link rel="stylesheet" type="text/css" href="#getWebresourcesUrl()/css/extension.css">
+	    <script type="text/javascript" src="#getWebresourcesUrl()/js/jquery.min.js"></script>
+		<script type="text/javascript" src="#getWebresourcesUrl()/js/common.js"></script>
+    </head>
+    <body>
+        <div id="header">
+            <div id="header-main" class="w980">
+                    <a href="#" class="logo icon-bg"></a>
+                    <span class="copy green radius hei fl">企业版</span>
+                    <div class="company fr">
+                        <div class="company_logo fl">
+                            <img src="images/temp/logo.png"/>
+                        </div>
+                        <div class="company_infos fr">
+                            <div class="certification overhide">
+                                <span class="qiye green radius hei fl">企业</span>
+                                <span class="status fl">认证中</span>
+                            </div>
+                            <div class="name">
+                                <span class="fl">北京同达信恒知识产权代理有限公司</span>
+                                <i class="icon_down icon-bg fl"></i>
+                                <i class="icon_out icon-bg fl"></i>
+                                <a href="#" class="fl">退出</a>
+                           </div>                         
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div id="main" class="w980">
+            <div id="left">
+                <dl id="nav">
+                    <dt>
+                        <i class="icon_manage icon-bg fl"></i><span><a href="">管理</a></span>
+                    </dt>
+                    <dd><a href="#">花名册管理</a></dd>
+                    <dd><a href="#">标签管理</a></dd>
+                    <dt>
+                        <i class="icon_cf icon-bg fl"></i><span><a href="">财富</a></span>
+                    </dt>  
+                    <dd><a href="#">名片交换记录</a></dd>
+                    <dd><a href="#">通话记录</a></dd>
+                    <dd><a href="#">邮件记录</a></dd>
+                    <dt>
+                        <i class="icon_tj icon-bg fl"></i><span><a href="">统计</a></span>
+                    </dt>  
+                    <dd><a href="#">员工统计</a></dd>
+                    <dd><a href="#">名片统计</a></dd>
+                    <dd><a href="#">企业统计</a></dd>
+                    <dt>
+                        <i class="icon_kz icon-bg fl"></i><span><a href="">扩展</a></span>
+                    </dt>
+                    <dd class="nav-cur"><a href="#">机构实名验证</a></dd>
+                </dl>
+            </div>
+            <div id="right">
+                <div id="agency-verify" class="right-inner">
+                    <h2 class="right-header">
+                        <em class="icon-bg"></em>
+                        <span class="hei">机构实名验证</span>
+                        <br class="clr"/>
+                    </h2>
+                    <div class="right-body">
+                       <div class="search-bar hei">
+                           <input type="text" class="text fl" placeholder="请输入机构名称、机构代码、机构登记号关键字">
+                           <span class="fl">求证一下</span>
+                           <br class="clr"/>
+                       </div>
+                       <div class="search-result">
+                            <!-- 如果没有结果 -->
+                            <p style="display: none;">很遗憾，没有找到相关记录！请核对查询条件，重新输入。</p>
+                            <!-- 有结果 -->
+                            <div class="part-1">
+                                <div class="fl">
+                                    <img src="images/admin/ancun-logo-m.png"/>
+                                    <p class="company-site">www.ancun.com</p>
+                                </div>
+                                <div class="fr intro">
+                                    <div>
+                                        <p class="fl">
+                                            <span class="company-name">
+                                                杭州安存网络科技有限公司
+                                            </span>
+                                            <br/>
+                                            <span class="company-name-en">
+                                                HANGZHOU ANCUN NETWORK TECKNOLOGY CO,LTDD.
+                                            </span>
+                                        </p>
+                                        <div class="fr right-top">
+                                            <input type="button" class="button" value="认证">
+                                            <span class="num">363</span>
+                                            <span class="fragment">张名片</span>
+                                            <br class="clr" />
+                                        </div>
+                                        <br class="clr"/>
+                                    </div>
+                                    <p class="mission">以“打造诚信信息世界”为使命，开创全球电子数据证明领域先河，大数据公证，唯有安存。见安存，即见真实!</p>
+                                    <p class="phone">0571-85227850</p>
+                                </div>
+                                <br class="clr"/>
+                            </div>
+                            <div id="agency-code" class="part-2">
+                                <h3>组织机构代码信息</h3>
+                                <ul>
+                                    <li>
+                                        <label for="">机构代码</label>
+                                        <span>67986418-9</span>
+                                    </li>
+                                    <li>
+                                        <label for="">法定代表人</label>
+                                        <span>徐丹恒</span>
+                                    </li>
+                                    <li>
+                                        <label for="">机构登记号</label>
+                                        <span>33010834531906</span>
+                                    </li>
+                                    <li>
+                                        <label for="">地址</label>
+                                        <span>浙江省杭州市拱墅区莫干山路972号10幢15层1502室</span>
+                                    </li>
+                                    <li>
+                                        <label for="">机构登记号</label>
+                                        <span>2008年9月18日</span>
+                                    </li>
+                                    <li>
+                                        <label for="">有效期</label>
+                                        <span>自2014年8月8日至2018年8月7日</span>
+                                    </li>
+                                    <br class="clr"/>
+                                </ul>
+                                <img src="images/admin/preserved.png" class="abs"/>
+                            </div>
+                            <div id="close-code" class="part-3">
+                                <h3>密切度</h3>
+                                <div id="vcard-exchange-capcity" class="fl">
+                                    <span class="fl overview hei">紧密</span>
+                                    <p class="fr ranking">40%<br/>高于平均</p>
+                                    <br class="clr"/>
+                                    <p class="title">名片交换（134 张）</p>
+                                </div>
+                                <div id="number-of-call" class="fr">
+                                    <span class="fl overview hei">一般</span>
+                                    <p class="fr ranking">50%<br/>高于平均</p>
+                                    <br class="clr"/>
+                                    <p class="title">通话（12 次）</p>
+                                </div>
+                                <br class="clr"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">   
+            <div class="w980">
+                <h1 class="hei">见安存 · 即见真实</h1>
+                版权所有：杭州安存网络科技有限公司 Copyright2008-2014 ICP证：浙ICP备11033732号 增值电信业务经营许可证：浙B2-20120278
+            </div>
+        </div>
+    </body>
+</html>

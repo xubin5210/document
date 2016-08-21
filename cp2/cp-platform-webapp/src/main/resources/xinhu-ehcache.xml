@@ -1,0 +1,8 @@
+<ehcache>
+	<cache name="XinHuUserAgentCache"
+        maxElementsInMemory="2048"
+        eternal="false"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="180">
+	</cache>
+</ehcache>

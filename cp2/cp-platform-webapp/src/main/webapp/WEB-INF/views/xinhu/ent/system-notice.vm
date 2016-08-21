@@ -1,0 +1,50 @@
+#set($layout="commons/layout-usercenter-head.vm")
+#set($thisActionUrl="system-notice")
+<div id="right">
+	<div class="census overhide">
+    	<div class="guild" onclick="window.location.href = 'card-search';">
+        	<span class="fl">
+            	<i class="icon_b_hmc icon-bg"></i>
+                <p class="f14 hei ac">花名册</p>
+            </span>
+            <span class="fr nums">
+        		$!{count.flowerCount}
+            </span>
+        </div>
+        <div class="guild"  onclick="window.location.href = 'card-exchanging-record';">
+        	<span class="fl">
+            	<i class="icon_card icon-bg"></i>
+                <p class="f14 hei ac">名片</p>
+            </span>
+            <span class="fr nums">
+            	$!{count.cardCount}
+            </span>
+        </div>
+        <div class="guild">
+        	<span class="fl last">
+            	<i class="icon_count icon-bg"></i>
+                <p class="f14 hei ac">统计</p>
+            </span>
+        </div>
+    </div>
+    <div class="news">
+    	<div class="news_title">
+        	<span class="news_name">系统公告</span>
+        </div>
+        <div class="news_list f14">
+			
+        	<ul>
+			 #set($data=$page.data)
+			 #if($data.size()>0)
+                #foreach($p in $data)
+                   <li #if($math.mod($velocityCount,2)==0)  class="color" #end>
+                    	<span class="fl">· <a href="news-info?entId=$!{entInfo.id}&id=$!{p.id}"  target="_blank">$!{p.title}</a>#if($velocityCount==1) <em>置顶</em> #end</span>
+                        <span class="fr">$!date.format("yyyy-MM-dd HH:mm:ss",$!{p.gmtCreate})</span>
+				   </li>
+				#end
+			 #end
+            </ul>
+        </div>
+		 #pageTabFoot({"queryFormId":"form_search","page":$page,"submitUrl":"${thisActionUrl}","canSetPagesize":true})      
+    </div>
+</div>        

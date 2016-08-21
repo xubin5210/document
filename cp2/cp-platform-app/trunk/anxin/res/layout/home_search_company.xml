@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/item"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/exchange_bg_bottom"
+        android:padding="@dimen/left_right" >
+
+        <com.ciapc.anxin.common.view.RoundView
+            android:id="@+id/home_search_company_head"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:scaleType="center"
+            android:src="@drawable/toux_default" />
+
+        <TextView
+            android:id="@+id/home_search_company_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/home_search_company_head"
+            android:textColor="@color/C1"
+            android:textSize="@dimen/H3" />
+        
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrows"
+            android:scaleType="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		#loadBaseWebResources()
+    	#loadAppRes()
+		<link rel="stylesheet" type="text/css" href="#getWebresourcesUrl()/css/common.css">
+        <link rel="stylesheet" type="text/css" href="#getWebresourcesUrl()/css/security-center.css">
+        <link rel="stylesheet" type="text/css" href="#getWebresourcesUrl()/css/admin.css">
+		 <link rel="stylesheet" type="text/css" href="#getWebresourcesUrl()/css/account-security.css">
+		<script type="text/javascript" src="#getWebresourcesUrl()/js/common.js"></script>
+		<script type="text/javascript">
+			var storeUrl = '$!storeUrl';
+		</script>
+	</head>
+	<body>
+		 <div id="header">
+            <div id="header-main" class="w980">
+				<input id="entId" value="$!{entInfo.id}" style="display:none">			
+                    <a href="system-notice?mobile=$!{entInfo.mobile}"  class="logo icon-bg"></a>
+                    <span class="copy green radius hei fl">企业版</span>
+                    <div class="company fr">
+                          #if($!{entInfo.logoUrl})  <div class="company_logo fl">
+                            <img id="head_img" src="$!storeUrl$!{entInfo.logoUrl}"  onload="AutoResizeImage(60,60,this)" />
+                        </div> #end 
+                        <div class="company_infos fr">
+                            <div class="certification overhide">
+                                <span class="qiye green radius hei fl">企业</span>
+                                <span class="status fl">认证中</span>
+                            </div>
+                            <div class="name">
+                                <span class="fl">$!{entInfo.orgName}</span>
+                                <i class="icon_down icon-bg fl"></i>
+                                <i class="icon_out icon-bg fl"></i>
+                                <a href="#" class="fl" href="javascript:void(0);" onclick="App.userLogout('#getAppServer()');">退出</a>
+                           </div>                         
+                        </div>
+                    </div>
+            </div>
+        </div>
+		<!--End 导航 -->  
+		 <div id="main" class="w980">
+           <div id="left">
+                <dl id="nav">
+                    <dt>
+                        <i class="icon_manage icon-bg fl"></i><span><a href="#">账户信息</a></span>
+                    </dt>
+                    <dd class="nav-cur"><a href="#">基本信息</a></dd>
+                    <dd id="kzxx"><a href="#" >扩展信息</a></dd>
+                    <dt>
+                        <i class="icon_cf icon-bg fl"></i><span><a href="#">账户安全</a></span>
+                    </dt>
+                    <dd id="upwd"><a href="#">修改密码</a></dd>
+                    <dd id="uphone"><a href="#">绑定手机</a></dd>
+                </dl>
+            </div>
+			$screen_content
+		</div>
+        <div id="footer">   
+            <div class="w980">
+                <h1 class="hei">见安存 · 即见真实</h1>
+                版权所有：杭州安存网络科技有限公司 Copyright2008-2014 ICP证：浙ICP备11033732号 增值电信业务经营许可证：浙B2-20120278
+            </div>
+        </div>
+		<!--End footer -->      
+	</body>
+	
+	
+
+<div class="pop-up c-info-2">
+            <div class="title hei">
+                <span class="fl">企业基本信息</span>
+                <em class="fr close-button">X</em>
+                <br class="clr"/>
+            </div>
+            <div class="content">
+                <div class="c-name">
+                    <span>$!{entInfo.orgName}（$!{entInfo.orgCode}）</span>
+                </div>
+                <div class="fl lce">
+                    <img src="$!storeUrl$!{entInfo.entImage}">
+                    <p>
+                        你提交的组织企业代码证书在三个工作日之内完成信息审核。在此期间，你的名片通讯录可以新建10名员工信息；审核通过后可创建500名员工信息。
+                    </p>
+                </div>
+                <br class="clr"/>
+            </div>
+            <em class="icon-bg verifying"></em>
+        </div> 
+		
+<div class="pop-up  logo-setting" id="logoSetting">
+	     <div class="title hei">
+	         <span class="fl">企业logo设置</span>
+	         <em class="fr close-button">X</em>
+	         <br class="clr"/>
+	     </div>
+	      <div class="content">
+	         <div class="c-name">
+	             <span>$!{entInfo.orgName}（$!{entInfo.orgCode}）</span>
+	             <input type="button" onclick="window.location.href ='ent-basic-info';" value="进入安全中心"/>
+	         </div>
+	         <div class="fl uplaod-area">
+	             <p class="tip-1">清晰的logo会让客户更加信任你哦！！！</p>
+				 #if($!{entInfo.logoUrl}) <img id="img1" src="$!storeUrl$!{entInfo.logoUrl}"   onload="AutoResizeImage(180,180,this)"/> #else
+	             <div class="origin-img">300*220</div> #end
+				 	<input type="button" id="file" value="选择本地图片"/>
+	             <p class="tip-2">支持jpg、jpeg、gif、png、bmp格式的图片</p>
+	         </div>
+	         <div class="fl upload-result">
+	             <h4 >头像预览</h4>
+    	          <div class="big-logo">#if($!{entInfo.logoUrl})<img src="$!storeUrl$!{entInfo.logoUrl}"   id="img2" onload="AutoResizeImage(100,100,this)"/> #else <img id="img2" src=""/> #end</div>
+    			  <p>大头像100*100</p>
+    			  <div class="small-logo">#if($!{entInfo.logoUrl})<img src="$!storeUrl$!{entInfo.logoUrl}"   id="img3" onload="AutoResizeImage(55,55,this)"/> #else <img id="img3" src=""/> #end</div>
+    	          <p>小头像  55*55</p>
+	         </div>
+	         <br class="clr"/>
+	     </div>
+	 </div>	
+	 
+	 <div style="display:none">
+    	  <form id="uploadForm"  enctype="multipart/form-data" class="main-type" >
+    			<input id="id" name="id" value="$!{entInfo.id}" style="display:none">	
+        		<input type="file" name="logoUrl" id="file1" value="选择本地图片"/>
+        		<input type="submit" id="uploadIcon" style="display:none"/>
+          </form>
+	  </div>
+</html>

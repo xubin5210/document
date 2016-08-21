@@ -1,0 +1,206 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pubTitle="http://schemas.android.com/apk/res/com.ciapc.anxin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+   <com.ciapc.anxin.common.view.PubTitle
+        android:id="@+id/set_detalis_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pubTitle:leftIcon="@drawable/back"
+        pubTitle:text="设置"/>
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:scrollbars="@null"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+ 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+    <View
+          android:layout_width="wrap_content"
+          android:layout_height="0.1dp"
+          android:layout_marginTop="50dp"
+          android:background="@drawable/exchange_bg_bottom"
+           />
+    <!-- 新消息提醒 -->
+    <RelativeLayout 
+         android:id="@+id/set_new_info"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"	
+         android:orientation="horizontal"	
+         android:background="@drawable/exchange_bg_bottom">
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_toRightOf="@id/department_text"
+             android:layout_marginLeft="@dimen/left_right"
+             android:textSize="@dimen/H4"
+             android:layout_centerVertical="true"
+             android:layout_marginTop="20dp"
+             android:layout_marginBottom="20dp"
+             android:text="新消息提醒"
+             android:textColor="@color/C1" />
+         
+         <ImageView  
+             android:layout_width="wrap_content"
+             android:layout_height="30dp"
+             android:background="@drawable/arrows"
+             android:layout_centerVertical="true"
+             android:layout_marginTop="5dp"
+             android:layout_alignParentRight="true"/>       
+     </RelativeLayout>
+     
+     
+    <!--  隐私 -->
+    <RelativeLayout 
+         android:id="@+id/set_conceal"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"	
+         android:orientation="horizontal"	
+         android:background="@drawable/exchange_bg_bottom">
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_toRightOf="@id/department_text"
+             android:layout_marginLeft="@dimen/left_right"
+             android:textSize="@dimen/H4"
+             android:layout_centerVertical="true"
+             android:layout_marginTop="20dp"
+             android:layout_marginBottom="20dp"
+             android:text="隐私"
+             android:textColor="@color/C1" />
+         
+         <ImageView  
+             android:layout_width="wrap_content"
+             android:layout_height="30dp"
+             android:background="@drawable/arrows"
+             android:layout_centerVertical="true"
+             android:layout_marginTop="5dp"
+             android:layout_alignParentRight="true"/>         
+     </RelativeLayout>
+         
+    
+      <!--账号与安全  -->
+      <RelativeLayout 
+         android:id="@+id/set_Account_safe"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"	
+         android:orientation="horizontal"	
+         android:background="@drawable/exchange_bg_bottom">
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_toRightOf="@id/department_text"
+             android:layout_marginLeft="@dimen/left_right"
+             android:textSize="@dimen/H4"
+             android:layout_centerVertical="true"
+             android:layout_marginTop="20dp"
+             android:layout_marginBottom="20dp"
+             android:text="账号与安全"
+             android:textColor="@color/C1" />
+         
+         <ImageView  
+             android:layout_width="wrap_content"
+             android:layout_height="30dp"
+             android:background="@drawable/arrows"
+             android:layout_centerVertical="true"
+             android:layout_marginTop="5dp"
+             android:layout_alignParentRight="true"/> 
+                
+     </RelativeLayout>
+     <View
+          android:layout_width="fill_parent"
+          android:layout_height="0.1dp"
+          android:background="@drawable/exchange_bg_bottom"
+          android:layout_marginTop="20dp"
+           />
+     
+      
+     <!--关于安信  -->
+     <RelativeLayout 
+         android:id="@+id/set_about"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"	
+         android:orientation="horizontal"	
+         android:background="@drawable/exchange_bg_top_bottom">
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_toRightOf="@id/department_text"
+             android:layout_marginLeft="@dimen/left_right"
+             android:textSize="@dimen/H4"
+             android:layout_centerVertical="true"
+             android:layout_marginTop="20dp"
+             android:layout_marginBottom="20dp"
+             android:text="关于信乎"
+             android:textColor="@color/C1" />
+         
+         <ImageView  
+             android:layout_width="wrap_content"
+             android:layout_height="30dp"
+             android:background="@drawable/arrows"
+             android:layout_centerVertical="true"
+             android:layout_marginTop="5dp"
+             android:layout_alignParentRight="true"/>         
+     </RelativeLayout>
+    
+     
+     <!--意见反馈  -->
+     <RelativeLayout 
+         android:id="@+id/set_Give_feedback "
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"	
+         android:visibility="gone"
+         android:orientation="horizontal"	
+         android:background="@drawable/exchange_bg_bottom">
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_toRightOf="@id/department_text"
+             android:layout_marginLeft="@dimen/left_right"
+             android:textSize="@dimen/H4"
+             android:layout_centerVertical="true"
+             android:layout_marginTop="20dp"
+             android:layout_marginBottom="20dp"
+             android:text="意见反馈"
+             android:textColor="@color/C1" />
+         
+         <ImageView  
+             android:layout_width="wrap_content"
+             android:layout_height="30dp"
+             android:background="@drawable/arrows"
+             android:layout_centerVertical="true"
+             android:layout_marginTop="5dp"
+             android:layout_alignParentRight="true"/> 
+                
+     </RelativeLayout>
+     
+     
+    
+     
+      <!--账号退出按钮  -->
+     <Button  
+        android:id="@+id/set_back_login" 
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="@dimen/left_right"
+        android:layout_marginRight="@dimen/left_right"
+        android:text="账号退出"
+        android:background="@drawable/back_login_style"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/white"/>  
+
+     </LinearLayout>
+   </ScrollView>
+</LinearLayout>
+
+

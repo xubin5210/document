@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/contact_group"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C4"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:text="A"
+        android:textSize="@dimen/H5"
+        android:textColor="@color/C2" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contact"
+        android:padding="@dimen/left_right">
+
+        <com.ciapc.anxin.common.view.RoundView
+            android:id="@+id/contact_card_head"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:scaleType="center"
+            android:layout_centerVertical="true"
+            android:src="@drawable/toux_default" />
+
+        <TextView
+            android:id="@+id/contact_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/contact_card_head"
+            android:layout_marginLeft="@dimen/left_right"
+            android:textColor="@color/C1"
+            android:textSize="@dimen/H4" />
+
+        <TextView
+            android:id="@+id/contact_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/contact_name"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_toRightOf="@id/contact_card_head"
+            android:textColor="@color/C2"
+            android:textSize="@dimen/H5" />
+       
+    </RelativeLayout>
+
+</LinearLayout>

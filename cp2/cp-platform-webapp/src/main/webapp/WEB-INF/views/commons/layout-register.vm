@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		#xinhuWebappRegisterHtmlHeader()
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		#loadAppRes()
+		#loadDatePickerWebResources()
+		<script> var _server = '#getAppServer()';   
+			jQuery(function($){
+    			var url = window.location.href;
+				if(url.indexOf("regist-basic")>0){
+    				$("#step1").addClass("cur");
+					$("#main").removeClass().addClass("w980 basic-info");
+    			}else if(url.indexOf("regist-second")>0){
+    				$("#step2").addClass("cur");
+					$("#main").removeClass().addClass("w980 register shunt");
+    			}else if(url.indexOf("regist-third")>0){
+    				$("#step3").addClass("cur");
+					$("#main").removeClass().addClass("w980 shunt final");
+				}	
+    		});
+			var storeUrl = '$!storeUrl';
+		</script>
+	</head>
+	<body>
+		<div id="header">
+            <div id="header-main" class="w980">
+                	<a href="index" class="logo icon-bg"></a>
+                    <span class="copy green radius hei fl">企业版</span>
+                    <div class="registration">
+                        <span>我已注册，现在就</span>
+                        <input type="button" onclick="window.location.href = 'index';" value="登录"/>
+                    </div>
+            </div>
+		</div>
+		<div id="main" class="w980 basic-info">
+			<div id="tab-wrapper" class="w980">
+                <h2 id="step1">1 基本信息</h2>
+                <h2 id="step2">2 信息登记</h2>
+                <h2 id="step3">3 注册成功</h2>         
+            </div>
+				$screen_content
+        </div>
+		<div id="footer">	
+			<div class="w980">
+                <h1 class="hei">见安存 · 即见真实</h1>
+                版权所有：杭州安存网络科技有限公司 Copyright2008-2014 ICP证：浙ICP备11033732号 增值电信业务经营许可证：浙B2-20120278
+            </div>
+		</div>
+	</body>
+</html>

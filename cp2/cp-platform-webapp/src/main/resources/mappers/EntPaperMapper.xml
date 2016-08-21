@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.EntPaperMapper">
+	<resultMap id="entPaperMap" type="entPaper">		
+		<result column="ent_id" property="entId"/><!-- 企业ID -->			
+		<result column="paper_id" property="paperId"/><!-- 代码证id -->			
+		<result column="paper_url" property="paperUrl"/><!-- 代码证url -->			
+	</resultMap>
+
+	<insert id="insert" parameterType="entPaper" >
+				insert into
+		ent_paper(
+		<if test="entId != null">ent_id</if>
+		<if test="paperId != null">,paper_id</if>
+		<if test="paperUrl != null">,paper_url</if>
+									)values(
+		<if test="entId != null">#{entId,jdbcType=INTEGER}</if>
+		<if test="paperId != null">,#{paperId,jdbcType=INTEGER}</if>
+		<if test="paperUrl != null">,#{paperUrl,jdbcType=VARCHAR}</if>
+					        		)
+	</insert>
+
+	<update id="update" parameterType="entPaper">
+		update ent_paper
+		<set>			
+			<if test="entId != null">ent_id=#{entId,jdbcType=INTEGER},</if>	
+			<if test="paperId != null">paper_id=#{paperId,jdbcType=INTEGER},</if>	
+			<if test="paperUrl != null">paper_url=#{paperUrl,jdbcType=VARCHAR},</if>	
+		</set>		
+		where 			</update>
+	
+	<select id="load" parameterType="entPaper" resultMap="entPaperMap" >
+    		select * from ent_paper where    		    	</select>
+	
+	<sql id="queryCommonSql">
+		FROM ent_paper ep
+		<where>
+			<if test="entId != null">and ep.ent_id = #{entId}</if>												
+			<if test="paperId != null">and ep.paper_id = #{paperId}</if>												
+			<if test="paperUrl != null and paperUrl.trim() !=''">and ep.paper_url = #{paperUrl}</if>
+		</where>
+	</sql>
+	
+	<sql id="sortSql">		
+		<choose>			
+			<when test="sort != null and sort.trim() !=''">
+				order by ${sort}
+			</when>
+			<otherwise>
+				<if test="sortByDefault">
+					order by ep.GMT_CREATE DESC
+				</if>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="queryList" parameterType="entPaperQuery" resultMap="entPaperMap">
+		<include refid="common.pageBegin" />
+		select 		<choose>
+			<when test="columns != null and columns.length>0">
+				<foreach collection="columns" index="index" item="item">,${item}</foreach>
+			</when>
+			<otherwise>
+        		        			ep.ent_id
+        			        		        			,ep.paper_id
+        			        		        			,ep.paper_url
+			</otherwise>
+		</choose>
+		<include refid="queryCommonSql" />
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryCount" parameterType="entPaperQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryCommonSql" />
+	</select>
+	
+	<update id="updateStatus" parameterType="entPaper">		
+		update ent_paper set status=#{status} where 	</update>
+	
+	<delete id="delete" parameterType="entPaper">
+    		delete from ent_paper where  ent_id = #{entId}	 
+    </delete>
+</mapper>

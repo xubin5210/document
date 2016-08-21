@@ -1,0 +1,121 @@
+#set($layout="commons/layout-usercenter-head.vm")
+#set($thisActionUrl="card-exchanging-record")
+#set($screen_jsArray=["ent/card-exchanging-record"])
+<link rel="stylesheet" type="text/css" href="#getWebresourcesUrl()/css/wealth.css">
+<script>
+var storeUrl = '$!storeUrl';
+var defautIma1 = '#getWebresourcesUrl()/images/admin/ancun-logo.png';
+var defautIma2 = '#getWebresourcesUrl()/images/admin/head.gif';
+</script>
+<div id="right" class="rel">
+    <div id="vcard-exchanging-record" class="right-inner">
+		<form action="$thisActionUrl">
+            <div class="right-header">
+				<input name="entId" value="$!{entInfo.id}" type="hidden">
+                <em class="icon-bg fl"></em>
+                <div class="fl">名片交换记录</div>
+                <input  value="搜索"   type="submit" class="fr button"/>
+                <div class="fr text">
+                    <input type="text" name="keyword" value="$!{page.query.keyword}" placeholder="&nbsp;请输入关键字搜索" class="fr text"/>
+                    <br class="clr"/>
+                </div>
+                <br class="clr"/>
+            </div>
+		</form>
+        <table cellpadding=0 cellspacing=2 class="table">
+            <tr>
+                <th>员工姓名（名片号）</th>
+                <th>客户企业名称</th>
+                <th>客户姓名</th>
+                <th>客户职位</th>
+                <th>名片交换时间</th>
+            </tr>
+			 #set($data=$page.data)
+			 #if($data.size()>0)
+                #foreach($p in $data)
+                   <tr #if($math.mod($velocityCount,2)==0)  class="odd" #else  class="odd" #end onclick="setValue($!p.card_id,$!p.card_id_from)">
+                    	<td>$!p.card_name（$!p.card_id）</td>
+                        <td class="trade-name">$!p.org_name</td>
+                        <td>$!p.true_name</td>
+                        <td>$!p.position_name</td>
+                        <td>$!date.format("yyyy-MM-dd",$!{p.gmt_create})</td>
+				   </tr>
+				#end
+			 #end
+        </table>
+		 #pageTabFoot({"queryFormId":"form_search","page":$page,"submitUrl":"${thisActionUrl}","canSetPagesize":true}) 
+    </div>
+    <div class="hidden abs" id="info" style="display:none">
+        <div class="profile">
+            <div class="personal-data">
+                <img src="#getWebresourcesUrl()/images/admin/head.gif"  onload="AutoResizeImage(100,100,this)" id="icon_url" class="fl">
+                <div class="fl">
+                    <p class="line-1">
+                        <span class="fl name" id="true_name">
+                          
+                            <span id="ename"></span>
+                        </span>
+                        <em class="fl icon-bg"></em>在职
+                        <span class="fr" id="position_name"></span>
+                        <br/>
+                    </p>
+                    <p class="line-2">
+                        <span class="fl" id="card_id_from"></span>
+                        <span class="fr" id="mobile"></span>
+						<span class="fr" id="cardphone" style="margin-right:14px"></span>
+                        <br/>
+                    </p>
+                    <p class="line-3">
+                        <span class="fl" id="nick_name"></span>
+                        <span class="fr" id="cardemail"></span>
+                        <br/>
+                    </p>
+                </div>
+				 <br class="clr"/>
+                <p class="alteration">
+                    <span class="fl"></span>
+                    <span class="fr">
+                        <em class="icon-bg"></em>
+                        <em class="before">信息变动</em>
+                        <em class="after">返回</em>
+                    </span>
+                    <br class="clr">
+                </p>
+            </div>
+            <hr/>
+            <div class="company-info">
+                <div class="line-1">
+                    <img src="#getWebresourcesUrl()/images/admin/ancun-logo.png"  onload="AutoResizeImage(100,100,this)" id="logUrl" class="fl"/>
+                    <div class="fl">
+                        <p class="company" id="org_name">
+                            <span>已认证</span>
+                        </p>
+                        <p class="address-en" id="org_ename"></p>
+                        <p class="address-ch" id="ent_address"></p>
+                    </div>
+                    <p class="fr service" >
+						<span id="phone"></span>
+                        <br/>
+						    客服电话
+                    </p>
+                                                            
+                    <br class="clr"/>
+                </div>
+                <div class="line-2" id="org_introduction"></div>
+                <div class="line-3">
+                    <span id="official_website"></span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span id="email"></span>
+                </div>
+            </div>
+			   <div class="info-record">
+                    <h3>历史信息变动记录</h3>
+                    <ul id="history">
+						
+                    </ul>
+                </div>
+                <span class="close-button abs icon-bg"></span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pubTitle="http://schemas.android.com/apk/res/com.ciapc.anxin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+   <com.ciapc.anxin.common.view.PubTitle
+       android:id="@+id/person_motto_title"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       pubTitle:leftIcon="@drawable/back"
+       pubTitle:rightText="保存"
+       pubTitle:text="我的座右铭"/>
+   
+   <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:layout_marginTop="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        >
+      <EditText 
+          android:id="@+id/et_person_motto"
+          android:layout_width="match_parent"
+          android:layout_height="150dp"
+          android:hint="我就是我，不一样的的我"
+          android:gravity="left"
+          android:maxLines="5"
+          style="@drawable/back_login_style"
+          />
+    </RelativeLayout>
+
+</LinearLayout>

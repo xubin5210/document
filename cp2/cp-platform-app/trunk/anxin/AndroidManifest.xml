@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ciapc.anxin"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="15" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- 个推权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="getui.permission.GetuiService.com.ciapc.anxin" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <permission
+        android:name="getui.permission.GetuiService.com.ciapc.anxin"
+        android:protectionLevel="normal" >
+    </permission>
+
+    <application
+        android:name="com.ciapc.anxin.common.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/xinhu"
+        android:label="@string/app_name"
+        android:theme="@style/AppThemeAll" >
+        <activity
+            android:name="com.ciapc.anxin.modules.leaders.LeaderActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 渠道号 -->
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="gd_cpa_push_001" >
+        </meta-data>
+
+        <activity
+            android:name="com.ciapc.anxin.modules.details.ScanDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.contacts.ContactsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.ciapc.anxin.modules.statistics.StatisticsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.setting.person.PersonQianminActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <!-- 起始页 -->
+        <activity
+            android:name="com.ciapc.anxin.modules.lead.LeadActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <!-- 登录注册 -->
+        <activity
+            android:name="com.ciapc.anxin.modules.login.LoginActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.register.RegisterActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.login.ForgetPwdActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <!-- 主页 -->
+        <activity
+            android:name="com.ciapc.anxin.modules.home.HomeActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.details.PersonDetails"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.details.CompanyDetails"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.details.ReportActivty"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.search.HomeSearchActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.ciapc.anxin.modules.share.ShareActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.contacts.ContactDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.contacts.DeptDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.contacts.AllContectActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.contacts.AllDeptActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.details.CompanyContactActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <!-- 交换名片 -->
+        <activity
+            android:name="com.ciapc.anxin.modules.exchange.ExchangeCardActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.exchange.ExchangeSearchActivity"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.ciapc.anxin.modules.exchange.ExchangeVerifyActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- 新名片 -->
+        <activity
+            android:name="com.ciapc.anxin.modules.buscard.NewCardActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <!-- 名片更新 -->
+        <activity
+            android:name="com.ciapc.anxin.modules.updatecard.UpdateCardActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.details.PersonDynamicActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <!-- 扫描二维码 -->
+        <activity
+            android:name="com.ZbarZxing.XZbar.ZbarActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <!-- 设置主页面 -->
+        <activity
+            android:name=".modules.setting.SettingMainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 设置新消息提醒主页面 -->
+        <activity
+            android:name=".modules.setting.SetNewInfoActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 设置——隐私页面 -->
+        <activity
+            android:name=".modules.setting.SetConcealActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 隐私——黑名单 -->
+        <activity
+            android:name=".modules.setting.ConcealBlackListActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 设置——账号与安全 -->
+        <activity
+            android:name=".modules.setting.SetAccountSafeActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 账号与安全 -手机号 -->
+        <activity
+            android:name=".modules.setting.AccountSafePhoneActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 账号与安全 -修改密码 -->
+        <activity
+            android:name=".modules.setting.AccountSafeRevisePwdActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 个人信息 -->
+        <activity
+            android:name="com.ciapc.anxin.modules.perfect.PersonActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.perfect.PerfectInfoActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.perfect.BindCompanyActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.perfect.PersonTrueNameActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.perfect.PersonPostActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.ciapc.anxin.modules.perfect.PersonEmailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ciapc.anxin.modules.perfect.PersonNameIdActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <!-- 个人信息——昵称 -->
+        <activity
+            android:name="com.ciapc.anxin.modules.setting.person.PersonNameActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 个人信息——英文名 -->
+        <activity
+            android:name="com.ciapc.anxin.modules.setting.person.PersonEenglishNameActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <!-- 个人信息——职位 -->
+        <activity
+            android:name="com.ciapc.anxin.modules.setting.person.PersonDeptJobActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 个人信息——手机号 -->
+        <activity
+            android:name="com.ciapc.anxin.modules.setting.person.PersonPhoneReActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <!-- 个人信息——座机 -->
+        <activity
+            android:name="com.ciapc.anxin.modules.setting.person.PersonFixedphoneReActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 个人信息——传真 -->
+        <activity
+            android:name="com.ciapc.anxin.modules.setting.person.PersonFAXReActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 个人信息——邮箱 -->
+        <activity
+            android:name="com.ciapc.anxin.modules.setting.person.PersonEmailReActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <!-- 人信息——QQ -->
+        <activity
+            android:name="com.ciapc.anxin.modules.setting.person.PersonQqReActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 个人信息——微信 -->
+        <activity
+            android:name="com.ciapc.anxin.modules.setting.person.PersonWeixinReActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <!-- 个人信息——身份证 -->
+        <activity
+            android:name="com.ciapc.anxin.modules.setting.person.PersonIDcardReActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <!-- 二维码名片 -->
+        <activity
+            android:name="com.ciapc.anxin.modules.details.QrDetailsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <!-- 友盟配置 -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="YOUR_APP_KEY" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Channel ID" />
+
+        <!-- 个推配置 -->
+        <meta-data
+            android:name="PUSH_APPID"
+            android:value="riqCegujMo6ASTAiXMg8D4" />
+        <!-- APPID -->
+        <meta-data
+            android:name="PUSH_APPKEY"
+            android:value="5lnyJKATSa5GRG4S9Umej1" />
+        <!-- APPKEY -->
+        <meta-data
+            android:name="PUSH_APPSECRET"
+            android:value="OLjoevL3SO8Ewg9cv7uIq4" />
+        <!-- APPSECRET -->
+        <meta-data
+            android:name="PUSH_GROUPID"
+            android:value="" />
+        <!-- SDK -->
+        <service
+            android:name="com.igexin.sdk.PushService"
+            android:exported="true"
+            android:label="NotificationCenter"
+            android:process=":pushservice" >
+        </service>
+
+        <!-- 配置第三方Receiver -->
+        <receiver
+            android:name="com.ciapc.anxin.modules.message.MessageReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.riqCegujMo6ASTAiXMg8D4" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.igexin.sdk.PushReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="com.igexin.sdk.action.refreshls" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.igexin.sdk.PushManagerReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.pushmanager" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.igexin.sdk.PushActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:process=":pushservice"
+            android:taskAffinity="com.igexin.sdk.PushActivityTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <!-- activity -->
+        <activity
+            android:name="com.igexin.getuiext.activity.GetuiExtActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:process=":pushservice"
+            android:taskAffinity="android.task.myServicetask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <receiver
+            android:name="com.igexin.getuiext.service.PayloadReceiver"
+            android:exported="false" >
+            <intent-filter>
+
+                <!-- com.igexin.sdk.action.7fjUl2Z3LH6xYy7NQK4ni4 -->
+                <action android:name="com.igexin.sdk.action.7fjUl2Z3LH6xYy7NQK4ni4" />
+                <!-- android:name="com.igexin.sdk.action.appId" -->
+                <action android:name="com.igexin.sdk.action.riqCegujMo6ASTAiXMg8D4" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.igexin.getuiext.service.GetuiExtService"
+            android:process=":pushservice" />
+        <!-- download -->
+        <service
+            android:name="com.igexin.download.DownloadService"
+            android:process=":pushservice" />
+
+        <receiver android:name="com.igexin.download.DownloadReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="com.igexin.download.DownloadProvider"
+            android:authorities="downloads.com.ciapc.anxin"
+            android:process=":pushservice" />
+        <!-- downloads. -->
+
+
+        <!-- 微信 -->
+        <!-- 微信注册 -->
+        <activity
+            android:name="com.ciapc.share.wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name="com.ciapc.share.controller.AppRegister"
+            android:permission="com.tencent.mm.plugin.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
+            </intent-filter>
+        </receiver>
+        <!-- 微信appId -->
+        <meta-data
+            android:name="SHARE_WX_APP_ID"
+            android:value="wxce11a636b6b4938a" />
+    </application>
+
+</manifest>

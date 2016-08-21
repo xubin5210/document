@@ -1,0 +1,235 @@
+#set($layout="commons/layout-register.vm")
+#set($screen_title="账号注册-用户信息登记")
+#set($screen_jsArray=["login/registration-shunt"])
+<script>
+var filesize = 20480;
+var errorMes = '附件不能大于20M';
+var previewUrl = '$!previewUrl';
+</script>
+            <div class="content">
+				<input value="" id="iPath" type="hidden"/>
+				<input type="hidden" id="mobile" value="$!{entInfo.mobile}"/>
+                <p class="p-1">
+                    安存名片致力于为社会提供全面、真实的组织企业名片、个人名片，我们有志与诚信守约、进取担当的第三方合作伙伴携手并进，建立和维护良性互动、健康有序的平台秩序。为了更好的保障你的利益，请你认真填写以下登记信息。
+                </p>
+                <p class="p-2">
+                                                       用户信息登记并通过审核后，  你可以获得一个由全国组织机构代码管理中心权威认证的企业名片。
+                </p>
+                <p class="p-3">
+                    请确认你的企业单位属于企业、政府、或社会组织，并请按照对应的类别进行信息登记。
+                </p>
+                <p class="p-4">
+                    <label for="">主体类型</label>
+                    <input type="button" class="white-button" value="政府">
+                    <input type="button" class="white-button" value="企业">
+                    <input type="button" class="white-button" value="社会组织">
+                </p>
+                <form id="goverment" class="main-type"   enctype="multipart/form-data" method="post">
+                    <p class="tip tip-1">政府包括各级、各类政府企业、事业单位、具有行政职能的社会组织等。</p>
+                    <div id="organ-type">
+                        <span class="label">单位类型<i>*</i></span>
+						<input id="entId"  name="id" value="$!{entInfo.id}" style="display:none"/>
+                        <div id="check_1">
+                            <input type="checkbox" name="industryId" value="中国共产党机关" class="checkbox" id="checkbox-1"/>
+                            <label for="checkbox-1">中国共产党机关</label>
+                            <input type="checkbox"  name="industryId" value="国家企业" class="checkbox" id="checkbox-2"/>
+                            <label for="checkbox-2">国家企业</label>
+                            <input type="checkbox" name="industryId" value="人民政协、民主党派" class="checkbox" id="checkbox-3"/>
+                            <label for="checkbox-3">人民政协、民主党派</label>
+                            <input type="checkbox" name="industryId" value="事业单位" class="checkbox" id="checkbox-4"/>
+                            <label for="checkbox-4">事业单位</label>
+                            <input type="checkbox" name="industryId" value="其他" class="checkbox" id="checkbox-5"/>
+                            <label for="checkbox-5">其他</label>
+                        </div>
+                    </div>
+					 <input type="hidden"  name="orgType"  id="s1"/>
+					<input id="id" name="id" value="$!{entInfo.id}" style="display:none"/>
+                    <p>
+                        <span>主体信息登记</span>
+                        <span class="tip tip-2">（请按照组织企业代码证书的信息填写，审核成功后，不可修改）</span>
+                    </p>
+                    <hr/>
+                    <p>
+                        <label for="">企业代码<i>*</i></label><input name="orgCode" type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="">企业名称<i>*</i></label><input  name="orgName" type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="">法定代表人<i>*</i></label><input name="artificialPerson"  type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="">登记号<i>*</i></label><input  name="registrationno" type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="">有效期<i>*</i></label>
+						<input name="validDateFrom" id="validDateFrom" class="text short-text" type="text" dateISO="true" onclick="WdatePicker({skin:'whyGreen',readOnly:true})" />
+                        <span class="fl">&nbsp;&nbsp;-&nbsp;&nbsp;</span>
+						<input  name="validDateTo" id="validDateTo" class="text short-text" type="text" dateISO="true"  onclick="WdatePicker({skin:'whyGreen',readOnly:true})" />
+                    </p>
+                    <p>
+                        <label for="">代码证扫描件<i>*</i></label>
+                        <span class="tip tip-3">请上传代码证书（正本）清晰彩色原件扫描件或数码照由中华人民共和国国家质量监督检验检疫总局签章，支持.jpg .jpeg .bmp 格式照片，大小不超过2M。</span>
+                    </p>
+                    <p class="file-wrapper">
+						<img id="img1"  style="display: none;"   onload="AutoResizeImage(120,120,this)"/>
+                        <input type="button" class="button qrcode-button" value="选择文件" onclick="document.getElementById('upfile1').click()">
+						<input id="upfile1" type="file"   onchange="preImg('goverment','img1',this,'iPath');"  name="zsfile" style="display:none" />
+                        <span>三个工作日之内审核完成</span>
+                    </p>
+					  <div id="redirector">
+                        <input type="button" value="上一步" class="button" id="previousTip1"/>
+                        <input type="button" value="下一步" class="button next" id="nextTip1"/>
+						<input type="submit" style="display:none" id="govermentsub"/>
+                    </div>
+                </form>
+                <form id="enterprise" class="main-type"  enctype="multipart/form-data" method="post">
+                    <p class="tip tip-1">企业包括：企业或分支企业。</p>
+                    <div id="organ-type">
+                        <span class="label">单位类型<i>*</i></span>
+						<input id="entId" name="id" value="$!{entInfo.id}" style="display:none"/>
+                        <div id="check_1">
+                            <input type="checkbox" name="industryId" value="农、林、牧、渔" class="checkbox" id="checkbox-11"/>
+                            <label for="checkbox-11">农、林、牧、渔</label>
+                            <input type="checkbox"  name="industryId" value="采矿" class="checkbox" id="checkbox-12"/>
+                            <label for="checkbox-12">采矿</label>
+                            <input type="checkbox" name="industryId" value="制造"  class="checkbox" id="checkbox-13"/>
+                            <label for="checkbox-13">制造</label>
+                            <input type="checkbox" name="industryId"  value="电力、热力、燃气及水生产和供应" class="checkbox" id="checkbox-14"/>
+                            <label for="checkbox-14">电力、热力、燃气及水生产和供应</label>
+                            <input type="checkbox" name="industryId" value="建筑" class="checkbox" id="checkbox-15"/>
+                            <label for="checkbox-15">建筑</label>
+                            <input type="checkbox" name="industryId" value="批发和零售" class="checkbox" id="checkbox-16"/>
+                            <label for="checkbox-16">批发和零售</label>
+							<br>
+                            <input type="checkbox" name="industryId" value="交通运输、仓储和邮政" class="checkbox" id="checkbox-17"/>
+                            <label for="checkbox-17">交通运输、仓储和邮政</label>
+                            <input type="checkbox" name="industryId" value="金融" class="checkbox" id="checkbox-18"/>
+                            <label for="checkbox-18">金融</label>
+                            <input type="checkbox" name="industryId" value="房地产" class="checkbox" id="checkbox-19"/>
+                            <label for="checkbox-19">房地产</label>
+                            <input type="checkbox" name="industryId" value="租赁和商务服务" class="checkbox" id="checkbox-20"/>
+                            <label for="checkbox-20">租赁和商务服务</label>
+                            <input type="checkbox" name="industryId"  value="科学研究和技术服务" class="checkbox" id="checkbox-21"/>
+                            <label for="checkbox-21">科学研究和技术服务</label>
+                            <input type="checkbox" name="industryId" value="水利、环境和公共设施管理" class="checkbox" id="checkbox-22"/>
+                            <label for="checkbox-22">水利、环境和公共设施管理</label>
+                            <input type="checkbox" name="industryId" value="居民服务、修理和其他服务" class="checkbox" id="checkbox-23"/>
+                            <label for="checkbox-23">居民服务、修理和其他服务</label>
+                            <input type="checkbox" name="industryId" value="教育" class="checkbox" id="checkbox-24"/>
+                            <label for="checkbox-24">教育</label>
+                            <input type="checkbox" name="industryId" value="卫生和社会工作" class="checkbox" id="checkbox-25"/>
+                            <label for="checkbox-25">卫生和社会工作</label>
+                            <input type="checkbox" name="industryId" value="文化、体育和娱乐" class="checkbox" id="checkbox-26"/>
+                            <label for="checkbox-26">文化、体育和娱乐</label>
+                            <input type="checkbox" name="industryId" value="其他" class="checkbox" id="checkbox-27"/>
+                            <label for="checkbox-27">其他</label>
+                            <br class="clr"/>
+                            <span class="tip">
+                                行业领域最多可选5项
+                            </span>
+                        </div>
+                    </div>
+					<input type="hidden"  name="orgType"  id="s2"/>
+					<input id="id" name="id" value="$!{entInfo.id}" style="display:none"/>
+                    <p>
+                        <span>主体信息登记</span>
+                        <span class="tip tip-2">（请按照组织企业代码证书的信息填写，审核成功后，不可修改）</span>
+                    </p>
+                    <hr/>
+                     <p>
+                        <label for="">企业代码<i>*</i></label><input name="orgCode" type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="">企业名称<i>*</i></label><input  name="orgName" type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="">法定代表人<i>*</i></label><input name="artificialPerson"  type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="">登记号<i>*</i></label><input  name="registrationno" type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="">有效期<i>*</i></label>
+						<input name="validDateFrom" id="validDateFrom" class="text short-text" type="text" dateISO="true" onclick="WdatePicker({skin:'whyGreen',readOnly:true})" />
+                        <span class="fl">&nbsp;&nbsp;-&nbsp;&nbsp;</span>
+						<input  name="validDateTo" id="validDateTo" class="text short-text" type="text" dateISO="true"  onclick="WdatePicker({skin:'whyGreen',readOnly:true})" />
+                    </p>
+                    <p>
+                        <label for="">代码证扫描件<i>*</i></label>
+                        <span class="tip tip-3">请上传代码证书（正本）清晰彩色原件扫描件或数码照由中华人民共和国国家质量监督检验检疫总局签章，支持.jpg .jpeg .bmp 格式照片，大小不超过2M。</span>
+                    </p>
+                    <p class="file-wrapper">
+						<img id="img2"  style="display: none;"   onload="AutoResizeImage(120,120,this)"/>
+                        <input type="button" class="button qrcode-button" value="选择文件" onclick="document.getElementById('upfile2').click()">
+						<input id="upfile2" type="file"   onchange="preImg('enterprise','img2',this,'iPath');"  name="zsfile" style="display:none" />
+                        <span>三个工作日之内审核完成</span>
+                    </p>
+					  <div id="redirector">
+                        <input type="button" value="上一步" class="button" id="previousTip2"/>
+                        <input type="button" value="下一步" class="button next" id="nextTip2"/>
+						<input type="submit" style="display:none" id="enterprisesub"/>
+                    </div>
+                </form>
+                <form id="organization" class="main-type"  enctype="multipart/form-data" method="post">
+                    <p class="tip tip-1">社会组织包括社会团体、民办非企业单位和基金会。</p>
+                    <div id="organ-type">
+                        <span class="label">单位类型<i>*</i></span>
+						<input id="entId" name="id" value="$!{entInfo.id}" style="display:none"/>
+                        <div id="check_1">
+                            <input type="checkbox" name="industryId" value="社会保障" class="checkbox" id="checkbox-51"/>
+                            <label for="checkbox-51">社会保障</label>
+                            <input type="checkbox" name="industryId" value="群众团体" class="checkbox" id="checkbox-52"/>
+                            <label for="checkbox-52">群众团体</label>
+                            <input type="checkbox" name="industryId" value="社会团体" class="checkbox" id="checkbox-53"/>
+                            <label for="checkbox-53">社会团体</label>
+                            <input type="checkbox" name="industryId"  value="基金会" class="checkbox" id="checkbox-54"/>
+                            <label for="checkbox-54">基金会</label>
+                            <input type="checkbox" name="industryId" value="宗教组织"  class="checkbox" id="checkbox-55"/>
+                            <label for="checkbox-55">宗教组织</label>
+                        </div>
+                    </div>
+					<input type="hidden" name="orgType" id="s3"/>
+					<input id="id" name="id" value="$!{entInfo.id}" style="display:none"/>
+                    <p>
+                        <span>主体信息登记</span>
+                        <span class="tip tip-2">（请按照组织企业代码证书的信息填写，审核成功后，不可修改）</span>
+                    </p>
+                    <hr/>
+                    <p>
+                        <label for="">企业代码<i>*</i></label><input name="orgCode" type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="">企业名称<i>*</i></label><input  name="orgName" type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="">法定代表人<i>*</i></label><input name="artificialPerson"  type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="">登记号<i>*</i></label><input  name="registrationno" type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="">有效期<i>*</i></label>
+                        <input name="validDateFrom" id="validDateFrom" class="text short-text" type="text" dateISO="true" onclick="WdatePicker({skin:'whyGreen',readOnly:true})" />
+                        <span class="fl">&nbsp;&nbsp;-&nbsp;&nbsp;</span>
+						<input  name="validDateTo" id="validDateTo" class="text short-text" type="text" dateISO="true"  onclick="WdatePicker({skin:'whyGreen',readOnly:true})" />
+                    </p>
+                    <p>
+                        <label for="">代码证扫描件<i>*</i></label>
+                        <span class="tip tip-3">请上传代码证书（正本）清晰彩色原件扫描件或数码照由中华人民共和国国家质量监督检验检疫总局签章，支持.jpg .jpeg .bmp 格式照片，大小不超过2M。</span>
+                    </p>
+                    <p class="file-wrapper">
+						<img id="img3" style="display: none;"   onload="AutoResizeImage(120,120,this)"/>
+						 <input type="button" class="button qrcode-button" value="选择文件" onclick="document.getElementById('upfile3').click()">
+						<input id="upfile3" type="file"  onchange="preImg('organization','img3',this,'iPath');"  name="zsfile" style="display:none" />
+                        <span>三个工作日之内审核完成</span>
+                    </p>
+					  <div id="redirector">
+                        <input type="button" value="上一步" class="button" id="previousTip3"/>
+                        <input type="button" value="下一步" class="button next" id="nextTip3"/>
+						<input type="submit" style="display:none" id="organizationsub"/>
+                    </div>
+                </form>
+            </div>
+          
+        </div>

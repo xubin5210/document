@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/exchange_search_phone"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@drawable/exchange_bg_bottom"
+        android:padding="5dp"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/t1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/exchange_search_phone"
+            android:textColor="@color/C3"
+            android:textSize="@dimen/H5" />
+
+        <TextView
+            android:id="@+id/exchange_search_phone_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_toRightOf="@id/t1"
+            android:gravity="center"
+            android:textColor="@color/C7"
+            android:textSize="@dimen/H5" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:scaleType="center"
+            android:src="@drawable/back" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/exchange_search_card"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@drawable/exchange_bg_bottom"
+        android:padding="5dp"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/t2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/exchange_search_card"
+            android:textColor="@color/C3"
+            android:textSize="@dimen/H5" />
+
+        <TextView
+            android:id="@+id/exchange_search_card_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_toRightOf="@id/t2"
+            android:gravity="center"
+            android:textColor="@color/C7"
+            android:textSize="@dimen/H5" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:scaleType="center"
+            android:src="@drawable/back" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/exchange_search_mail"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@drawable/exchange_bg_bottom"
+        android:padding="5dp"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/t3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/exchange_search_mail"
+            android:textColor="@color/C3"
+            android:textSize="@dimen/H5" />
+
+        <TextView
+            android:id="@+id/exchange_search_mail_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_toRightOf="@id/t3"
+            android:gravity="center"
+            android:textColor="@color/C7"
+            android:textSize="@dimen/H5" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:scaleType="center"
+            android:src="@drawable/back" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/exchange_search_name"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@drawable/exchange_bg_bottom"
+        android:padding="5dp"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/t4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/exchange_search_name"
+            android:textColor="@color/C3"
+            android:textSize="@dimen/H5" />
+
+        <TextView
+            android:id="@+id/exchange_search_name_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_toRightOf="@id/t4"
+            android:gravity="center"
+            android:textColor="@color/C7"
+            android:textSize="@dimen/H5" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:scaleType="center"
+            android:src="@drawable/back" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/exchange_search_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@drawable/exchange_bg_bottom"
+        android:padding="5dp"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/t5"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/exchange_search_nickname"
+            android:textColor="@color/C3"
+            android:textSize="@dimen/H5" />
+
+        <TextView
+            android:id="@+id/exchange_search_nickname_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_toRightOf="@id/t5"
+            android:gravity="center"
+            android:textColor="@color/C7"
+            android:textSize="@dimen/H5" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:scaleType="center"
+            android:src="@drawable/back" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/exchange_search_organization"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@drawable/exchange_bg_bottom"
+        android:padding="5dp"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/t6"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/exchange_search_organization"
+            android:textColor="@color/C3"
+            android:textSize="@dimen/H5" />
+
+        <TextView
+            android:id="@+id/exchange_search_organization_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_toRightOf="@id/t6"
+            android:gravity="center"
+            android:textColor="@color/C7"
+            android:textSize="@dimen/H5" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:scaleType="center"
+            android:src="@drawable/back" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/exchange_search_job"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@drawable/exchange_bg_bottom"
+        android:padding="5dp"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/t7"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/exchange_search_job"
+            android:textColor="@color/C3"
+            android:textSize="@dimen/H5" />
+
+        <TextView
+            android:id="@+id/exchange_search_job_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_toRightOf="@id/t7"
+            android:gravity="center"
+            android:textColor="@color/C7"
+            android:textSize="@dimen/H5" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:scaleType="center"
+            android:src="@drawable/back" />
+    </RelativeLayout>
+
+</LinearLayout>

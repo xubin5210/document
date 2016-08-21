@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pubTitle="http://schemas.android.com/apk/res/com.ciapc.anxin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/C5"
+    android:orientation="vertical" >
+
+    <com.ciapc.anxin.common.view.PubTitle
+        android:id="@+id/qr_detalis_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pubTitle:leftIcon="@drawable/back"
+        pubTitle:text="二维码名片" />
+
+    <RelativeLayout
+        android:id="@+id/home_person_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp" >
+
+        <com.ciapc.anxin.common.view.RoundView
+            android:id="@+id/home_person_head"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:src="@drawable/toux_default" />
+
+        <TextView
+            android:id="@+id/nick_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/home_person_head"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/home_person_head"
+            android:textColor="@color/C2"
+            android:textSize="@dimen/H2" />
+
+        <TextView
+            android:id="@+id/visiting_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nick_name"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_toRightOf="@id/home_person_head"
+            android:textColor="@color/C2"
+            android:textSize="@dimen/H4" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/left_right"
+        android:background="@drawable/gd_dialog_dialog_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="10dp" >
+
+        <ImageView
+            android:id="@+id/qr_detail_content"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/left_right"
+            android:scaleType="center" />
+    </LinearLayout>
+
+</LinearLayout>

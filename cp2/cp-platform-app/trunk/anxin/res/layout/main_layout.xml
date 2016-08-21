@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="主页" />
+
+    <Button
+        android:id="@+id/toListView"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="排序" />
+
+    <Button
+        android:id="@+id/toQRCode"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="生成二维码" />
+
+    <Button
+        android:id="@+id/toSM"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="扫描二维码" />
+
+    <Button
+        android:id="@+id/toLeader"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="初始化" />
+    
+     <Button
+        android:id="@+id/toLogin"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="登录" />
+
+    <com.ciapc.anxin.common.view.RoundView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

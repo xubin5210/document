@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.GetuiMessageLogMapper">
+	
+	<resultMap id="getuiMessageLogMap" type="getuiMessageLog">		
+		<result column="id" property="id"/><!-- 消息id -->			
+		<result column="card_id" property="cardId"/><!-- 名片id -->			
+		<result column="push_type" property="pushType"/><!-- 推送类型(1:透传) -->	
+		<result column="message_code" property="messageCode"/><!-- 消息编号 -->
+		<result column="title" property="title"/><!-- 消息标题 -->
+		<result column="message" property="message"/><!-- 消息 -->
+		<result column="gmt_create" property="gmtCreate"/><!-- 创建时间 -->			
+		<result column="gmt_modify" property="gmtModify"/><!-- 修改时间 -->
+		<result column="is_accept" property="isAccept"/><!-- 是否接收(0:未接受 1:已接收) -->
+		<result column="gmt_accept" property="gmtAccept"/><!-- 接收时间 -->
+		<result column="send_count" property="sendCount"/><!-- 发送次数 -->	
+	</resultMap>
+
+	<insert id="insert" parameterType="getuiMessageLog">
+		insert into getui_message_log(id,card_id,push_type,message_code,title,message,gmt_create,gmt_modify,is_accept,send_count)
+		values(#{id},#{cardId},#{pushType},#{messageCode},#{title},#{message}
+		,<include refid="common.now" />
+		,<include refid="common.now" />
+		,0
+		,1
+		)
+	</insert>
+
+	<update id="update" parameterType="getuiMessageLog">
+		update getui_message_log set gmt_modify=<include refid="common.now" />,send_count=send_count+1
+		where id=#{id}
+	</update>
+	
+	<select id="load" parameterType="String" resultMap="getuiMessageLogMap" >
+    	select * from getui_message_log where token_id=#{tokenId}
+    </select>
+    
+    <!-- 修改消息读取 -->
+    <update id="updateMessageRead" parameterType="getuiMessageLog">
+    	update getui_message_log gml inner join card_info ci on gml.card_id=ci.id
+		set is_accept=1, gmt_accept=<include refid="common.now" />
+		where gml.id=#{id} and ci.user_id=#{userId}
+    	<!--
+		update getui_message_log set is_accept=1, gmt_accept=<include refid="common.now" />
+		where id=#{id} and card_id=#{cardId}
+		-->
+	</update>
+	
+	<!-- 批量插入 -->
+	<insert id="insertBatch" parameterType="java.util.List" >
+		insert into getui_message_log(id,card_id,push_type,message_code,title,message,gmt_create,gmt_modify,is_accept,gmt_accept,send_count)
+		values
+		<foreach collection="list" item="item" index="index" separator="," >  
+	        (#{item.id},#{item.cardId},#{item.pushType},#{item.messageCode},#{item.title},#{item.message}
+			,<include refid="common.now" />
+			,<include refid="common.now" />
+			,0
+			,<include refid="common.now" />
+			,1
+			)  
+	    </foreach>
+	</insert>
+	
+	<!-- 获取名片个推消息列表 -->
+	<select id="getCardGetuiMessageList" parameterType="int" resultMap="getuiMessageLogMap" >
+    	select gml.id,gml.message,ui.client_id clientId from getui_message_log gml
+		inner join card_info ci on gml.card_id=ci.id
+		inner join user_info ui on ui.id=ci.user_id
+		where gml.card_id=#{cardId} and gml.is_accept=0
+    </select>
+    
+    <!-- 修改名片个推消息列表状态 --> 
+    <update id="updateCardGetuiMessageListStatus" parameterType="int">
+		update getui_message_log set gmt_modify=<include refid="common.now" />,send_count=send_count+1
+		where card_id=#{cardId} and is_accept=0 
+	</update>
+    
+</mapper>

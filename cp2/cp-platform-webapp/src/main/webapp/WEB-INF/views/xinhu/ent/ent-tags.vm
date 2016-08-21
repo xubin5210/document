@@ -1,0 +1,69 @@
+#set($layout="commons/layout-usercenter-head.vm")
+#set($screen_jsArray=["ent/ent-tags"])
+<div id="right">
+        <div class="roster_title c_green hei">
+            <i class="icon_tag icon-bg fl"></i>
+            <span class="fl">标签管理</span>
+            <div class="clr"></div>
+    	</div>
+        <div class="tags_nav hei">
+        	<ul>
+            	<li #if($entInfo.index==0)class="cur" #end onClick="window.location.href='ent-tags?index=0'">部门标签</li>
+                <li #if($entInfo.index==1)class="cur" #end onClick="window.location.href='ent-tags?index=1'">职位标签</li>
+            </ul>
+        </div>
+        <div class="clr">
+			<input id="index" value="$!{entInfo.index}" style="display:none">
+		</div>
+        <div id="tags" class="add_roster">			
+             <div  class="tags_info" #if($entInfo.index==1) style="display:none" #end>
+              <div class="jobs_list overhide" id="sector">
+				<ul>
+				 #if($deptList.size()>0)
+                    #foreach($p in $deptList)
+						<li>
+                        <span title='双击修改'><h5>$!p.deptName</h5><i class="close" name="d" id="$!{p.id}"></i></span>
+						<input class="edit_i" onchange="updateDept(this,$!{p.id},$p.entId)" type="text" value="$!p.deptName"/>						
+						</li>
+					 #end
+				 #end
+				 </ul>
+               </div>
+               <div class="tag overhide">
+                        <input type="text" id="deptName" class="tags fl placeholder" data-holder="部门标签" value="部门标签"/>
+                        <div class="btn fl"><a href="#" id="deptButton">贴上新标签</a></div>
+               </div>
+               <div class="clr"></div>
+               <div class="sm">
+               		<p><strong>标签说明：</strong></p>
+                    <p>1、如果是二级部门，可以使用连字符连接，如技术部--产品部； </p>
+                    <p>2、每名员工最多可被贴上2个部门标签；</p>
+               </div>
+            </div>	
+            <div class="tags_info" #if($entInfo.index==0) style="display:none" #end>
+              <div class="jobs_list overhide" id="jobs">
+              	<ul>
+					 #if($positionList.size()>0)
+                        #foreach($p in $positionList)
+							<li>
+								<span>$!p.positionName<i class="close" name="p" id="$!{p.id}"></i></span>
+								<input class="edit_i"   onchange="updatePosition(this,$!{p.id},$p.entId)" type="text" value="$!p.positionName"/>	
+							</li>
+    					 #end
+    				 #end
+                   
+                </ul>
+               </div>
+               <div class="clr"></div>
+               <div class="tag overhide">
+                    <input type="text" class="jobs_tags fl placeholder" id="positionName" data-holder="职业中文名称" value="职业中文名称"/> 
+                    <div class="btn fl"><a href="#" id="positionButton">贴上新标签</a></div>
+               </div>
+               <div class="clr"></div>
+                 <div class="sm">
+               		<p><strong>标签说明：</strong></p>
+                    <p>1、每名员工最多可被贴上3个职位标签；</p>
+               </div>
+           </div>
+		</div>                  
+</div>

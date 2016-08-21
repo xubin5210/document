@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.EntInfoMapper">
+	<resultMap id="entInfoMap" type="entInfo">		
+		<id column="id" property="id"/><!-- 企业ID -->			
+		<result column="mobile" property="mobile"/><!-- 手机号码 -->			
+		<result column="pwd" property="pwd"/><!-- 密码 -->			
+		<result column="org_type" property="orgType"/><!-- 组织机构类型 -->			
+		<result column="org_code" property="orgCode"/><!-- 组织机构代码 -->			
+		<result column="org_name" property="orgName"/><!-- 组织机构名称 -->			
+		<result column="alias_name" property="aliasName"/><!-- 别名 -->			
+		<result column="artificial_person" property="artificialPerson"/><!-- 法人代表 -->			
+		<result column="registrationNO" property="registrationno"/><!-- 登记号 -->			
+		<result column="register_date" property="registerDate"/><!-- 注册日期 -->			
+		<result column="valid_date_to" property="validDateTo"/><!-- 到期有效期 -->	
+		<result column="valid_date_from" property="validDateFrom"/><!-- 起始有效期 -->			
+		<result column="ent_address" property="entAddress"/><!-- 地址 -->			
+		<result column="certification_status" property="certificationStatus"/><!-- 认证状态 -->			
+		<result column="logo_url" property="logoUrl"/><!-- 机构logoURL -->			
+		<result column="org_ename" property="orgEname"/><!-- 机构英文名称 -->			
+		<result column="org_introduction" property="orgIntroduction"/><!-- 机构简介 -->			
+		<result column="official_website" property="officialWebsite"/><!-- 企业官网 -->			
+		<result column="phone" property="phone"/><!-- 客服电话 -->			
+		<result column="email" property="email"/><!-- 邮箱 -->			
+		<result column="wei_xin" property="weiXin"/><!-- 微信公众号 -->			
+		<result column="wei_xin_url" property="weiXinUrl"/><!-- 微信公众号二维码 -->			
+		<result column="check_status" property="checkStatus"/><!-- 审核状态 -->			
+		<result column="tel_fare_num" property="telFareNum"/><!-- 话费奖励金额 -->			
+		<result column="gmt_create" property="gmtCreate"/><!-- 创建时间 -->			
+		<result column="gmt_modify" property="gmtModify"/><!-- 信息修改时间 -->	
+		<result column="ent_image" property="entImage"/><!-- 企业照片 -->	
+				
+		<result column="gmt_modify" property="gmtModify"/><!-- 信息修改时间 -->
+		<result column="ent_id" property="entId"/><!-- 企业id（接口转换使用） -->			
+	</resultMap>
+
+	<insert id="insert" parameterType="entInfo"  useGeneratedKeys="true" keyProperty="id" >
+		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+			select SEQ_ent_info.nextval from dual
+		</selectKey>
+				insert into
+		ent_info(
+		<if test="_databaseId == 'oracle'">ID,</if>
+		<trim prefix="" prefixOverrides=",">
+			<if test="mobile != null">,mobile</if>
+			<if test="pwd != null">,pwd</if>
+			<if test="orgType != null">,org_type</if>
+			<if test="orgCode != null">,org_code</if>
+			<if test="orgName != null">,org_name</if>
+			<if test="aliasName != null">,alias_name</if>
+			<if test="artificialPerson != null">,artificial_person</if>
+			<if test="registrationno != null">,registrationNO</if>
+			<if test="registerDate != null">,register_date</if>
+			<if test="validDateTo != null">,valid_date_to</if>
+			<if test="validDateFrom != null">,valid_date_from</if>
+			<if test="entAddress != null">,ent_address</if>
+			<if test="certificationStatus != null">,certification_status</if>
+			<if test="logoUrl != null">,logo_url</if>
+			<if test="orgEname != null">,org_ename</if>
+			<if test="orgIntroduction != null">,org_introduction</if>
+			<if test="officialWebsite != null">,official_website</if>
+			<if test="phone != null">,phone</if>
+			<if test="email != null">,email</if>
+			<if test="weiXin != null">,wei_xin</if>
+			<if test="weiXinUrl != null">,wei_xin_url</if>
+			<if test="checkStatus != null">,check_status</if>
+			<if test="telFareNum != null">,tel_fare_num</if>
+			<if test="entImage != null">,ent_image</if>
+			,gmt_create
+			<if test="gmtModify != null">,gmt_modify</if>
+		</trim>		)values(
+		<if test="_databaseId == 'oracle'">#{id},</if>
+		<trim prefix="" prefixOverrides=",">
+			<if test="mobile != null">,#{mobile,jdbcType=VARCHAR}</if>
+			<if test="pwd != null">,#{pwd,jdbcType=VARCHAR}</if>
+			<if test="orgType != null">,#{orgType,jdbcType=VARCHAR}</if>
+			<if test="orgCode != null">,#{orgCode,jdbcType=VARCHAR}</if>
+			<if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+			<if test="aliasName != null">,#{aliasName,jdbcType=VARCHAR}</if>
+			<if test="artificialPerson != null">,#{artificialPerson,jdbcType=VARCHAR}</if>
+			<if test="registrationno != null">,#{registrationno,jdbcType=VARCHAR}</if>
+			<if test="registerDate != null">,#{registerDate,jdbcType=TIMESTAMP}</if>
+			<if test="validDateTo != null">,#{validDateTo,jdbcType=VARCHAR}</if>
+			<if test="validDateFrom != null">,#{validDateFrom,jdbcType=VARCHAR}</if>
+			<if test="entAddress != null">,#{entAddress,jdbcType=VARCHAR}</if>
+			<if test="certificationStatus != null">,#{certificationStatus,jdbcType=INTEGER}</if>
+			<if test="logoUrl != null">,#{logoUrl,jdbcType=VARCHAR}</if>
+			<if test="orgEname != null">,#{orgEname,jdbcType=VARCHAR}</if>
+			<if test="orgIntroduction != null">,#{orgIntroduction,jdbcType=VARCHAR}</if>
+			<if test="officialWebsite != null">,#{officialWebsite,jdbcType=VARCHAR}</if>
+			<if test="phone != null">,#{phone,jdbcType=VARCHAR}</if>
+			<if test="email != null">,#{email,jdbcType=VARCHAR}</if>
+			<if test="weiXin != null">,#{weiXin,jdbcType=VARCHAR}</if>
+			<if test="weiXinUrl != null">,#{weiXinUrl,jdbcType=VARCHAR}</if>
+			<if test="checkStatus != null">,#{checkStatus,jdbcType=INTEGER}</if>
+			<if test="telFareNum != null">,#{telFareNum,jdbcType=INTEGER}</if>
+			<if test="entImage != null">,#{entImage,jdbcType=VARCHAR}</if>
+			,<include refid="common.now" />
+			<if test="gmtModify != null">,#{gmtModify,jdbcType=TIMESTAMP}</if>
+		</trim>		)
+	</insert>
+
+	<update id="update" parameterType="entInfo">
+		update ent_info
+		<set>			
+			<if test="mobile != null">mobile=#{mobile,jdbcType=VARCHAR},</if>	
+			<if test="pwd != null">pwd=#{pwd,jdbcType=VARCHAR},</if>	
+			<if test="orgType != null">org_type=#{orgType,jdbcType=VARCHAR},</if>	
+			<if test="orgCode != null">org_code=#{orgCode,jdbcType=VARCHAR},</if>	
+			<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>	
+			<if test="aliasName != null">alias_name=#{aliasName,jdbcType=VARCHAR},</if>	
+			<if test="artificialPerson != null">artificial_person=#{artificialPerson,jdbcType=VARCHAR},</if>	
+			<if test="registrationno != null">registrationNO=#{registrationno,jdbcType=VARCHAR},</if>	
+			<if test="registerDate != null">register_date=#{registerDate,jdbcType=TIMESTAMP},</if>	
+			<if test="validDateTo != null">valid_date_to=#{validDateTo,jdbcType=VARCHAR},</if>	
+			<if test="validDateFrom != null">valid_date_From=#{validDateFrom,jdbcType=VARCHAR},</if>
+			<if test="entAddress != null">ent_address=#{entAddress,jdbcType=VARCHAR},</if>	
+			<if test="certificationStatus != null">certification_status=#{certificationStatus,jdbcType=INTEGER},</if>	
+			<if test="logoUrl != null and logoUrl.trim() !=''">logo_url=#{logoUrl,jdbcType=VARCHAR},</if>	
+			<if test="orgEname != null">org_ename=#{orgEname,jdbcType=VARCHAR},</if>	
+			<if test="orgIntroduction != null">org_introduction=#{orgIntroduction,jdbcType=VARCHAR},</if>	
+			<if test="officialWebsite != null">official_website=#{officialWebsite,jdbcType=VARCHAR},</if>	
+			<if test="phone != null">phone=#{phone,jdbcType=VARCHAR},</if>	
+			<if test="email != null">email=#{email,jdbcType=VARCHAR},</if>	
+			<if test="weiXin != null">wei_xin=#{weiXin,jdbcType=VARCHAR},</if>	
+			<if test="weiXinUrl != null and weiXinUrl.trim() !=''">wei_xin_url=#{weiXinUrl,jdbcType=VARCHAR},</if>	
+			<if test="checkStatus != null">check_status=#{checkStatus,jdbcType=INTEGER},</if>	
+			<if test="telFareNum != null">tel_fare_num=#{telFareNum,jdbcType=INTEGER},</if>	
+			<if test="entImage != null and entImage.trim() !=''">ent_image=#{entImage,jdbcType=INTEGER},</if>	
+			<if test="gmtCreate != null">gmt_create=#{gmtCreate,jdbcType=TIMESTAMP},</if>	
+			gmt_modify=<include refid="common.now" />,
+		</set>		
+		where 					 id=#{id}
+	</update>
+	
+	<select id="load" parameterType="int" resultMap="entInfoMap" >
+    		SELECT
+				(
+					SELECT
+						group_concat(industry_id)
+					FROM
+						ent_industry_link where ent_id = #{id}
+				) industry_id,t.*
+			FROM
+				ent_info t
+			WHERE
+				id = #{id}
+	</select>
+	
+	<sql id="queryCommonSql">
+		FROM ent_info ei
+		<where>
+			<if test="idArray != null">
+						ei.id in
+				<foreach collection="idArray" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+			</if>
+			<if test="mobile != null and mobile.trim() !=''">and ei.mobile = #{mobile}</if>
+			<if test="pwd != null and pwd.trim() !=''">and ei.pwd = #{pwd}</if>
+			<if test="orgType != null and orgType.trim() !=''">and ei.org_type = #{orgType}</if>
+			<if test="orgCode != null and orgCode.trim() !=''">and ei.org_code = #{orgCode}</if>
+			<if test="orgName != null and orgName.trim() !=''">and ei.org_name = #{orgName}</if>
+			<if test="aliasName != null and aliasName.trim() !=''">and ei.alias_name = #{aliasName}</if>
+			<if test="artificialPerson != null and artificialPerson.trim() !=''">and ei.artificial_person = #{artificialPerson}</if>
+			<if test="registrationno != null and registrationno.trim() !=''">and ei.registrationNO = #{registrationno}</if>
+			<if test="registerDateFrom != null">and ei.register_date >= #{registerDateFrom}</if>
+			<if test="registerDateTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and ei.register_date < #{registerDateTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and ei.register_date < date_add(#{registerDateTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+			<if test="validDateFrom != null and validDateFrom.trim() !=''">and ei.valid_date_from = #{validDateFrom}</if>
+			<if test="validDateTo != null and validDateTo.trim() !=''">and ei.valid_date_to = #{validDateTo}</if>
+			<if test="entAddress != null and entAddress.trim() !=''">and ei.ent_address = #{entAddress}</if>
+			<if test="certificationStatus != null">and ei.certification_status = #{certificationStatus}</if>												
+			<if test="logoUrl != null and logoUrl.trim() !=''">and ei.logo_url = #{logoUrl}</if>
+			<if test="orgEname != null and orgEname.trim() !=''">and ei.org_ename = #{orgEname}</if>
+			<if test="orgIntroduction != null and orgIntroduction.trim() !=''">and ei.org_introduction = #{orgIntroduction}</if>
+			<if test="officialWebsite != null and officialWebsite.trim() !=''">and ei.official_website = #{officialWebsite}</if>
+			<if test="phone != null and phone.trim() !=''">and ei.phone = #{phone}</if>
+			<if test="email != null and email.trim() !=''">and ei.email = #{email}</if>
+			<if test="weiXin != null and weiXin.trim() !=''">and ei.wei_xin = #{weiXin}</if>
+			<if test="weiXinUrl != null and weiXinUrl.trim() !=''">and ei.wei_xin_url = #{weiXinUrl}</if>
+			<if test="checkStatus != null">and ei.check_status = #{checkStatus}</if>												
+			<if test="telFareNum != null">and ei.tel_fare_num = #{telFareNum}</if>												
+			<if test="gmtCreateFrom != null">and ei.gmt_create >= #{gmtCreateFrom}</if>
+			<if test="gmtCreateTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and ei.gmt_create < #{gmtCreateTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and ei.gmt_create < date_add(#{gmtCreateTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+			<if test="gmtModifyFrom != null">and ei.gmt_modify >= #{gmtModifyFrom}</if>
+			<if test="gmtModifyTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and ei.gmt_modify < #{gmtModifyTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and ei.gmt_modify < date_add(#{gmtModifyTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="sortSql">		
+		<choose>			
+			<when test="sort != null and sort.trim() !=''">
+				order by ${sort}
+			</when>
+			<otherwise>
+				<if test="sortByDefault">
+					order by ei.GMT_CREATE DESC
+				</if>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="queryList" parameterType="entInfoQuery" resultMap="entInfoMap">
+		<include refid="common.pageBegin" />
+		select ei.id				<choose>
+			<when test="columns != null and columns.length>0">
+				<foreach collection="columns" index="index" item="item">,${item}</foreach>
+			</when>
+			<otherwise>
+        		        			,ei.mobile
+        			        		        			,ei.pwd
+        			        		        			,ei.org_type
+        			        		        			,ei.industry_id
+        			        		        			,ei.org_code
+        			        		        			,ei.org_name
+        			        		        			,ei.alias_name
+        			        		        			,ei.artificial_person
+        			        		        			,ei.registrationNO
+        			        		        			,ei.register_date
+        			        		        			,ei.valid_date_from
+        			        		        			,ei.valid_date_to
+        			        		        			,ei.ent_address
+        			        		        			,ei.certification_status
+        			        		        			,ei.logo_url
+        			        		        			,ei.ent_image
+        			        		        			,ei.org_ename
+        			        		        			,ei.org_introduction
+        			        		        			,ei.official_website
+        			        		        			,ei.phone
+        			        		        			,ei.email
+        			        		        			,ei.wei_xin
+        			        		        			,ei.wei_xin_url
+        			        		        			,ei.check_status
+        			        		        			,ei.tel_fare_num
+        			        		        			,ei.gmt_create
+        			        		        			,ei.gmt_modify
+			</otherwise>
+		</choose>
+		<include refid="queryCommonSql" />
+		<include refid="sortSql" />
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryCount" parameterType="entInfoQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryCommonSql" />
+	</select>
+	
+	<update id="updateStatus" parameterType="entInfo">		
+		update ent_info set status=#{status} where   id=#{id} 	</update>
+	
+	<delete id="delete" parameterType="int">
+    		delete from ent_info where id=#{id}
+	</delete>
+	
+	<select id="queryEnt" parameterType="entInfo"  resultMap="entInfoMap">
+		select * from  ent_info where mobile = #{mobile}
+	</select>
+	
+	<select id="accoutIfExist" parameterType="entInfo"  resultType="java.lang.Integer">
+		select count(1) from  ent_info where mobile = #{mobile} and org_code is not null and org_code !=''
+	</select>
+	
+	<select id="checkLogin" parameterType="entInfo"  resultMap="entInfoMap">
+		select * from  ent_info where mobile = #{mobile} and pwd = #{pwd} 
+	</select>
+	
+	<select id="checkMobile" parameterType="entInfo" resultType="Integer">
+		select id from  ent_info where mobile = #{mobile}
+	</select>
+	
+	<select id="checkPwd" parameterType="entInfo" resultType="Integer">
+		select count(1) from  ent_info where id = #{id} and pwd = #{pwd}
+	</select>
+	
+	<select id="getEntCodeByName" parameterType="String" resultType="Integer">
+		select id from  ent_info where org_name = #{orgName} 
+	</select>
+	
+	<select id="getEntInfoByMobile" parameterType="String"  resultMap="entInfoMap">
+		select * from  ent_info where mobile = #{mobile} 
+	</select>
+	
+	<!-- 搜索结果为 企业 加 个人 接口——搜索企业 -->
+    <sql id="queryEntCardCommonSql">
+		from ent_info ei
+		left join (select ent_id,count(1) entStaffNum from card_info group by ent_id) b on ei.id=b.ent_id
+		<where>
+			ei.org_name  like concat('%',#{content},'%') 
+		</where>
+	</sql>
+	
+	<select id="queryEntCardList" parameterType="com.ancun.xinhu.domain.dto.XinHuQuery" resultMap="entInfoMap">
+		<include refid="common.pageBegin" />
+			select ei.id ent_id,ei.logo_url,ei.org_name,b.entStaffNum
+		<include refid="queryEntCardCommonSql" />
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryEntCardCount" parameterType="com.ancun.xinhu.domain.dto.XinHuQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryEntCardCommonSql" />
+	</select>
+	
+	<!-- 搜索已经注册的企业接口 -->
+	<select id="searchEntList" parameterType="com.ancun.xinhu.domain.dto.XinHuQuery" resultMap="entInfoMap">
+		select ei.id ent_id,ei.logo_url,ei.org_name,b.entStaffNum
+		from ent_info ei
+		left join (select ent_id,count(1) entStaffNum from card_info group by ent_id) b on ei.id=b.ent_id
+		where ei.org_name like concat('%',#{content},'%') 
+		limit 5
+	</select>
+	
+	<!-- 获取搜索企业详情接口 -->
+	<select id="getSearchEntCardInfo" parameterType="com.ancun.xinhu.domain.dto.XinHuQuery" resultMap="entInfoMap">
+		select ei.id ent_id,ei.logo_url,ei.org_name,b.entConnNum
+		,ei.certification_status,ei.org_ename,ei.ent_address,ei.org_introduction
+		from ent_info ei
+		left join (
+			select ci.ent_id,count(1) entConnNum from card_info ci, 
+			(
+			select card_id_from card_id from user_card_link where card_id=#{cardId}
+			union all 
+			select card_id from user_card_link where card_id_from=#{cardId}
+			) ucl
+			where ci.id=ucl.card_id and ci.ent_id=#{entId}
+		) b on ei.id=b.ent_id
+		where ei.id=#{entId} 
+	</select>
+	
+	<select id="getEntShieldList" parameterType="com.ancun.xinhu.domain.query.EntShieldQuery" resultType="map">
+		<include refid="common.pageBegin" />
+		SELECT
+			t.ent_id entId,
+			t.shield_id shieldId,
+			t.shield_type shieldType,
+			j.org_name orgName
+		FROM
+			ent_shield t
+		LEFT JOIN ent_info j ON t.shield_id = j.id
+		WHERE
+			t.shield_type = #{shieldType}
+			and t.ent_id = #{entId}
+		<include refid="common.pageEnd" />
+	</select>
+	
+	<select id="getUserShieldList" parameterType="com.ancun.xinhu.domain.query.EntShieldQuery" resultType="map">
+		<include refid="common.pageBegin" />
+		SELECT
+			t.ent_id entId,
+			t.shield_id shieldId,
+			t.shield_type shieldType,
+			j.true_name trueName
+		FROM
+			ent_shield t
+		LEFT JOIN card_info j ON t.shield_id = j.id
+		WHERE
+			t.shield_type = #{shieldType}
+			and t.ent_id = #{entId}
+		<include refid="common.pageEnd" />
+	</select>
+	
+	
+	<select id="queryShieldCount" parameterType="entInfoQuery" resultType="java.lang.Integer">
+		select count(1) from ent_shield where ent_id = #{entId} and shield_type = #{shieldType}
+	</select>
+	
+	<!-- 企业名片详情获取接口 -->
+	<select id="getEntCardInfo" parameterType="com.ancun.xinhu.domain.dto.XinHuQuery" resultMap="entInfoMap" >
+    		SELECT id ent_id,logo_url,certification_status,org_name,org_ename,org_code,artificial_person,registrationNO
+    		,ent_address,register_date,valid_date_to,valid_date_from,org_introduction,official_website,phone,email,wei_xin,wei_xin_url 
+    		,b.entConnNum
+			FROM
+				ent_info ei
+				left join (
+					select ci.ent_id,count(1) entConnNum from card_info ci, 
+					(
+					select card_id_from card_id from user_card_link where card_id=#{cardId}
+					union all 
+					select card_id from user_card_link where card_id_from=#{cardId}
+					) ucl
+					where ci.id=ucl.card_id and ci.ent_id=#{entId}
+				) b on ei.id=b.ent_id
+			WHERE
+				id = #{entId}
+	</select>
+	
+	<select id="ifExistEnt" parameterType="entInfo" resultType="java.lang.Integer">
+		SELECT
+			count(1)
+		FROM
+			ent_info
+		WHERE
+			org_name = #{orgName} or org_code = #{orgCode} or registrationno = #{registrationno}
+	</select>
+	
+	
+</mapper>

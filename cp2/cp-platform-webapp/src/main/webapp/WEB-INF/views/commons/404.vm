@@ -1,0 +1,14 @@
+
+
+#set($screen_title="非常抱歉，您访问的页面不存在")
+<div class="prompt_a"></div>
+<div class="prompt_btn">
+	<a class="prompt_href" href="javascript:history.back()"> 
+		<img src="bg_back.png"  />
+		返回上一页
+	</a> 
+	<a class="prompt_href" href="$userSystemUrl">
+		<img src="bg_home.png" />
+		返回首页
+	</a>
+</div>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pubTitle="http://schemas.android.com/apk/res/com.ciapc.anxin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/C5"
+    android:orientation="vertical" >
+
+    <com.ciapc.anxin.common.view.PubTitle
+        android:id="@+id/register_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pubTitle:leftIcon="@drawable/back"
+        pubTitle:text="新用户注册" />
+    
+     <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="@dimen/left_right"
+            android:textColor="@color/C3"
+            android:textSize="@dimen/H4" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/left_right"
+        android:layout_marginRight="@dimen/left_right"
+        android:layout_marginTop="@dimen/left_right"
+        android:background="@drawable/register_input_pwd_style" >
+
+
+        <LinearLayout
+            android:id="@+id/register_first"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:visibility="visible" >
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="center"
+                android:src="@drawable/login_phone_fouse" />
+
+            <com.ciapc.anxin.common.view.CustomEditText
+                android:id="@+id/register_input_phone"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_weight="4"
+                android:background="@null"
+                android:drawableRight="@drawable/clear_input"
+                android:gravity="left|center_vertical"
+                android:hint="@string/phone"
+                android:inputType="number"
+                android:maxLength="11"
+                android:padding="5dp"
+                android:textColor="@color/C1"
+                android:textColorHint="@color/C3"
+                android:textSize="@dimen/H4" />
+
+            <requestFocus />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/register_second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:gravity="center_vertical" >
+
+                <EditText
+                    android:id="@+id/register_input_verification"
+                    android:layout_width="0dp"
+                    android:layout_height="37dp"
+                    android:layout_weight="3"
+                    android:background="@null"
+                    android:gravity="left|center_vertical"
+                    android:hint="@string/verification_hint"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:paddingLeft="@dimen/left_right"
+                    android:textColor="@color/C1"
+                    android:textColorHint="@color/C3"
+                    android:textSize="@dimen/H4" />
+
+                <Button
+                    android:id="@+id/register_get_code"
+                    android:layout_width="0dp"
+                    android:layout_height="37dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="@dimen/left_right"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/get_code_style"
+                    android:text="@string/verification"
+                    android:textColor="@drawable/get_code_text_style" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="@color/C7" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:gravity="center_vertical" >
+
+                <com.ciapc.anxin.common.view.CustomEditText
+                    android:id="@+id/register_input_pwd"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="4"
+                    android:background="@null"
+                    android:drawableRight="@drawable/clear_input"
+                    android:gravity="left|center_vertical"
+                    android:hint="@string/new_pwd"
+                    android:inputType="textPassword"
+                    android:padding="@dimen/left_right"
+                    android:textColor="@color/C1"
+                    android:textColorHint="@color/C3"
+                    android:textSize="@dimen/H4" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/register_next"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="@dimen/left_right"
+        android:layout_marginRight="@dimen/left_right"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/login_register_btn_style"
+        android:gravity="center"
+        android:textColor="@color/C6"
+        android:textSize="@dimen/H3" />
+
+</LinearLayout>

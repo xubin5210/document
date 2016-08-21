@@ -1,0 +1,68 @@
+#set($layout="commons/layout-usercenter-head.vm")
+#set($screen_jsArray=["ent/card-export"])
+<script>
+var webResouse = '$!errorUrl';
+</script>
+<div id="right">
+      	<div class="roster_title c_green hei">
+                <i class="icon_hmc icon-bg fl"></i>
+                花名册（0人）
+        </div>
+    	<div class="fl roster_infos">
+            <p class="slogan c_blue">实名花名册，打造诚信名片！</p>	
+            <div class="roster_btn"><a href="#" class="btn fl upfile">批量导入新员工</a><a href="card-add" class="btn fr">新建员工</a></div>
+        </div>
+        <div class="overhide main-child" id="liucheng">
+                <ul class="lateral-ul ul">
+                    <li class="cur">
+                        <div class="process-icon">
+                            <div class="process-icon-inner">1</div>
+                        </div>
+                        <p class="title">填写员工真实信息</p>
+						<p>(姓名、性别、职称、手机号、部门等)</p>
+                    </li>
+                    <li>
+                        <div class="process-icon">
+                            <div class="process-icon-inner">2</div>
+                        </div>
+                        <p class="title">发送激活码</p>
+						<p>系统自动给用户的手机发送激活码</p>
+                    </li>
+                    <li class="last-li">
+                        <div class="process-icon">
+                            <div class="process-icon-inner">3</div>
+                        </div>
+                        <p class="title">APP端</p>
+						<p>员工在APP端激活帐号，拥有安信帐号</p>
+                    </li>
+                    <li id="line"></li>
+                </ul>
+            </div>
+</div>
+	 <div class="pop-up" id="upfile">
+            <div class="title hei">
+                <span class="fl">批量导入新员工</span>
+                <em class="fr close-button">X</em>
+                <br class="clr">
+            </div>
+            <div class="content">
+				<form id="upcard" action="exportEmployees" method="POST"  enctype="multipart/form-data">
+                   	<p><label>花名册模板：</label><span>"花名册批量导入模板(安存提供).xls"</span><input class="botton hei" onclick="window.location.href = 'scripts/employees.xls';" type="button" value="下载模板"/></p>
+                    <p>
+                    	<label>上传文件：</label>
+						<input id="entId" name="entId" value="$!{entInfo.id}" type="hidden"/>
+    	                <input name="" type="text" id="viewfile" onmouseout="document.getElementById('upload').style.display='none';" class="inputstyle" />
+                        <span for="unload" onMouseMove="document.getElementById('upload').style.display='block';" class="myfile botton hei">浏 览</span>
+                        <input type="file" name="files" onchange="document.getElementById('viewfile').value=this.value;this.style.display='none';" class="ufile" id="upload"  value=""/></p>
+                    <br class="clr">
+                    <div class="btn_box">
+    	                <input type="submit" value="开始上传" id="uploadBut" class="upload botton f14"/>
+                    </div>
+				</form>
+            </div>
+        </div>
+<div class="roster_ax_app" id="app">
+	<p class="hei">安信APP--效果图</p>
+	<img src="#getWebresourcesUrl()/images/admin/app.png"/>
+</div>
+<div id="r_list"></div>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loading"
+    android:layout_width="290dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/gd_dialog_dialog_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="10dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/left_right" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/left_right"
+            android:text="分享到"
+            android:textColor="@color/C2"
+            android:textSize="@dimen/H3" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/C3" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="@null" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/share_wx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/left_right"
+                    android:background="@drawable/exchange_bg_bottom"
+                    android:padding="@dimen/left_right" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/exchange_wx"
+                        android:drawablePadding="@dimen/left_right"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/left_right"
+                        android:text="@string/exchange_wx"
+                        android:textColor="@color/C1"
+                        android:textSize="@dimen/H3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/share_msg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/left_right"
+                    android:background="@drawable/exchange_bg_bottom"
+                    android:padding="@dimen/left_right" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/exchange_msg"
+                        android:drawablePadding="@dimen/left_right"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/left_right"
+                        android:text="@string/exchange_message"
+                        android:textColor="@color/C1"
+                        android:textSize="@dimen/H3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/share_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/left_right"
+                    android:padding="@dimen/left_right" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/email"
+                        android:drawablePadding="@dimen/left_right"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/left_right"
+                        android:text="@string/exchange_mail"
+                        android:textColor="@color/C1"
+                        android:textSize="@dimen/H3" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

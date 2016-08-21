@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">信乎</string>
+    <string name="department">部门</string>
+    <string name="post">职位</string>
+    <string name="register">注册</string>
+    <string name="forget">忘记密码?</string>
+    <string name="login">登录</string>
+    <string name="anxin">信乎</string>
+    <string name="phone">手机号码</string>
+    <string name="verification">获取验证码</string>
+    <string name="verification_hint">4位验证码</string>
+    <string name="new_pwd">新密码</string>
+    <string name="forget_btn">确定并登录</string>
+    <string name="work_time">入职日期</string>
+    <string name="tel_phone">手机</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="set_title">设置</string>
+    <string name="search">搜索</string>
+    <string name="report">请选择举报原因</string>
+    <string name="sham">虚假身份</string>
+    <string name="cheat">欺诈行为</string>
+    <string name="share">分享</string>
+    <string name="del">删除</string>
+    <string name="report_pop">举报</string>
+    <string name="pwd">密码</string>
+    <string name="save">保存</string>
+    <string name="give_card">递名片</string>
+    <string name="send">发送</string>
+    <string name="exchange_bg_text">探索人脉，探索未来</string>
+    <string name="submit">提交</string>
+    <string name="phone_confirm_change">确认更换</string>
+    <string name="renewal">更换</string>
+    <string name="newphone_input">新手机号</string>
+    <string name="noDate">无匹配结果</string>
+    <string name="recommend">推荐名片</string>
+    <string name="oldpwd">旧密码</string>
+    <string name="newpwd">新密码</string>
+    <string name="confirmnewpwd">确认新密码</string>
+    <string name="revisepwdok">确认</string>
+    <string name="exchange_card">我是HR，注册有奖</string>
+   
+    
+
+    <!-- 主页 -->
+    <string name="person_info">个人信息</string>
+    <string name="new_card">新名片</string>
+    <string name="contacts">人脉</string>
+    <string name="company_contact">企业通讯录</string>
+    <string name="home_set">设置</string>
+    <string name="home_share">分享有礼</string>
+
+    <!-- 交换名片 -->
+    <string name="exchange_sys">扫一扫</string>
+    <string name="exchange_sys_text">扫对方二维码名片加好友</string>
+    <string name="exchange_wx">微信</string>
+    <string name="exchange_wx_text">发送我的名片到微信好友</string>
+    <string name="exchange_message">短信</string>
+    <string name="exchange_message_text">以短信形式发送我的名片</string>
+    <string name="exchange_mail">邮件</string>
+    <string name="exchange_mail_text">以邮件形式发送我的名片</string>
+    <string name="exchange_search_phone">手机号搜索:</string>
+    <string name="exchange_search_card">名片号搜索:</string>
+    <string name="exchange_search_mail">邮件搜索:</string>
+    <string name="exchange_search_name">名字搜索:</string>
+    <string name="exchange_search_nickname">昵称搜索:</string>
+    <string name="exchange_search_organization">机构搜索:</string>
+    <string name="exchange_search_job">职位搜索:</string>
+    <string name="send_exchange">发送验证申请，等待对方通过</string>
+
+    <!-- 主页搜索 -->
+    <string name="qr_str">扫描对方二维码/条形名片</string>
+    <string name="peopen_name">人名</string>
+    <string name="company_name">企业名</string>
+    <string name="more">更多</string>
+    <string name="contact_more">查看全部</string>
+
+    <!-- 个人信息 -->
+    <string name="album">本地相册</string>
+    <string name="take_photo">拍照</string>
+    <string name="job_name">职位</string>
+    <string name="name">姓名</string>
+    <string name="name_card">身份证号</string>
+    <string name="sex">性别</string>
+    <string name="company">企业</string>
+    <string name="job_name_hint">你的职位</string>
+    <string name="name_hint">真实姓名</string>
+    <string name="name_card_hint">请输入你的身份证号</string>
+    <string name="sex_hint">保密</string>
+    <string name="company_hint">所属企业</string>
+    <string name="search_company_hint">请输入机构/企业名称</string>
+    <string name="search_company_bg">找到组织，人脉更可信</string>
+    <string name="true_name">你的真实姓名</string>
+    <string name="input_job_hint">添加职位</string>
+    <string name="input_email">工作邮箱</string>
+    <string name="input_email_hint">你的邮箱</string>
+    <string name="person_name_re">昵称</string>
+    <string name="person_name">你的昵称</string>
+    <string name="person_english_name">英文名</string>
+    <string name="english_name">你的英文名</string>
+    <string name="person_image">头像</string>
+    <string name="person_business_card">名片号</string>
+    <string name="person_job">职位</string>
+    <string name="job">你的职位</string>
+    <string name="person_dept">部门</string>
+    <string name="dept">所在部门</string>
+    <string name="person_phone_re">手机号</string>
+    <string name="person_phone">请输入你的手机号</string>
+    <string name="person_fixedphone_re">座机</string>
+    <string name="person_fixedphone">你的座机</string>
+    <string name="person_FAX_re">传真</string>
+    <string name="person_FAX">请输入传真号码</string>
+    <string name="person_email_re">邮箱</string>
+    <string name="person_email">你的邮箱</string>
+    <string name="person_QQ_re">QQ</string>
+    <string name="person_QQ">请输入你的QQ</string>
+    <string name="person_weixin_re">微信</string>
+    <string name="person_weixin">你的微信号</string>
+    <string name="person_iDcard_re">身份证</string>
+    <string name="person_iDcard">请输入你的身份证号</string>
+    <string name="person_iscertificate_re">未绑定</string>
+    <string name="person_iscertificate">所在企业</string>
+    <string name="account_safe_revisepwd">登录密码</string>
+    <string name="et_person_job">职位:</string>
+    <string name="et_person_dept">部门:</string>
+    <string name="person_bing">立即绑定实名机构</string>
+
+    <!-- 企业详情 -->
+    <string name="company__code">机构代码</string>
+    <string name="company_representative">法定代表人</string>
+    <string name="company_organization">机构登记号</string>
+    <string name="company_address">地址</string>
+    <string name="company_time">注册期</string>
+    <string name="company_valid">有效期</string>
+
+    <!-- 名片详情 -->
+    <string name="tel">座机</string>
+    <string name="fax">传真</string>
+    <string name="qq">QQ</string>
+    <string name="motto">座右铭</string>
+
+    <!-- 分享 -->
+    <string name="share_code">注册码:</string>
+    <string name="share_code_submit">分享注册码</string>
+    <string name="share_code_address">注册地址：</string>
+    <string name="share_code_address_content">http://www.ancun.com</string>
+    <string name="share_code_content">当别人使用你的注册码是，\n你们都将获得10元话费!\n当然，你也可以自己使用它并获得10元话费!</string>
+    <string name="share_wx">微信好友</string>
+
+    
+      <!-- XListView -->
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+</resources>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pubTitle="http://schemas.android.com/apk/res/com.ciapc.anxin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.ciapc.anxin.common.view.PubTitle
+        android:id="@+id/statistics_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pubTitle:leftIcon="@drawable/back"
+        pubTitle:text="人脉" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/left_right"
+                android:gravity="center"
+                android:text="共有名片"
+                android:textColor="@color/C2"
+                android:textSize="@dimen/H4" />
+
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="163dp"
+                android:layout_gravity="center" >
+
+                <ImageView
+                    android:id="@+id/card_progressbar"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/left_right"
+                    android:src="@drawable/card_statistics" />
+
+                <TextView
+                    android:id="@+id/card_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="#ed7e22"
+                    android:textSize="48sp" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/left_right"
+                android:text="高于平均50%"
+                android:textColor="#ed7e22"
+                android:textSize="@dimen/H1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/C5"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/exchange"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:text="人脉就是资源，多个朋友，多条出路！"
+                    android:textColor="@color/C3"
+                    android:textSize="@dimen/H4" />
+
+                <Button
+                    android:id="@+id/exchange_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/add_new_card_style"
+                    android:gravity="center"
+                    android:text="交换名片"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/H4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/left"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/left_right"
+                    android:gravity="center"
+                    android:text="分布企业"
+                    android:textColor="@color/C2"
+                    android:textSize="@dimen/H4" />
+
+                <FrameLayout
+                    android:layout_width="100dp"
+                    android:layout_height="133dp" >
+
+                    <ImageView
+                        android:id="@+id/company_progressbar"
+                        android:layout_width="100dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/left_right"
+                        android:src="@drawable/company_statistics" />
+
+                    <TextView
+                        android:id="@+id/ent_num"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="18dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#47c12d"
+                        android:textSize="35sp" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/left_right"
+                    android:text="高于平均50%"
+                    android:textColor="#47c12d"
+                    android:textSize="@dimen/H1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/right"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/left_right"
+                    android:gravity="center"
+                    android:text="职业总数"
+                    android:textColor="@color/C2"
+                    android:textSize="@dimen/H4" />
+
+                <FrameLayout
+                    android:layout_width="100dp"
+                    android:layout_height="133dp" >
+
+                    <ImageView
+                        android:id="@+id/job_progressbar"
+                        android:layout_width="100dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/left_right"
+                        android:src="@drawable/job_statistics" />
+
+                    <TextView
+                        android:id="@+id/post_num"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="18dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#2199fa"
+                        android:textSize="35sp" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/left_right"
+                    android:text="高于平均50%"
+                    android:textColor="#2199fa"
+                    android:textSize="@dimen/H1" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

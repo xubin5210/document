@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loading"
+    android:layout_width="265dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/gd_dialog_dialog_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/ax_dialog_img"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/left_right"
+            android:scaleType="center"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/ax_dialog_change"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <RelativeLayout
+                android:id="@+id/ax_dialog_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/login_input_pwd_style"
+                android:visibility="gone" >
+
+                <com.ciapc.anxin.common.view.CustomEditText
+                    android:id="@+id/ax_dialog_input_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:background="@null"
+                    android:drawableRight="@drawable/clear_input"
+                    android:gravity="left|center_vertical"
+                    android:hint="请输入个性签名"
+                    android:paddingLeft="5dp"
+                    android:maxLength="50"
+                    android:textColor="@color/C1"
+                    android:textColorHint="@color/C3"
+                    android:textSize="@dimen/H4" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/show_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <com.master.util.common.SortTextView
+                    android:id="@+id/ax_dialog_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="32dp"
+                    android:textColor="@color/C3"
+                    android:textSize="@dimen/H3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/left_right"
+                android:background="@drawable/exchange_bg_top_bottom"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/ax_dialog_cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:text="@string/cancel"
+                    android:textColor="@color/C2"
+                    android:textSize="@dimen/H4" />
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/C4" />
+
+                <Button
+                    android:id="@+id/ax_dialog_confirm"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:text="@string/confirm"
+                    android:textColor="@color/C7"
+                    android:textSize="@dimen/H4" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

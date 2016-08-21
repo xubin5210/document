@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pubTitle="http://schemas.android.com/apk/res/com.ciapc.anxin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.ciapc.anxin.common.view.PubTitle
+        android:id="@+id/set_account_safe_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pubTitle:leftIcon="@drawable/back"
+        pubTitle:text="账号与安全" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C5"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:text="账号"
+            android:textColor="@color/C3"
+            android:textSize="15dp" />
+    </RelativeLayout>
+    <!-- 手机号 -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/exchange_bg_top_bottom"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/person_phone_re"
+            android:textSize="@dimen/H3" />
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/account_safe_phone"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/account_safe_phone"
+            android:layout_width="45dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/phone_confirm_change_btn_style"
+            android:text="@string/renewal"
+            android:textColor="@color/C6"
+            android:textSize="10sp" />
+    </RelativeLayout>
+    <!-- 名片号 -->
+
+    <RelativeLayout
+        android:id="@+id/account_safe_cardno"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/exchange_bg_bottom"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/person_business_card"
+            android:textSize="@dimen/H3" />
+
+        <TextView
+            android:id="@+id/cardno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:text="10086" />
+    </RelativeLayout>
+    <!-- 邮箱 -->
+
+    <RelativeLayout
+        android:id="@+id/account_safe_email"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/exchange_bg_bottom"
+        android:paddingLeft="20dp"
+        android:paddingRight="18dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/person_email_re"
+            android:textSize="@dimen/H3" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/img"
+            android:gravity="center"
+            android:hint="@string/input_email_hint" />
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/arrows" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C5"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:text="@string/pwd"
+            android:textColor="@color/C3"
+            android:textSize="@dimen/H5" />
+    </RelativeLayout>
+    <!-- 登录密码 -->
+
+    <RelativeLayout
+        android:id="@+id/account_safe_revisepwd"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/exchange_bg_top_bottom"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="登录密码"
+            android:textSize="@dimen/H3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/img"
+            android:gravity="center"
+            android:text="修改密码"
+            android:textSize="@dimen/H5" />
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/arrows" />
+    </RelativeLayout>
+
+</LinearLayout>

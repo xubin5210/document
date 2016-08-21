@@ -1,0 +1,112 @@
+<com.ciapc.anxin.common.view.DragLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dl"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/home_left_bg"
+    android:clickable="true"
+    android:orientation="vertical" >
+
+    <include layout="@layout/home_left_layout" />
+
+    <com.ciapc.anxin.modules.home.HomeRelativeLayout
+        android:id="@+id/home_main"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#eeeeee"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/home_title"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/PubTitle_hight"
+                android:background="@color/C7"
+                android:orientation="vertical" >
+
+                <FrameLayout
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true" >
+
+                    <com.ciapc.anxin.common.view.RoundView
+                        android:id="@+id/title_back_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|left"
+                        android:layout_marginLeft="@dimen/left_right"
+                        android:scaleType="center"
+                        android:src="@drawable/toux_default"
+                        android:visibility="visible" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/anxin"
+                    android:textColor="@color/C6"
+                    android:textSize="@dimen/H1" />
+
+                <ImageView
+                    android:id="@+id/title_right_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right"
+                    android:paddingRight="@dimen/left_right"
+                    android:scaleType="center"
+                    android:src="@drawable/home_to_new_card"
+                    android:visibility="visible" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@color/C4"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@+id/home_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_marginLeft="@dimen/left_right"
+                    android:layout_marginRight="@dimen/left_right"
+                    android:background="@drawable/home_search" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:drawableLeft="@drawable/saerch"
+                        android:gravity="center"
+                        android:text="@string/search"
+                        android:textColor="@color/C3"
+                        android:textSize="@dimen/H4" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!--  -->
+
+            <com.ciapc.anxin.utils.ListView.XListView
+                android:id="@+id/home_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false"
+                android:listSelector="#00000000"
+                android:scrollbars="@null" />
+
+        </LinearLayout>
+    </com.ciapc.anxin.modules.home.HomeRelativeLayout>
+
+</com.ciapc.anxin.common.view.DragLayout>

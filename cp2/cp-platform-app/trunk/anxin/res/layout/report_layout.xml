@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pubTitle="http://schemas.android.com/apk/res/com.ciapc.anxin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/C5"
+    android:orientation="vertical" >
+
+    <com.ciapc.anxin.common.view.PubTitle
+        android:id="@+id/report_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pubTitle:leftIcon="@drawable/back"
+        pubTitle:rightText="@string/submit"
+        pubTitle:text="举报" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="bottom"
+        android:paddingBottom="5dp"
+        android:paddingLeft="@dimen/left_right"
+        android:text="@string/report"
+        android:textColor="@color/C3"
+        android:textSize="@dimen/H3" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/exchange_bg_top_bottom"
+        android:orientation="horizontal"
+        android:paddingBottom="23dp"
+        android:paddingTop="23dp" >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/sham"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/report_checkbox_selector" />
+
+            <TextView
+                android:id="@+id/sham_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/sham"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:text="@string/sham"
+                android:textColor="@color/C2"
+                android:textSize="@dimen/H3" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/cheat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/report_checkbox_selector" />
+
+            <TextView
+                android:id="@+id/cheat_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/cheat"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:text="@string/cheat"
+                android:textColor="@color/C2"
+                android:textSize="@dimen/H3" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/exchange_bg_bottom"
+        android:paddingBottom="23dp"
+        android:paddingLeft="@dimen/left_right"
+        android:paddingRight="@dimen/left_right"
+        android:paddingTop="23dp" >
+
+        <EditText
+            android:id="@+id/report_edit"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="top|left"
+            android:padding="5dp"
+            android:selectAllOnFocus="false"
+            android:background="@drawable/verify_new_card_style" />
+    </LinearLayout>
+    
+    <com.master.util.common.SortTextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text=""
+        android:layout_marginTop="32dp"/>
+
+</LinearLayout>

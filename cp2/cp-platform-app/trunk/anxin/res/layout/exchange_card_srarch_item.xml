@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:id="@+id/item"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/exchange_bg_bottom"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/left_right"
+        android:paddingTop="@dimen/left_right" >
+
+        <com.ciapc.anxin.common.view.RoundView
+            android:id="@+id/new_card_accept_head"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:layout_marginLeft="@dimen/left_right"
+            android:src="@drawable/toux_default" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_height="match_parent"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@id/new_card_accept_head"
+            android:gravity="center_vertical|left"
+            >
+
+            <TextView
+                android:id="@+id/new_card_accept_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textColor="@color/C7"
+                android:textSize="@dimen/H4" />
+
+            <TextView
+                android:id="@+id/new_card_accept_company"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/new_card_accept_name"
+                android:ellipsize="end"
+                android:gravity="left"
+                android:singleLine="true"
+                android:textColor="@color/C2"
+                android:textSize="@dimen/H5" />
+        </RelativeLayout>
+        
+        <Button
+            android:id="@+id/new_card_accept"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:background="@drawable/add_new_card_style"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_marginRight="@dimen/left_right"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/give_card"
+            android:textColor="@color/C6"
+            android:textSize="@dimen/H5" />
+    </RelativeLayout>
+
+</LinearLayout>

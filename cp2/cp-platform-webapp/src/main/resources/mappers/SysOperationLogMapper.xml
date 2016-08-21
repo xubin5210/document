@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.SysOperationLogMapper">
+	<resultMap id="sysOperationLogMap" type="sysOperationLog">		
+		<result column="pk_value" property="pkValue"/><!-- 主键值 -->
+		<result column="table_name" property="tableName"/><!-- 表名 -->			
+		<result column="column_name" property="columnName"/><!-- 列名 -->			
+		<result column="column_value" property="columnValue"/><!-- 列值 -->			
+		<result column="gmt_modify" property="gmtModify"/><!-- 修改时间 -->			
+	</resultMap>
+
+	<insert id="insert" parameterType="sysOperationLog" >
+				insert into
+		sys_operation_log(
+		<if test="tableName != null">,table_name</if>
+		<if test="columnName != null">,column_name</if>
+		<if test="columnValue != null">,column_value</if>
+		<if test="gmtModify != null">,gmt_modify</if>
+									)values(
+		<if test="tableName != null">,#{tableName,jdbcType=VARCHAR}</if>
+		<if test="columnName != null">,#{columnName,jdbcType=VARCHAR}</if>
+		<if test="columnValue != null">,#{columnValue,jdbcType=VARCHAR}</if>
+		<if test="gmtModify != null">,#{gmtModify,jdbcType=TIMESTAMP}</if>
+					        		)
+	</insert>
+
+	<update id="update" parameterType="sysOperationLog">
+		update sys_operation_log
+		<set>			
+			<if test="tableName != null">table_name=#{tableName,jdbcType=VARCHAR},</if>	
+			<if test="columnName != null">column_name=#{columnName,jdbcType=VARCHAR},</if>	
+			<if test="columnValue != null">column_value=#{columnValue,jdbcType=VARCHAR},</if>	
+			<if test="gmtModify != null">gmt_modify=#{gmtModify,jdbcType=TIMESTAMP},</if>	
+		</set>		
+		where 			</update>
+	
+	<select id="load" parameterType="sysOperationLog" resultMap="sysOperationLogMap" >
+    		select * from sys_operation_log where    		    	</select>
+	
+	<sql id="queryCommonSql">
+		FROM sys_operation_log sol
+		<where>
+			<if test="tableName != null and tableName.trim() !=''">and sol.table_name = #{tableName}</if>
+			<if test="columnName != null and columnName.trim() !=''">and sol.column_name = #{columnName}</if>
+			<if test="columnValue != null and columnValue.trim() !=''">and sol.column_value = #{columnValue}</if>
+			<if test="gmtModifyFrom != null">and sol.gmt_modify >= #{gmtModifyFrom}</if>
+			<if test="gmtModifyTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and sol.gmt_modify < #{gmtModifyTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and sol.gmt_modify < date_add(#{gmtModifyTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="sortSql">		
+		<choose>			
+			<when test="sort != null and sort.trim() !=''">
+				order by ${sort}
+			</when>
+			<otherwise>
+				<if test="sortByDefault">
+					order by sol.GMT_CREATE DESC
+				</if>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="queryList" parameterType="sysOperationLogQuery" resultMap="sysOperationLogMap">
+		<include refid="common.pageBegin" />
+		select 		<choose>
+			<when test="columns != null and columns.length>0">
+				<foreach collection="columns" index="index" item="item">,${item}</foreach>
+			</when>
+			<otherwise>
+        		        			,sol.table_name
+        			        		        			,sol.column_name
+        			        		        			,sol.column_value
+        			        		        			,sol.gmt_modify
+			</otherwise>
+		</choose>
+		<include refid="queryCommonSql" />
+		<include refid="sortSql" />
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryCount" parameterType="sysOperationLogQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryCommonSql" />
+	</select>
+	
+	<update id="updateStatus" parameterType="sysOperationLog">		
+		update sys_operation_log set status=#{status} where 	
+	</update>
+	
+	<delete id="delete" parameterType="sysOperationLog">
+    	delete from sys_operation_log where     	
+	</delete>
+    
+	<!-- 所有交换名片信息更新动态列表接口 -->
+	<sql id="queryCardUpdateDynamicCommonSql">
+		from <include refid="common.user_card_link_UNION_ALL_user_card_link" /> ucl
+		inner join <include refid="common.card_info_UNION_ALL_card_info_snapshot" /> ci on ucl.card_id=ci.id
+		inner join (
+			select pk_value,gmt_modify from sys_operation_log where table_name='card_info'
+		) sol on ci.id=sol.pk_value
+		left join (
+			select cdl.card_id,group_concat(ed.dept_name SEPARATOR ' | ' ) dept_name from card_dept_link cdl
+			left join ent_department ed on cdl.dept_id=ed.id
+			group by cdl.card_id
+		) cdled on cdled.card_id=ucl.card_id 
+		left join (
+			select cpl.card_id,group_concat(ep.position_name SEPARATOR ' | ' ) position_name from card_position_link cpl
+			left join ent_position ep on cpl.position_id=ep.id
+			group by cpl.card_id
+		) cplep on cplep.card_id=ucl.card_id
+		<where>
+			<if test="gmtModify != null">
+				sol.gmt_modify>#{gmtModify}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="queryCardUpdateDynamicList" parameterType="map" resultType="map">
+		<!--include refid="common.pageBegin" /-->
+		select ci.id cardId,ci.icon_url iconUrl,ci.true_name trueName,ci.org_name orgName
+		,ci.ent_active_status dynamicActiveStatus
+		,ci.mobile dynamicMobile
+		,cdled.dept_name dynamicDepartment
+		,cplep.position_name dynamicPosition
+		,max(DATE_FORMAT(sol.gmt_modify,'%Y-%m-%d %H:%i:%s')) dynamicTime
+		<include refid="queryCardUpdateDynamicCommonSql" />
+		group by ci.id,ci.icon_url,ci.true_name,ci.org_name
+		,ci.ent_active_status
+		order by sol.gmt_modify desc
+		<!--include refid="common.pageEnd" /-->
+	</select>
+
+	<select id="queryCardUpdateDynamicCount" parameterType="map" resultType="java.lang.Integer">
+		select count(distinct ci.id)
+		<include refid="queryCardUpdateDynamicCommonSql" />
+	</select>
+	
+	<!-- 获取名片更改动态列表 -->
+	<select id="getCardUpdateDynamicList" parameterType="map" resultType="map">
+		select sol.pk_value pkValue,sol.column_name columnName,sol.column_value columnValue
+		,DATE_FORMAT(sol.gmt_modify,'%Y-%m-%d %H:%i:%s') gmtModify 
+		from sys_operation_log sol 
+		where table_name='card_info'
+		<if test="gmtModify != null">
+		and sol.gmt_modify>#{gmtModify}
+		</if>
+		and sol.pk_value in <foreach collection="idArray" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+		order by sol.gmt_modify desc
+	</select>
+	
+	<!-- 单张名片信息更新动态列表接口 -->
+	<select id="getCardInfo" parameterType="int" resultType="map">
+		select distinct ci.id cardId,ci.icon_url iconUrl,ci.true_name trueName,ci.org_name orgName
+		from <include refid="common.card_info_UNION_ALL_card_info_snapshot" /> ci
+		where ci.id=#{cardId}
+	</select>
+	
+	<!-- 批量插入 -->
+	<insert id="insertBatch" parameterType="java.util.List" >
+		insert into sys_operation_log(pk_value,table_name,column_name,column_value,gmt_modify)
+		values
+		<foreach collection="list" item="item" index="index" separator="," >  
+			(#{item.pkValue},#{item.tableName},#{item.columnName},#{item.columnValue},<include refid="common.now" />)  
+		</foreach>
+	</insert>
+	
+		
+	<select id="getCardUpdateDynamicInfo" parameterType="int" resultType="map">
+		SELECT
+			sol.pk_value pkValue,
+			sol.column_name columnName,
+			replace(GROUP_CONCAT(sol.column_value),',','----------') columnValue
+		FROM
+			sys_operation_log sol
+		WHERE
+			table_name = 'card_info'
+		AND sol.pk_value = #{cardId}
+		GROUP BY sol.column_name
+		ORDER BY
+			sol.gmt_modify ASC
+	</select>
+    
+</mapper>

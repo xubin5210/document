@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.CardReportMapper">
+	<resultMap id="cardReportMap" type="cardReport">		
+					<id column="id" property="id"/><!-- 举报id -->			
+					<result column="report_userid_from" property="reportUseridFrom"/><!-- 举报人 -->			
+					<result column="report_userid" property="reportUserid"/><!-- 举报对象 -->			
+					<result column="report_type" property="reportType"/><!-- 举报对象类型(1:个人,2:企业) -->			
+					<result column="report_reason" property="reportReason"/><!-- 举报原因 -->			
+					<result column="report_comments" property="reportComments"/><!-- 补充说明 -->			
+					<result column="gmt_report" property="gmtReport"/><!-- 举报时间 -->			
+			</resultMap>
+
+	<insert id="insert" parameterType="cardReport"  useGeneratedKeys="true" keyProperty="id" >
+		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+			select SEQ_card_report.nextval from dual
+		</selectKey>
+		insert into
+		card_report(
+			<if test="_databaseId == 'oracle'">ID,</if>
+			<trim prefix="" prefixOverrides=",">
+				<if test="reportUseridFrom != null">,report_userid_from</if>
+				<if test="reportUserid != null">,report_userid</if>
+				<if test="reportType != null">,report_type</if>
+				<if test="reportReason != null">,report_reason</if>
+				<if test="reportComments != null">,report_comments</if>
+				,gmt_report
+			</trim>		)values(
+			<if test="_databaseId == 'oracle'">#{id},</if>
+			<trim prefix="" prefixOverrides=",">
+				<if test="reportUseridFrom != null">,#{reportUseridFrom,jdbcType=INTEGER}</if>
+				<if test="reportUserid != null">,#{reportUserid,jdbcType=INTEGER}</if>
+				<if test="reportType != null">,#{reportType,jdbcType=VARCHAR}</if>
+				<if test="reportReason != null">,#{reportReason,jdbcType=VARCHAR}</if>
+				<if test="reportComments != null">,#{reportComments,jdbcType=VARCHAR}</if>
+				,<include refid="common.now" />
+       		</trim>		)
+	</insert>
+
+	<update id="update" parameterType="cardReport">
+		update card_report
+		<set>			
+												<if test="reportUseridFrom != null">report_userid_from=#{reportUseridFrom,jdbcType=INTEGER},</if>	
+																<if test="reportUserid != null">report_userid=#{reportUserid,jdbcType=INTEGER},</if>	
+																<if test="reportType != null">report_type=#{reportType,jdbcType=VARCHAR},</if>	
+																<if test="reportReason != null">report_reason=#{reportReason,jdbcType=VARCHAR},</if>	
+																<if test="reportComments != null">report_comments=#{reportComments,jdbcType=VARCHAR},</if>	
+																<if test="gmtReport != null">gmt_report=#{gmtReport,jdbcType=TIMESTAMP},</if>	
+									</set>		
+		where 					 id=#{id}
+			</update>
+	
+	    	<select id="load" parameterType="int" resultMap="cardReportMap" >
+    		select * from card_report where id=#{id}
+    	</select>
+	
+	<sql id="queryCommonSql">
+		FROM card_report cr
+		<where>
+							    								<if test="idArray != null">
+						cr.id in
+						<foreach collection="idArray" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+					</if>
+        									    			            								<if test="reportUseridFrom != null">and cr.report_userid_from = #{reportUseridFrom}</if>												
+                            									    			            								<if test="reportUserid != null">and cr.report_userid = #{reportUserid}</if>												
+                            									    			            		            			<if test="reportType != null and reportType.trim() !=''">and cr.report_type = #{reportType}</if>
+        			        									    			            		            			<if test="reportReason != null and reportReason.trim() !=''">and cr.report_reason = #{reportReason}</if>
+        			        									    			            		            			<if test="reportComments != null and reportComments.trim() !=''">and cr.report_comments = #{reportComments}</if>
+        			        									    			            								<if test="gmtReportFrom != null">and cr.gmt_report >= #{gmtReportFrom}</if>
+						<if test="gmtReportTo != null">
+							<choose>
+            					<when test="_databaseId == 'oracle'"><![CDATA[and cr.gmt_report < #{gmtReportTo} + 1]]></when>
+            					<when test="_databaseId == 'mysql'"><![CDATA[and cr.gmt_report < date_add(#{gmtReportTo}, interval 1 day)]]></when>
+            				</choose>							
+																																											</if>
+																													        							</where>
+	</sql>
+	
+	<sql id="sortSql">		
+		<choose>			
+			<when test="sort != null and sort.trim() !=''">
+				order by ${sort}
+			</when>
+			<otherwise>
+				<if test="sortByDefault">
+					order by cr.GMT_CREATE DESC
+				</if>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="queryList" parameterType="cardReportQuery" resultMap="cardReportMap">
+		<include refid="common.pageBegin" />
+		select cr.id				<choose>
+			<when test="columns != null and columns.length>0">
+				<foreach collection="columns" index="index" item="item">,${item}</foreach>
+			</when>
+			<otherwise>
+        		        			,cr.report_userid_from
+        			        		        			,cr.report_userid
+        			        		        			,cr.report_type
+        			        		        			,cr.report_reason
+        			        		        			,cr.report_comments
+        			        		        			,cr.gmt_report
+        			        					</otherwise>
+		</choose>
+		<include refid="queryCommonSql" />
+		<include refid="sortSql" />
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryCount" parameterType="cardReportQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryCommonSql" />
+	</select>
+	
+	<update id="updateStatus" parameterType="cardReport">		
+		update card_report set status=#{status} where   id=#{id} 	</update>
+	
+	    	<delete id="delete" parameterType="int">
+    		delete from card_report where id=#{id}
+    	</delete>
+	</mapper>

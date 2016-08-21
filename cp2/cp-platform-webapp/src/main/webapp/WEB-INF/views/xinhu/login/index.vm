@@ -1,0 +1,103 @@
+#set($layout="commons/layout-index.vm")
+#set($screen_title="首页")
+#set($screen_jsArray=["login/index"])
+	<div id="i_header">
+		<div id="header-main" class="w980">
+			<a href="index" class="logo icon-bg"></a> <span
+				class="copy green radius hei fl">企业版</span>
+			<div class="wx fr">
+				<img src="#getWebresourcesUrl()/images/index/weixin.png" class="wx_logo" />
+				<p class="hei">信乎个人版</p>
+			</div>
+		</div>
+	</div>
+	<div class="banner">
+		<div id="reg_btn">
+			<a href="regist-basic" class="hei">注 册</a>
+		</div>
+		<div id="login">
+			<ul class="nav_t hei">
+				<li>信乎会员</li>
+			</ul>
+			<div id="infos">
+				<div>
+					<p>
+						<span class="hei">帐号：</span> <input type="text"
+							class="user placeholder" id="account" data-holder="输入帐号" value="输入帐号">
+					</p>
+					<p>
+						<span class="hei fl">密码：</span><a href="forget-password" class="fr forget_pwd">忘记密码？</a>
+						<input type="password" class="pwd" id="password" /> <label
+							class="input_tips" id="pwd_tips">密码</label>
+					</p>
+					<p class="yzm">
+						<input type="text" class="input_code fl placeholder" id="vcode"
+							data-holder="验证码" value="验证码"> <a href="javascript:void(0);" class="fr"><img
+							src="" id="vcodeimage"  class="code" title="点击刷新" /></a>
+					</p>
+					<p class="sm">
+						<input type="checkbox" id="zddl" class="ckbox" />自动登录
+					</p>
+					<p class="btn">
+						<input type="button" class="submit" value="立即登录">
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="main" class="w980">
+		<ul class="service">
+			<li><span class="hei"> 高效 </span>
+				<p>实名让你的人脉更可靠</p></li>
+			<li><span class="hei"> 真实 </span>
+				<p>3000 万企业实名认证</p></li>
+			<li><span class="hei"> 权威 </span>
+				<p>全国组织机构代码管理中心官方验证</p></li>
+			<li><span class="hei"> 安全 </span>
+				<p>金融级保护 私密权限管理</p></li>
+		</ul>
+	</div>
+	<div class="c_title hei">
+		<div class="w980">最新实名认证单位（前100）</div>
+	</div>
+	<div class="c_list">
+		<ul class="w980">
+			<li>杭州安存网络科技有限公司</li>
+			<li>北京安寻科技有限公司</li>
+			<li>广州智存科技有限公司</li>
+			<li>杭州惠氏婴童有限公司</li>
+			<li>北京同达信恒知识产权代理有限公司</li>
+			<li>杭州安存网络科技有限公司</li>
+			<li>北京安寻科技有限公司</li>
+			<li>广州智存科技有限公司</li>
+			<li>杭州惠氏婴童有限公司</li>
+			<li>北京同达信恒知识产权代理有限公司</li>
+			<li>杭州安存网络科技有限公司</li>
+			<li>北京安寻科技有限公司</li>
+			<li>广州智存科技有限公司</li>
+			<li>杭州惠氏婴童有限公司</li>
+			<li>北京同达信恒知识产权代理有限公司</li>
+			<li>杭州安存网络科技有限公司</li>
+			<li>北京安寻科技有限公司</li>
+			<li>广州智存科技有限公司</li>
+			<li>杭州惠氏婴童有限公司</li>
+			<li>北京同达信恒知识产权代理有限公司</li>
+			<li>杭州安存网络科技有限公司</li>
+			<li>北京安寻科技有限公司</li>
+			<li>广州智存科技有限公司</li>
+			<li>杭州惠氏婴童有限公司</li>
+			<li>北京同达信恒知识产权代理有限公司</li>
+			<li>杭州安存网络科技有限公司</li>
+			<li>北京安寻科技有限公司</li>
+			<li>广州智存科技有限公司</li>
+			<li>杭州惠氏婴童有限公司</li>
+			<li>北京同达信恒知识产权代理有限公司</li>
+		</ul>
+	</div>
+	<div id="footer">
+		<div class="w980">
+			<h1 class="hei">见安存 · 即见真实</h1>
+			版权所有：杭州安存网络科技有限公司 Copyright2008-2014 ICP证：浙ICP备11033732号
+			增值电信业务经营许可证：浙B2-20120278
+		</div>
+	</div>

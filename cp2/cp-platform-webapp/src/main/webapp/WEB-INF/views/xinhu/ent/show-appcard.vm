@@ -1,0 +1,61 @@
+#set($layout="")
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>信乎微信分享页面</title>
+		<meta charset="utf-8"/>
+        <meta name="viewport" content="width = device-width, initial-scale = 1.0, minimum-scale = 1.0, maximum-scale = 1.0, user-scalable = no,target-densitydpi =[dpi_value | device-dpi| high-dpi | medium-dpi | low-dpi]"/>
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="keywords" content="" /> 
+        <meta name="description" content="" />
+        <link rel="stylesheet" type="text/css" href="#getWebresourcesUrl()/css/style.css">
+	</head>
+	<body>
+    	<header>
+        	<article id="app-tips" class="app_info">
+            	<a href="#" class="logo fl"></a>
+               <span class="slogan fl fs14">
+               		<h1 class="fs21">信乎</h1>
+                    诚信世界的入口
+               </span>
+               <div class="app_btn fr">
+               		<a href="http://xinhu.ancun.com/store/xinhu/soft/android/xinhu.apk" class="fl fs16 botton">立即下载</a>
+                    <a class="fr close" href="javascript:void(0);" onclick="hide();"></a>
+               </div>
+            </article>
+        </header>
+        <section class="user">
+        	<article class="nr">
+				#if($!card.iconUrl) 
+					<img class="head fl" src="$!storeUrl$!card.iconUrl"/>
+				#else
+					<img class="head fl" src="#getWebresourcesUrl()/images/head.jpg"/>
+				#end
+				<div class="fl u fs21">               
+                	<p class="name">$!card.trueName<span class="user-nick">#if($!card.nickName=='') #elseif($!card.nickName) $!card.nickName #end</span><i>#if($!card.ifOnJob==0) 在职 #else 离职 #end</i></p>
+                    <p>名片号：$!card.id</p>
+                </div>
+            </article>
+            <p class="fs21 zym"><label class="line">座佑名：</label><span>$!card.motto</span></p> 
+        </section>
+         <section class="userdata fs21">
+            <p class="pr"><label class="fl">所属企业</label><span class="u_gs_name">$!entInfo.orgName</span><i class="fr">#if($!card.certificationStatus==1)已认证 #else 未认证#end</i></p>
+            <p><label>部门</label>$!card.entDepartmentStr</p>
+            <p class="pr"><label class="fl">职务</label><span class="u_gs_name" style="width:67%;">$!card.entPositionStr</span></p>
+            #if($!card.entEntryDate=='') #elseif($!card.entEntryDate) <p><label>入职时间</label>$!date.format("yyyy-MM-dd",$!card.entEntryDate)</p>  #end
+            <p><label>手机</label>$!card.mobile</p> 
+            #if($!card.phone=='') #elseif($!card.phone)<p><label>座机</label>$!card.phone</p> #end
+            #if($!card.fax=='') #elseif($!card.fax)<p><label>传真</label>$!card.fax</p>  #end
+            <p><label>邮箱</label>$!card.email</p>
+            #if($!card.QQ=='') #elseif($!card.QQ)<p><label class="line">QQ</label>$!card.qq</p>  #end 
+            #if($!card.weiXin=='') #elseif($!card.weiXin)<p><label>微信</label>$!card.weiXin</p>   #end
+ </section>
+	</body>
+    <script type="text/javascript">
+		function hide(){
+			document.getElementById('app-tips').style.display = "none";	
+		}
+	</script>
+</html>

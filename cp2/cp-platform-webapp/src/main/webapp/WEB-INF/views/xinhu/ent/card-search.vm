@@ -1,0 +1,123 @@
+#set($layout="commons/layout-usercenter-head.vm")
+#set($screen_jsArray=["ent/card-search"])
+#set($thisActionUrl="card-search")
+<script>
+var webResouse = '$!errorUrl';
+</script>
+<div id="right">
+	<form action="$thisActionUrl" id="search_form">
+      	<div class="roster_title c_green hei">
+                <i class="icon_hmc icon-bg fl"></i>
+                <span class="fl">花名册（$count.flowerCount）</span>
+				<input name="entId" value="$!{entInfo.id}" style="display:none">
+                <span class="fr" id="search">
+                    <input type="text" name="keyword" value="$!queryModel.keyword" placeholder="&nbsp;请输入关键字搜索" class="fl text">
+                    <input type="submit" value="搜索" class="fr button green hei">
+                </span>
+        </div>
+	<!--	 #if($queryModel.sex=="男")
+			<input type="text" id="sex_1" name="sex" value="$queryModel.sex"/>
+		 #elseif($queryModel.sex=="女")
+			<input type="text" id="sex_0" name="sex" value="$queryModel.sex"/>
+		 #end -->
+		 #foreach($p in $queryModel.activaArray)
+			<input type="hidden" id="activa_$p" name="activaArray" value="$p"/>
+		 #end
+		 #foreach($p in $queryModel.deptArray)
+			<input type="hidden" id="dept_$p" name="deptArray" value="$p"/>
+		 #end
+		 #foreach($p in $queryModel.positionArray)
+			<input type="hidden" id="position_$p" name="positionArray" value="$p"/>
+		 #end
+    </form>
+	<div class="r_title c_blue f14 overhide">
+    	<span>所有 >  </span>
+        <span class="fr" id="id_span_filter_last">共 $!page.recordCount 人<i class="icon_up icon-bg fr"  id="push" style="margin-top:12px;"></i></span>
+    </div>
+    <div class="option">
+    	<p id="jhzt">激活状态：<a href="#" id="id_a_activa_1" onclick="filterInfo('activa',1,this,1)">已激活</a><a href="#" id="id_a_activa_0" onclick="filterInfo('activa',0,this,1)">未激活</a></p>
+		<!-- <p id="xb">性别：<a href="#" id="id_a_sex_1" onclick="filterInfo('sex','1',this,1)">男</a><a href="#" id="id_a_sex_0" onclick="filterInfo('sex','0',this,1)">女</a></p>-->
+		<p id="bm">部门：
+			#if($deptList.size()>0)
+                #foreach($p in $deptList)
+					<a href="#" id="id_a_dept_$!p.id" onclick="filterInfo('dept','$!p.id',this,1)">$!p.deptName</a>
+				 #end
+			 #end
+		</p>
+		<p id="zw">职位：
+			#if($positionList.size()>0)
+                #foreach($p in $positionList)
+						<a href="#" id="id_a_position_$!p.id" onclick="filterInfo('position','$!p.id',this,1)">$!p.positionName</a>
+				 #end
+			#end
+		</p>
+    </div>
+    <div class="results f14 overhide">
+    	<span class="num fl">该条件下共有$!page.recordCount人</span>
+        <span class="fr">
+        	<a href="javascript:void();" class="btn fl upfile" style="height:16px;background: #2d6eac">批量导入新员工</a>
+            <a href="card-add" class="btn blue fr">新建员工</a>
+        </span>
+    </div>
+    <div class="ulist overhide">
+    	<ul>
+			 #set($data=$page.data)
+			 #if($data.size()>0)
+                #foreach($p in $data)
+					<li onclick="getCardInfo($!p.id,$!p.entId)">
+                    	<div class="overhide">
+                            <a href="#"><img #if($!p.iconUrl)src="$!storeUrl$!p.iconUrl" #else src="#getWebresourcesUrl()/images/admin/head.gif" #end class="pic fl"/></a>
+                            <div class="fl u_msg">
+                                <div class="overhide" style="line-height: 25px;">
+                                    <span class="fl f14"><a href="#" class="c_blue"><strong>$!p.trueName</strong>#if($!p.ename=="") <span class="fl job"> #elseif($!p.ename) ($!p.ename) <span class="fl job" style="margin-left:0px;">#end </a></span>
+                                    <i  #if($!p.sex=="女") class="icon_girl icon-bg fl" #else class="icon_boy icon-bg fl" #end></i>#if($!p.ifOnJob==0)在职#else 离职 #end</span>
+                                    <a href="card-edit?id=$!p.id" title="编辑"><i class="icon_update icon-bg fr"></i></a>
+                                </div>
+                                <div class="fl user">
+                                    <div class="fl">
+                                        <p>名片号：$!p.id</p>
+                                        <p>昵  称：$!p.nickName</p>
+                                    </div>
+                                    <div class="fr c_green ar">
+                                        <p style="width:155px;height:22px;overflow:hidden">$!p.entPositionStr</p>
+                                        <p style="width:155px;height:22px;overflow:hidden">$!p.entDepartmentStr</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="current">
+                        	 <span class="fl">电  话：<em>$!p.mobile</em></span>
+                             <span class="fr">邮  箱：<em>$!p.email</em></span>
+                        </div>
+                    </li>
+				#end
+			 #end       
+        </ul>
+    </div>
+	 <div class="pop-up" id="upfile">
+            <div class="title hei">
+                <span class="fl">批量导入新员工</span>
+                <em class="fr close-button">X</em>
+                <br class="clr">
+            </div>
+            <div class="content">
+				<form id="upcard" enctype="multipart/form-data">
+                   	<p><label>花名册模板：</label><span>"花名册批量导入模板(安存提供).xls"</span><input class="botton hei" onclick="window.location.href = 'scripts/employees.xls';" type="button" value="下载模板"/></p>
+                    <p>
+                    	<label>上传文件：</label>
+						<input id="entId" name="entId" value="$!{entInfo.id}" type="hidden"/>
+    	                <input name="" type="text" id="viewfile" onmouseout="document.getElementById('upload').style.display='none';" class="inputstyle" />
+                        <span for="unload" onMouseMove="document.getElementById('upload').style.display='block';" class="myfile botton hei">浏 览</span>
+                        <input type="file" name="files" onchange="document.getElementById('viewfile').value=this.value;this.style.display='none';" style="height:35px" class="ufile" id="upload"  value=""/></p>
+                    <br class="clr">
+                    <div class="btn_box">
+    	                <input type="submit" value="开始上传" id="uploadBut" class="upload botton f14"/>
+                    </div>
+				</form>
+            </div>
+        </div>
+	 #pageTabFoot({"queryFormId":"form_search","page":$page,"submitUrl":"${thisActionUrl}","canSetPagesize":true})      
+</div>
+
+<div id="r_list"></div>
+

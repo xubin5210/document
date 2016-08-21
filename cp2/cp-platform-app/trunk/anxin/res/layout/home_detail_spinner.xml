@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="80dp"
+    android:background="@color/C7"
+    android:orientation="vertical" >
+    
+    <LinearLayout
+        android:id="@+id/popwindow_dynamic"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center"
+            android:text="动态"
+            android:textColor="@color/C6"
+            android:textSize="@dimen/H4" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/popwindow_share"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center"
+            android:text="分享"
+            android:textColor="@color/C6"
+            android:textSize="@dimen/H4" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/popwindow_del"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center"
+            android:text="删除"
+            android:textColor="@color/C6"
+            android:textSize="@dimen/H4" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/popwindow_report"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center"
+            android:text="举报"
+            android:textColor="@color/C6"
+            android:textSize="@dimen/H4" />
+    </LinearLayout>
+
+</LinearLayout>

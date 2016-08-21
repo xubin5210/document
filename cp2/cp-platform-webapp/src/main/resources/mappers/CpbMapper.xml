@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.CpbMapper">
+	<resultMap id="cpbMap" type="cpb">		
+					<id column="id" property="id"/><!-- ID -->			
+					<result column="qh" property="qh"/><!-- 期号 -->			
+					<result column="wws" property="wws"/><!-- 万位数 -->			
+					<result column="qws" property="qws"/><!-- 千位数 -->			
+					<result column="bws" property="bws"/><!-- 百位数 -->			
+					<result column="sws" property="sws"/><!-- 十位数 -->			
+					<result column="gws" property="gws"/><!-- 个位数 -->			
+					<result column="hz" property="hz"/><!-- 和值 -->			
+					<result column="kd" property="kd"/><!-- 跨度 -->			
+					<result column="hzwh" property="hzwh"/><!-- 和值尾号 -->			
+					<result column="js" property="js"/><!-- 奇数 -->			
+					<result column="os" property="os"/><!-- 偶数 -->			
+					<result column="zs" property="zs"/><!-- 质数 -->			
+					<result column="hs" property="hs"/><!-- 合数 -->			
+					<result column="wwds" property="wwds"/><!-- 万位单双 1单 2 双 -->			
+					<result column="qwds" property="qwds"/><!-- 千位单双 1单 2 双 -->			
+					<result column="bwds" property="bwds"/><!-- 百位单双 1单 2 双 -->			
+					<result column="swds" property="swds"/><!-- 十位单双 1单 2 双 -->			
+					<result column="gwds" property="gwds"/><!-- 个位单双 1单 2 双 -->			
+					<result column="wwdx" property="wwdx"/><!-- 万位大小 1小 2 大 -->			
+					<result column="qwdx" property="qwdx"/><!-- 千位大小 1小 2 大 -->			
+					<result column="bwdx" property="bwdx"/><!-- 百位大小 1小 2 大 -->			
+					<result column="swdx" property="swdx"/><!-- 十位大小 1小 2 大 -->			
+					<result column="gwdx" property="gwdx"/><!-- 个位大小 1小 2 大 -->			
+					<result column="wwjo" property="wwjo"/><!-- 万位奇偶 1奇 2 偶 -->			
+					<result column="qwjo" property="qwjo"/><!-- 千位奇偶 1奇 2 偶 -->			
+					<result column="bwjo" property="bwjo"/><!-- 百位奇偶 1奇 2 偶 -->			
+					<result column="swjo" property="swjo"/><!-- 十位奇偶 1奇 2 偶 -->			
+					<result column="gwjo" property="gwjo"/><!-- 各位奇偶 1奇 2 偶 -->			
+					<result column="ww012l" property="ww012l"/><!-- 万位012路 -->			
+					<result column="qw012l" property="qw012l"/><!-- 千位012路 -->			
+					<result column="bw012l" property="bw012l"/><!-- 百位012路 -->			
+					<result column="sw012l" property="sw012l"/><!-- 十位012路 -->			
+					<result column="gw012l" property="gw012l"/><!-- 各位012路 -->			
+					<result column="zhdx" property="zhdx"/><!-- 总和大小 1小 2大 -->			
+					<result column="zhds" property="zhds"/><!-- 总和单双 1单 2双 -->			
+					<result column="lh" property="lh"/><!-- 龙虎 1龙 2虎 -->			
+					<result column="sj" property="sj"/><!-- 更新时间 -->			
+					<result column="qsbz" property="qsbz"/><!-- 前3豹子 -->			
+					<result column="qssz" property="qssz"/><!-- 前三顺子 -->			
+					<result column="qsdz" property="qsdz"/><!-- 前三对子 -->			
+					<result column="qsbs" property="qsbs"/><!-- 前三半顺 -->			
+					<result column="qszl" property="qszl"/><!-- 前三杂6 -->			
+					<result column="zsbz" property="zsbz"/><!-- 中3豹子 -->			
+					<result column="zssz" property="zssz"/><!-- 中三顺子 -->			
+					<result column="zsdz" property="zsdz"/><!-- 中三对子 -->			
+					<result column="zsbs" property="zsbs"/><!-- 中三半顺 -->			
+					<result column="zszl" property="zszl"/><!-- 中三杂6 -->			
+					<result column="hsbz" property="hsbz"/><!-- 后3豹子 -->			
+					<result column="hssz" property="hssz"/><!-- 后三顺子 -->			
+					<result column="hsdz" property="hsdz"/><!-- 后三对子 -->			
+					<result column="hsbs" property="hsbs"/><!-- 后三半顺 -->			
+					<result column="hszl" property="hszl"/><!-- 后三杂6 -->			
+			</resultMap>
+
+	<insert id="insert" parameterType="cpb"  useGeneratedKeys="true" keyProperty="id" >
+				<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="int">
+			select SEQ_cpb.nextval from dual
+		</selectKey>
+				insert into
+		cpb(
+					<if test="_databaseId == 'oracle'">ID,</if>
+			<trim prefix="" prefixOverrides=",">
+											<if test="qh != null">,qh</if>
+												<if test="wws != null">,wws</if>
+												<if test="qws != null">,qws</if>
+												<if test="bws != null">,bws</if>
+												<if test="sws != null">,sws</if>
+												<if test="gws != null">,gws</if>
+												<if test="hz != null">,hz</if>
+												<if test="kd != null">,kd</if>
+												<if test="hzwh != null">,hzwh</if>
+												<if test="js != null">,js</if>
+												<if test="os != null">,os</if>
+												<if test="zs != null">,zs</if>
+												<if test="hs != null">,hs</if>
+												<if test="wwds != null">,wwds</if>
+												<if test="qwds != null">,qwds</if>
+												<if test="bwds != null">,bwds</if>
+												<if test="swds != null">,swds</if>
+												<if test="gwds != null">,gwds</if>
+												<if test="wwdx != null">,wwdx</if>
+												<if test="qwdx != null">,qwdx</if>
+												<if test="bwdx != null">,bwdx</if>
+												<if test="swdx != null">,swdx</if>
+												<if test="gwdx != null">,gwdx</if>
+												<if test="wwjo != null">,wwjo</if>
+												<if test="qwjo != null">,qwjo</if>
+												<if test="bwjo != null">,bwjo</if>
+												<if test="swjo != null">,swjo</if>
+												<if test="gwjo != null">,gwjo</if>
+												<if test="ww012l != null">,ww012l</if>
+												<if test="qw012l != null">,qw012l</if>
+												<if test="bw012l != null">,bw012l</if>
+												<if test="sw012l != null">,sw012l</if>
+												<if test="gw012l != null">,gw012l</if>
+												<if test="zhdx != null">,zhdx</if>
+												<if test="zhds != null">,zhds</if>
+												<if test="lh != null">,lh</if>
+												<if test="sj != null">,sj</if>
+												<if test="qsbz != null">,qsbz</if>
+												<if test="qssz != null">,qssz</if>
+												<if test="qsdz != null">,qsdz</if>
+												<if test="qsbs != null">,qsbs</if>
+												<if test="qszl != null">,qszl</if>
+												<if test="zsbz != null">,zsbz</if>
+												<if test="zssz != null">,zssz</if>
+												<if test="zsdz != null">,zsdz</if>
+												<if test="zsbs != null">,zsbs</if>
+												<if test="zszl != null">,zszl</if>
+												<if test="hsbz != null">,hsbz</if>
+												<if test="hssz != null">,hssz</if>
+												<if test="hsdz != null">,hsdz</if>
+												<if test="hsbs != null">,hsbs</if>
+												<if test="hszl != null">,hszl</if>
+							</trim>		)values(
+					<if test="_databaseId == 'oracle'">#{id},</if>
+			<trim prefix="" prefixOverrides=",">
+											<if test="qh != null">,#{qh,jdbcType=VARCHAR}</if>
+												<if test="wws != null">,#{wws,jdbcType=INTEGER}</if>
+												<if test="qws != null">,#{qws,jdbcType=INTEGER}</if>
+												<if test="bws != null">,#{bws,jdbcType=INTEGER}</if>
+												<if test="sws != null">,#{sws,jdbcType=INTEGER}</if>
+												<if test="gws != null">,#{gws,jdbcType=INTEGER}</if>
+												<if test="hz != null">,#{hz,jdbcType=INTEGER}</if>
+												<if test="kd != null">,#{kd,jdbcType=INTEGER}</if>
+												<if test="hzwh != null">,#{hzwh,jdbcType=INTEGER}</if>
+												<if test="js != null">,#{js,jdbcType=INTEGER}</if>
+												<if test="os != null">,#{os,jdbcType=INTEGER}</if>
+												<if test="zs != null">,#{zs,jdbcType=INTEGER}</if>
+												<if test="hs != null">,#{hs,jdbcType=INTEGER}</if>
+												<if test="wwds != null">,#{wwds,jdbcType=INTEGER}</if>
+												<if test="qwds != null">,#{qwds,jdbcType=INTEGER}</if>
+												<if test="bwds != null">,#{bwds,jdbcType=INTEGER}</if>
+												<if test="swds != null">,#{swds,jdbcType=INTEGER}</if>
+												<if test="gwds != null">,#{gwds,jdbcType=INTEGER}</if>
+												<if test="wwdx != null">,#{wwdx,jdbcType=INTEGER}</if>
+												<if test="qwdx != null">,#{qwdx,jdbcType=INTEGER}</if>
+												<if test="bwdx != null">,#{bwdx,jdbcType=INTEGER}</if>
+												<if test="swdx != null">,#{swdx,jdbcType=INTEGER}</if>
+												<if test="gwdx != null">,#{gwdx,jdbcType=INTEGER}</if>
+												<if test="wwjo != null">,#{wwjo,jdbcType=INTEGER}</if>
+												<if test="qwjo != null">,#{qwjo,jdbcType=INTEGER}</if>
+												<if test="bwjo != null">,#{bwjo,jdbcType=INTEGER}</if>
+												<if test="swjo != null">,#{swjo,jdbcType=INTEGER}</if>
+												<if test="gwjo != null">,#{gwjo,jdbcType=INTEGER}</if>
+												<if test="ww012l != null">,#{ww012l,jdbcType=INTEGER}</if>
+												<if test="qw012l != null">,#{qw012l,jdbcType=INTEGER}</if>
+												<if test="bw012l != null">,#{bw012l,jdbcType=INTEGER}</if>
+												<if test="sw012l != null">,#{sw012l,jdbcType=INTEGER}</if>
+												<if test="gw012l != null">,#{gw012l,jdbcType=INTEGER}</if>
+												<if test="zhdx != null">,#{zhdx,jdbcType=INTEGER}</if>
+												<if test="zhds != null">,#{zhds,jdbcType=INTEGER}</if>
+												<if test="lh != null">,#{lh,jdbcType=INTEGER}</if>
+												<if test="sj != null">,#{sj,jdbcType=TIMESTAMP}</if>
+												<if test="qsbz != null">,#{qsbz,jdbcType=INTEGER}</if>
+												<if test="qssz != null">,#{qssz,jdbcType=INTEGER}</if>
+												<if test="qsdz != null">,#{qsdz,jdbcType=INTEGER}</if>
+												<if test="qsbs != null">,#{qsbs,jdbcType=INTEGER}</if>
+												<if test="qszl != null">,#{qszl,jdbcType=INTEGER}</if>
+												<if test="zsbz != null">,#{zsbz,jdbcType=INTEGER}</if>
+												<if test="zssz != null">,#{zssz,jdbcType=INTEGER}</if>
+												<if test="zsdz != null">,#{zsdz,jdbcType=INTEGER}</if>
+												<if test="zsbs != null">,#{zsbs,jdbcType=INTEGER}</if>
+												<if test="zszl != null">,#{zszl,jdbcType=INTEGER}</if>
+												<if test="hsbz != null">,#{hsbz,jdbcType=INTEGER}</if>
+												<if test="hssz != null">,#{hssz,jdbcType=INTEGER}</if>
+												<if test="hsdz != null">,#{hsdz,jdbcType=INTEGER}</if>
+												<if test="hsbs != null">,#{hsbs,jdbcType=INTEGER}</if>
+												<if test="hszl != null">,#{hszl,jdbcType=INTEGER}</if>
+					        </trim>		)
+	</insert>
+
+	<update id="update" parameterType="cpb">
+		update cpb
+		<set>			
+												<if test="qh != null">qh=#{qh,jdbcType=VARCHAR},</if>	
+																<if test="wws != null">wws=#{wws,jdbcType=INTEGER},</if>	
+																<if test="qws != null">qws=#{qws,jdbcType=INTEGER},</if>	
+																<if test="bws != null">bws=#{bws,jdbcType=INTEGER},</if>	
+																<if test="sws != null">sws=#{sws,jdbcType=INTEGER},</if>	
+																<if test="gws != null">gws=#{gws,jdbcType=INTEGER},</if>	
+																<if test="hz != null">hz=#{hz,jdbcType=INTEGER},</if>	
+																<if test="kd != null">kd=#{kd,jdbcType=INTEGER},</if>	
+																<if test="hzwh != null">hzwh=#{hzwh,jdbcType=INTEGER},</if>	
+																<if test="js != null">js=#{js,jdbcType=INTEGER},</if>	
+																<if test="os != null">os=#{os,jdbcType=INTEGER},</if>	
+																<if test="zs != null">zs=#{zs,jdbcType=INTEGER},</if>	
+																<if test="hs != null">hs=#{hs,jdbcType=INTEGER},</if>	
+																<if test="wwds != null">wwds=#{wwds,jdbcType=INTEGER},</if>	
+																<if test="qwds != null">qwds=#{qwds,jdbcType=INTEGER},</if>	
+																<if test="bwds != null">bwds=#{bwds,jdbcType=INTEGER},</if>	
+																<if test="swds != null">swds=#{swds,jdbcType=INTEGER},</if>	
+																<if test="gwds != null">gwds=#{gwds,jdbcType=INTEGER},</if>	
+																<if test="wwdx != null">wwdx=#{wwdx,jdbcType=INTEGER},</if>	
+																<if test="qwdx != null">qwdx=#{qwdx,jdbcType=INTEGER},</if>	
+																<if test="bwdx != null">bwdx=#{bwdx,jdbcType=INTEGER},</if>	
+																<if test="swdx != null">swdx=#{swdx,jdbcType=INTEGER},</if>	
+																<if test="gwdx != null">gwdx=#{gwdx,jdbcType=INTEGER},</if>	
+																<if test="wwjo != null">wwjo=#{wwjo,jdbcType=INTEGER},</if>	
+																<if test="qwjo != null">qwjo=#{qwjo,jdbcType=INTEGER},</if>	
+																<if test="bwjo != null">bwjo=#{bwjo,jdbcType=INTEGER},</if>	
+																<if test="swjo != null">swjo=#{swjo,jdbcType=INTEGER},</if>	
+																<if test="gwjo != null">gwjo=#{gwjo,jdbcType=INTEGER},</if>	
+																<if test="ww012l != null">ww012l=#{ww012l,jdbcType=INTEGER},</if>	
+																<if test="qw012l != null">qw012l=#{qw012l,jdbcType=INTEGER},</if>	
+																<if test="bw012l != null">bw012l=#{bw012l,jdbcType=INTEGER},</if>	
+																<if test="sw012l != null">sw012l=#{sw012l,jdbcType=INTEGER},</if>	
+																<if test="gw012l != null">gw012l=#{gw012l,jdbcType=INTEGER},</if>	
+																<if test="zhdx != null">zhdx=#{zhdx,jdbcType=INTEGER},</if>	
+																<if test="zhds != null">zhds=#{zhds,jdbcType=INTEGER},</if>	
+																<if test="lh != null">lh=#{lh,jdbcType=INTEGER},</if>	
+																<if test="sj != null">sj=#{sj,jdbcType=TIMESTAMP},</if>	
+																<if test="qsbz != null">qsbz=#{qsbz,jdbcType=INTEGER},</if>	
+																<if test="qssz != null">qssz=#{qssz,jdbcType=INTEGER},</if>	
+																<if test="qsdz != null">qsdz=#{qsdz,jdbcType=INTEGER},</if>	
+																<if test="qsbs != null">qsbs=#{qsbs,jdbcType=INTEGER},</if>	
+																<if test="qszl != null">qszl=#{qszl,jdbcType=INTEGER},</if>	
+																<if test="zsbz != null">zsbz=#{zsbz,jdbcType=INTEGER},</if>	
+																<if test="zssz != null">zssz=#{zssz,jdbcType=INTEGER},</if>	
+																<if test="zsdz != null">zsdz=#{zsdz,jdbcType=INTEGER},</if>	
+																<if test="zsbs != null">zsbs=#{zsbs,jdbcType=INTEGER},</if>	
+																<if test="zszl != null">zszl=#{zszl,jdbcType=INTEGER},</if>	
+																<if test="hsbz != null">hsbz=#{hsbz,jdbcType=INTEGER},</if>	
+																<if test="hssz != null">hssz=#{hssz,jdbcType=INTEGER},</if>	
+																<if test="hsdz != null">hsdz=#{hsdz,jdbcType=INTEGER},</if>	
+																<if test="hsbs != null">hsbs=#{hsbs,jdbcType=INTEGER},</if>	
+																<if test="hszl != null">hszl=#{hszl,jdbcType=INTEGER},</if>	
+									</set>		
+		where 					 id=#{id}
+			</update>
+	
+	    	<select id="load" parameterType="int" resultMap="cpbMap" >
+    		select * from cpb where id=#{id}
+    	</select>
+	
+	<sql id="queryCommonSql">
+		FROM cpb c
+		<where>
+							    								<if test="idArray != null">
+						c.id in
+						<foreach collection="idArray" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+					</if>
+        									    			            		            			<if test="qh != null and qh.trim() !=''">and c.qh = #{qh}</if>
+        			        									    			            								<if test="wws != null">and c.wws = #{wws}</if>												
+                            									    			            								<if test="qws != null">and c.qws = #{qws}</if>												
+                            									    			            								<if test="bws != null">and c.bws = #{bws}</if>												
+                            									    			            								<if test="sws != null">and c.sws = #{sws}</if>												
+                            									    			            								<if test="gws != null">and c.gws = #{gws}</if>												
+                            									    			            								<if test="hz != null">and c.hz = #{hz}</if>												
+                            									    			            								<if test="kd != null">and c.kd = #{kd}</if>												
+                            									    			            								<if test="hzwh != null">and c.hzwh = #{hzwh}</if>												
+                            									    			            								<if test="js != null">and c.js = #{js}</if>												
+                            									    			            								<if test="os != null">and c.os = #{os}</if>												
+                            									    			            								<if test="zs != null">and c.zs = #{zs}</if>												
+                            									    			            								<if test="hs != null">and c.hs = #{hs}</if>												
+                            									    			            								<if test="wwds != null">and c.wwds = #{wwds}</if>												
+                            									    			            								<if test="qwds != null">and c.qwds = #{qwds}</if>												
+                            									    			            								<if test="bwds != null">and c.bwds = #{bwds}</if>												
+                            									    			            								<if test="swds != null">and c.swds = #{swds}</if>												
+                            									    			            								<if test="gwds != null">and c.gwds = #{gwds}</if>												
+                            									    			            								<if test="wwdx != null">and c.wwdx = #{wwdx}</if>												
+                            									    			            								<if test="qwdx != null">and c.qwdx = #{qwdx}</if>												
+                            									    			            								<if test="bwdx != null">and c.bwdx = #{bwdx}</if>												
+                            									    			            								<if test="swdx != null">and c.swdx = #{swdx}</if>												
+                            									    			            								<if test="gwdx != null">and c.gwdx = #{gwdx}</if>												
+                            									    			            								<if test="wwjo != null">and c.wwjo = #{wwjo}</if>												
+                            									    			            								<if test="qwjo != null">and c.qwjo = #{qwjo}</if>												
+                            									    			            								<if test="bwjo != null">and c.bwjo = #{bwjo}</if>												
+                            									    			            								<if test="swjo != null">and c.swjo = #{swjo}</if>												
+                            									    			            								<if test="gwjo != null">and c.gwjo = #{gwjo}</if>												
+                            									    			            								<if test="ww012l != null">and c.ww012l = #{ww012l}</if>												
+                            									    			            								<if test="qw012l != null">and c.qw012l = #{qw012l}</if>												
+                            									    			            								<if test="bw012l != null">and c.bw012l = #{bw012l}</if>												
+                            									    			            								<if test="sw012l != null">and c.sw012l = #{sw012l}</if>												
+                            									    			            								<if test="gw012l != null">and c.gw012l = #{gw012l}</if>												
+                            									    			            								<if test="zhdx != null">and c.zhdx = #{zhdx}</if>												
+                            									    			            								<if test="zhds != null">and c.zhds = #{zhds}</if>												
+                            									    			            								<if test="lh != null">and c.lh = #{lh}</if>												
+                            									    			            								<if test="sjFrom != null">and c.sj >= #{sjFrom}</if>
+						<if test="sjTo != null">
+							<choose>
+            					<when test="_databaseId == 'oracle'"><![CDATA[and c.sj < #{sjTo} + 1]]></when>
+            					<when test="_databaseId == 'mysql'"><![CDATA[and c.sj < date_add(#{sjTo}, interval 1 day)]]></when>
+            				</choose>							
+																																											</if>
+																													        									    			            								<if test="qsbz != null">and c.qsbz = #{qsbz}</if>												
+                            									    			            								<if test="qssz != null">and c.qssz = #{qssz}</if>												
+                            									    			            								<if test="qsdz != null">and c.qsdz = #{qsdz}</if>												
+                            									    			            								<if test="qsbs != null">and c.qsbs = #{qsbs}</if>												
+                            									    			            								<if test="qszl != null">and c.qszl = #{qszl}</if>												
+                            									    			            								<if test="zsbz != null">and c.zsbz = #{zsbz}</if>												
+                            									    			            								<if test="zssz != null">and c.zssz = #{zssz}</if>												
+                            									    			            								<if test="zsdz != null">and c.zsdz = #{zsdz}</if>												
+                            									    			            								<if test="zsbs != null">and c.zsbs = #{zsbs}</if>												
+                            									    			            								<if test="zszl != null">and c.zszl = #{zszl}</if>												
+                            									    			            								<if test="hsbz != null">and c.hsbz = #{hsbz}</if>												
+                            									    			            								<if test="hssz != null">and c.hssz = #{hssz}</if>												
+                            									    			            								<if test="hsdz != null">and c.hsdz = #{hsdz}</if>												
+                            									    			            								<if test="hsbs != null">and c.hsbs = #{hsbs}</if>												
+                            									    			            								<if test="hszl != null">and c.hszl = #{hszl}</if>												
+                            							</where>
+	</sql>
+	
+	<sql id="sortSql">		
+		<choose>			
+			<when test="sort != null and sort.trim() !=''">
+				order by ${sort}
+			</when>
+			<otherwise>
+				<if test="sortByDefault">
+					order by c.GMT_CREATE DESC
+				</if>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="queryList" parameterType="cpbQuery" resultMap="cpbMap">
+		<include refid="common.pageBegin" />
+		select c.id				<choose>
+			<when test="columns != null and columns.length>0">
+				<foreach collection="columns" index="index" item="item">,${item}</foreach>
+			</when>
+			<otherwise>
+        		        			,c.qh
+        			        		        			,c.wws
+        			        		        			,c.qws
+        			        		        			,c.bws
+        			        		        			,c.sws
+        			        		        			,c.gws
+        			        		        			,c.hz
+        			        		        			,c.kd
+        			        		        			,c.hzwh
+        			        		        			,c.js
+        			        		        			,c.os
+        			        		        			,c.zs
+        			        		        			,c.hs
+        			        		        			,c.wwds
+        			        		        			,c.qwds
+        			        		        			,c.bwds
+        			        		        			,c.swds
+        			        		        			,c.gwds
+        			        		        			,c.wwdx
+        			        		        			,c.qwdx
+        			        		        			,c.bwdx
+        			        		        			,c.swdx
+        			        		        			,c.gwdx
+        			        		        			,c.wwjo
+        			        		        			,c.qwjo
+        			        		        			,c.bwjo
+        			        		        			,c.swjo
+        			        		        			,c.gwjo
+        			        		        			,c.ww012l
+        			        		        			,c.qw012l
+        			        		        			,c.bw012l
+        			        		        			,c.sw012l
+        			        		        			,c.gw012l
+        			        		        			,c.zhdx
+        			        		        			,c.zhds
+        			        		        			,c.lh
+        			        		        			,c.sj
+        			        		        			,c.qsbz
+        			        		        			,c.qssz
+        			        		        			,c.qsdz
+        			        		        			,c.qsbs
+        			        		        			,c.qszl
+        			        		        			,c.zsbz
+        			        		        			,c.zssz
+        			        		        			,c.zsdz
+        			        		        			,c.zsbs
+        			        		        			,c.zszl
+        			        		        			,c.hsbz
+        			        		        			,c.hssz
+        			        		        			,c.hsdz
+        			        		        			,c.hsbs
+        			        		        			,c.hszl
+        			        					</otherwise>
+		</choose>
+		<include refid="queryCommonSql" />
+		<include refid="sortSql" />
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryCount" parameterType="cpbQuery" resultType="int">
+		select count(1)
+		<include refid="queryCommonSql" />
+	</select>
+	
+	<update id="updateStatus" parameterType="cpb">		
+		update cpb set status=#{status} where   id=#{id} 	</update>
+	
+	    	<delete id="delete" parameterType="int">
+    		delete from cpb where id=#{id}
+    	</delete>
+	</mapper>

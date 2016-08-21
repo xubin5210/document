@@ -1,0 +1,90 @@
+#set($layout="commons/layout-usercenter-head.vm")
+#set($screen_jsArray=["ent/card-add"])
+#loadDatePickerWebResources()
+<div id="right">
+    <div class="roster_title hei">
+        <i class="icon_hmc icon-bg fl"></i>
+        <span class="fl c_green">花名册（$count.flowerCount）</span>
+        <span class="lb fl">>  新建员工</span>
+        <span class="fr btn blue"><a href="card-search"><i class="icon_back icon-bg fl"></i>返回</a></span>
+    </div>
+    <div class="add_roster">
+		<form id="addForm"  enctype="multipart/form-data">
+			<input id="entId" name="entId" value="$!{entInfo.id}" type="hidden"/>
+        	<div class="r_title c_blue">员工基本信息</div> 
+            <div class="fl" style="width:600px;">
+                <p><label>姓名 <i>*</i></label><input name="trueName" type="text" /></p>
+                <p><label>手机号 <i>*</i></label><input id="mobile" name="mobile" type="text"/></p>
+                <p class="tips">手机号作为员工的登录账号，需要员工自主激活后才能够登录使用。</p>
+                <p><label>邮箱 <i>*</i></label><input name="email" maxlength="28"   type="text"/></p>
+                <p><label>入职年月 <i>*</i></label><input name="entEntryDate" id="entEntryDate"  type="text" dateISO="true" onclick="WdatePicker({skin:'whyGreen',readOnly:true})" /></p>
+                <div class="sex">
+                    <label class="fl">性别 <i>*</i></label>
+                    <div id="sex">
+                    	<span class="cur" >男</span>
+                    	<span >女</span>
+						<input type="hidden" value="男" id="sex1" name="sex"/>
+                    </div>
+             	</div>
+            </div>
+            <div class="fr overhide">
+            	<img src="#getWebresourcesUrl()/images/admin/head.gif" id="tx" name="iconUrl" class="head"/>
+				<input value="#getWebresourcesUrl()/images/admin/head.gif" id="iPath" type="hidden"/>
+                <div class="uphead blue">
+					 <a href="javascript:;" onclick="document.getElementById('uphead').click()">上传头像</a>                           
+                     <input id="uphead" type="file" name="zsfile"  class="hidden"  onchange="preImg('addForm','tx',this,'iPath');" />
+                </div>
+            </div>
+            <div class="clr overhide"></div>
+            <div class="jobs overhide">
+           	  <label class="fl">职位 <i>*</i></label>
+              <div class="jobs_list" id="jobs">
+					#if($positionList.size()>0)
+                        #foreach($p in $positionList)
+                            	<span>$!p.positionName</span>
+    					 #end
+    				 #end
+               </div>
+               <div class="tag">
+				<input type="hidden" name="entPositionStr" id="positionArr"/>
+                    <input type="text" class="tags fl" id="newPosition"/>
+                    <div class="btn fl"><a href="javascript:void(0);"  id="positionButton">贴上新标签</a></div>
+                    <em>你可以选择以上职位或贴上新标签</em>
+               </div>
+            </div>
+            <div class="jobs">
+           	  <label class="fl">部门 <i>*</i></label>
+              <div class="jobs_list" id="sector">
+				 #if($deptList.size()>0)
+                    #foreach($p in $deptList)
+                        <span>$!p.deptName</span>
+					 #end
+				 #end
+               </div>
+               <div class="tag">
+				<input type="hidden" name="entDepartmentStr" id="deptArr"/>
+                    	<input type="text" class="tags fl" id="newDept"/>
+                        <div class="btn fl"><a href="#" id="deptButton">贴上新标签</a></div>
+                        <em>你可以选择以上职位或贴上新标签</em>
+               </div>
+            </div>
+            <div class="clr overhide"></div>
+            <div class="r_title c_blue">其他信息</div> 
+            <p><label>身份证号</label><input name="userIdcard" type="text"/><em>完善身份证号信息能增加员工的信任值哦</em></p>
+            <p><label>英文名</label><input maxlength="12" name="ename" type="text"/><em>听说英文名有国际范</em></p>
+            <p><label>昵称</label><input name="nickName"  type="text"/><em>好的昵称，别人更记得住哦</em></p>
+			<p><label>固定电话</label><input name="phone" type="text"   /></p>
+			<p><label> 短号 </label><input type="text"  name="phoneShort"/></p>
+            <p><label>传真</label><input  name="fax" type="text"  /></p>
+           
+           	<div class="blue_btn hei">
+            	<div id="botton">
+                    <a href="javascript:void(0);" class="blue fl" id="commit">确 定</a>
+					<input type="submit" id="sub" style="display:none"/>
+                    <a href="javascript:history.go(-1);" class="blue fr">取 消</a>
+                </div>
+            </div>
+		</form>
+    </div>
+</div>
+</html>

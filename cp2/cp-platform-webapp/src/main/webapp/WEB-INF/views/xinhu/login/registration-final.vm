@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>账号注册-注册成功</title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" type="text/css" href="#getWebresourcesUrl()/css/common.css">
+        <link rel="stylesheet" type="text/css" href="#getWebresourcesUrl()/css/registration.css">
+		#loadBaseWebResources()
+		#set($layout="")
+		<script type="text/javascript" src="#getWebresourcesUrl()/js/jquery.min.js"></script>
+		<script type="text/javascript" src="#getWebresourcesUrl()/js/common.js"></script>
+	</head>
+	<body>
+		<div id="header">
+            <div id="header-main" class="w980">
+                	<a href="index" class="logo icon-bg"></a>
+                    <span class="copy green radius hei fl">企业版</span>
+                    <div class="registration">
+                        <span>我已注册，现在就</span>
+                        <input type="button"  onClick="window.location.href='index'" value="登录"/>
+                    </div>
+            </div>
+		</div>
+		<div id="main" class="w980 shunt final">
+			<div id="tab-wrapper" class="w980">
+                <h2>1 基本信息</h2>
+                <h2>2 信息登记</h2>
+                <h2 class="cur">3 注册成功</h2>      
+            </div>
+            <div id="congratulation">
+                <em class="icon-bg"></em>
+                <span class="span-1">
+                    恭喜  <em>$!{entInfo.mobile}</em> ，注册成功！
+                </span>
+                <span class="span-2">奖20元话费，预计2小时到账</span>
+                <input type="button" class="button" value="直接登录" onClick="window.location.href='login_system-notice?mobile=$!{entInfo.mobile}'"/>
+            </div>
+            <div class="pop-up c-info">
+<!--                 <div class="title hei">
+    <span class="fl">企业基本信息</span>
+    <em class="fr close-button">X</em>
+    <br class="clr"/>
+</div> -->
+                <div class="content">
+                    <div class="c-name">
+                        <span>$!{entInfo.orgName}</span>
+                    </div>
+                    <div class="fl info">
+                        <p>
+                            <span>$!{entInfo.orgCode}</span>
+                            <input type="button" value="$!{entInfo.orgType}" style="width:60px"/>
+                        </p>
+                        <p>登记号：$!{entInfo.registrationno}</p>
+                        <p>$!{entInfo.orgName}</p>
+                        <p>法定代表人：$!{entInfo.artificialPerson}</p>
+                        <p>有  效  期：自$!{entInfo.validDateFrom}至$!{entInfo.validDateTo}</p>
+                        <p>地      址：</p>
+
+                        <p>行业领域：
+						  #if($!entInfo.industryList.size()>0)
+                            #foreach($p in $!entInfo.industryList)
+        						#if($velocityCount == $!entInfo.industryList.size())$p.industryId #else $p.industryId, #end
+        					#end
+        				 #end
+						</p>
+                    </div>
+                    <div class="fl lce">
+							<img src="$!storeUrl$!{entInfo.entImage}"   onload="AutoResizeImage(291,199,this)" >
+                        <p>
+							你提交的组织企业代码证书在三个工作日之内完成信息审核。
+                        </p>
+                    </div>
+                    <br class="clr"/>
+                </div>
+                <em class="icon-bg verifying"></em>
+            </div>
+        </div>
+		<div id="footer">	
+			<div class="w980">
+                <h1 class="hei">见安存 · 即见真实</h1>
+                版权所有：杭州安存网络科技有限公司 Copyright2008-2014 ICP证：浙ICP备11033732号 增值电信业务经营许可证：浙B2-20120278
+            </div>
+		</div>
+	</body>
+</html>

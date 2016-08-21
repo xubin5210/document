@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pubTitle="http://schemas.android.com/apk/res/com.ciapc.anxin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    
+    
+     <com.ciapc.anxin.common.view.PubTitle
+        android:id="@+id/person_weixin_re_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pubTitle:leftIcon="@drawable/back"
+        pubTitle:text="微信"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        android:background="@drawable/login_input_pwd_style" >
+
+        
+
+        <com.ciapc.anxin.common.view.CustomEditText
+            android:id="@+id/et_person_weixin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/person_weixin"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:drawableRight="@drawable/clear_input"
+            android:padding="5dp"
+            android:maxLength="20"
+            android:textColor="@color/C1"
+            android:textColorHint="@color/C3"
+            android:textSize="@dimen/H4" />
+    </LinearLayout>
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/H3"
+        android:textColor="@color/C2"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="微信号必须以字母开头，可以使用6-20个字母、数字、下划线和减号"/>
+    
+
+</LinearLayout>

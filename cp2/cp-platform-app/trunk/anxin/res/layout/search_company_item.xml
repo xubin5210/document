@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/exchange_bg_bottom"
+        android:padding="@dimen/left_right" >
+
+        <com.ciapc.anxin.common.view.RoundView
+            android:id="@+id/person_search_company_head"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:scaleType="center"
+            android:src="@drawable/toux_default" />
+
+        <TextView
+            android:id="@+id/person_search_company_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/left_right"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/person_search_company_head"
+            android:textColor="@color/C1"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textSize="@dimen/H3" />
+
+        <Button
+            android:id="@+id/person_search_company_btn"
+            android:layout_width="72dp"
+            android:layout_height="36dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/left_right"
+            android:layout_marginTop="@dimen/left_right"
+            android:background="@drawable/accept_new_card_style"
+            android:text="申请绑定"
+            android:textColor="@color/white"
+            android:textSize="@dimen/H5" />
+    </RelativeLayout>
+
+</LinearLayout>

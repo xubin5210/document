@@ -1,0 +1,168 @@
+#set($layout="commons/layout-usercenter-head.vm")
+#set($thisActionUrl="card-manage")
+#set($screen_jsArray=["ent/card-manage"])
+<div id="right">
+		<form action="$thisActionUrl">
+            <div class="roster_title c_green hei">
+                <i class="icon_hmc icon-bg fl"></i>
+                <span class="fl">花名册（$!{count.flowerCount}）</span>
+                <span class="fr" id="search">
+					<input name="id" value="$!{entInfo.id}" style="display:none">
+					<input name="status" value="$!{query.status}" style="display:none">
+                    <input type="text" name="trueName" value="$!{page.query.trueName}" placeholder="&nbsp;请输入关键字搜索" class="fl text">
+                    <input type="submit" value="搜索"  class="fr button green hei">
+                </span>
+        	</div>
+        </form>
+        <div class="roster_nav f14">
+        	<ul>
+            	<li #if($query.status==0)class="cur" #end onClick="window.location.href='card-manage?status=0'">待审核</li>
+                <li #if($query.status==1)class="cur" #end onClick="window.location.href='card-manage?status=1'">已审核</li>
+            </ul>
+            <div class="clr"></div>
+        </div>
+        <div id="r_list">
+        	<div #if($query.status==1) style="display:none" #end>
+                <table cellpadding=0 cellspacing=2 class="table">
+                    <tr>
+                        <th>员工姓名</th>
+                        <th>身份证号</th>
+                        <th>性別</th>
+                        <th>手机号</th>
+                        <th>名片号</th> 
+                        <th>申请时间 </th>
+                        <th>操作 </th>
+                    </tr>
+					
+					 #set($data=$page.data)
+					 #if($data.size()>0)
+                        #foreach($p in $data)
+                           <tr #if($math.mod($velocityCount,2)==0)  class="odd" #end>
+                            	<td>$!{p.trueName}</td>
+                                <td>$!{p.userIdcard}</td>
+                                <td>$!{p.sex}</td>
+                                <td>$!{p.mobile}</td>
+                                <td>$!{p.id}</td>
+                                <td>$!date.format("yyyy-MM-dd",$!{p.gmtCreate})</td>
+                                <td><span><a href="javascript:void();" onclick="fillWin($!{p.id},'$!{p.trueName}','$!{p.mobile}','$!{p.sex}','$!{p.userIdcard}','$!{entInfo.id}','$!{p.entPositionStr}','$!{p.entDepartmentStr}')" class="endorse">通过</a></span><span><a href="javascript:void();" onclick="unpassWin($!{p.id},'$!{p.trueName}','$!{p.nickName}','$!{p.mobile}','$!{p.sex}','$!{p.userIdcard}')">不通过</a></span></td>
+						   </tr>
+						#end
+					 #end
+                    
+                </table>
+               #pageTabFoot({"queryFormId":"form_search","page":$page,"submitUrl":"${thisActionUrl}","canSetPagesize":true}) 
+			</div>
+             <div  #if($query.status==0) style="display:none" #end >
+             		<table cellpadding=0 cellspacing=2 class="table">
+						 <tr>
+                            <th>员工姓名</th>
+                            <th>身份证号</th>
+                            <th>性別</th>
+                            <th>手机号</th>
+                            <th>名片号</th> 
+                            <th>审核结果 </th>
+                        </tr>
+                         #set($data=$page.data)
+    					 #if($data.size()>0)
+                            #foreach($p in $data)
+                               <tr #if($math.mod($velocityCount,2)==0)  class="odd" #end>
+                                	<td>$!{p.trueName}</td>
+                                    <td>$!{p.userIdcard}</td>
+                                    <td>$!{p.sex}</td>
+                                    <td>$!{p.mobile}</td>
+                                    <td>$!{p.id}</td>
+                                    <td><span>#if($p.activationStatus==1)通过 #else 未通过 #end</span></td>
+    						   </tr>
+    						#end
+    					 #end              
+                    </table>
+                   #pageTabFoot({"queryFormId":"form_search","page":$page,"submitUrl":"${thisActionUrl}#list","canSetPagesize":true})      
+             </div>
+		</div>                  
+		<!--完善员工信息弹窗-->
+	
+	<div class="pop-up" id="endorse">
+		<form id="updateForm">
+            <div class="title hei">
+                <span class="fl">完善员工信息</span>
+                <br class="clr">
+            </div>
+            <div class="content">
+                <div class="e_title">
+                    <h1 class="c_blue f14"><strong>审核通过，请立即完善部门、职位信息</strong></h1>
+                    <p>
+                    	<span id="uname"></span>
+                        <span id="uphone"></span>
+                        <span id="usex"></span>
+                        <span id="ucard"></span>
+                    </p>
+                </div>
+				<input id="cardid" name="id" style="display:none">
+				<input id="entId" name="entId"  style="display:none">
+               <div class="f14">职位</div>
+               <div class="add_roster">
+                   <div class="list" id="jobs">
+                        #if($positionList.size()>0)
+                            #foreach($p in $positionList)
+                                	<span>$!p.positionName</span>
+        					 #end
+        				 #end
+                   </div>
+                   <div class="tag list">
+					<input type="hidden" name="entPositionStr" id="positionArr"/>
+                        <input type="text" class="tags fl" id="newPosition">
+                        <div class="btn fl"><a href="#" id="positionButton">贴上新标签</a></div>
+                        <em>你可以选择以上职位或贴上新标签</em>
+                   </div>
+                </div>
+                <div class="f14">部门</div>
+                <div class="add_roster">
+                	<div class="list" id="sector">
+                         #if($deptList.size()>0)
+                            #foreach($p in $deptList)
+                                <span>$!p.deptName</span>
+        					 #end
+        				 #end
+                   	</div>
+                  	<div class="tag list">
+						<input type="hidden" name="entDepartmentStr" id="deptArr"/>
+                   		<input type="text" class="tags fl"  id="newDept">
+                    	<div class="btn fl"><a href="#" id="deptButton">贴上新标签</a></div>
+                    	<em>你可以选择以上部门或贴上新标签</em>
+               		</div>
+                </div>
+                <br class="clr">
+                <div class="btn_box">
+                    <input type="submit" id="commit" value="确  认" class="btn_ok_on"/>
+					<input type="button" id="qx" value="取消" class="btn_ok blue f14"  style="background: #b5b5b5;"/>
+                </div>
+            </div>
+		</form>
+	</div>
+	<div class="pop-up" id="noendorse" style="display: none;">
+            <div class="title hei">
+                <span class="fl">审核用户</span>
+                <em class="fr close-button">X</em>
+                <br class="clr">
+            </div>
+            <div class="content">
+				<form id="unPass">
+                    <div class="e_title">
+                        <p>
+    						<input id="cardid1" name="id" style="display:none">
+                        	<span id="name1"></span>
+                            <span id="phone1"></span>
+                            <span id="sex1"></span>
+                            <span id="ucard1"></span>
+                        </p>
+                    </div>
+                   	<textarea class="c_info" name="unpassMes" style="resize: none;" onclick="if(this.value=='信息不符合……') this.value='';">信息不符合……</textarea>
+                    <br class="clr">
+                    <div class="btn_box">
+    	                <input type="button" id="noPass" value="不通过" class="btn_ok blue f14">
+                        <input type="button" value="取 消"  class="btn_ok f14" style="background: #b5b5b5;" id="qx2">
+                    </div>
+				</form>
+            </div>
+        </div>
+</div>

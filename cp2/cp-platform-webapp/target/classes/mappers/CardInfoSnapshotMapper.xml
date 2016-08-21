@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.CardInfoSnapshotMapper">
+	<resultMap id="cardInfoSnapshotMap" type="cardInfoSnapshot">		
+		<id column="id" property="id"/><!-- 快照id -->			
+		<result column="card_id" property="cardId"/><!-- 用户id -->			
+		<result column="user_id" property="userId"/><!-- 用户id -->			
+		<result column="card_type" property="cardType"/><!-- 名片类型(0:官方,1:普通) -->			
+		<result column="mobile" property="mobile"/><!-- 手机号 -->	
+		<result column="ent_entry_date" property="entEntryDate"/><!-- 入职时间 -->			
+		<result column="activation_status" property="activationStatus"/><!-- 激活状态 -->			
+		<result column="user_idcard" property="userIdcard"/><!-- 身份证号 -->			
+		<result column="true_name" property="trueName"/><!-- 姓名 -->			
+		<result column="nick_name" property="nickName"/><!-- 昵称 -->			
+		<result column="sex" property="sex"/><!-- 性别 -->			
+		<result column="icon_url" property="iconUrl"/><!-- 头像url -->			
+		<result column="motto" property="motto"/><!-- 座右铭 -->			
+		<result column="ename" property="ename"/><!-- 英文名称 -->			
+		<result column="phone" property="phone"/><!-- 座机 -->			
+		<result column="phone_short" property="phoneShort"/><!-- 短号 -->			
+		<result column="fax" property="fax"/><!-- 传真 -->			
+		<result column="qq" property="qq"/><!-- QQ号码 -->			
+		<result column="wei_xin" property="weiXin"/><!-- 微信号码 -->			
+		<result column="email" property="email"/><!-- 邮箱 -->			
+		<result column="email2" property="email2"/><!-- 邮箱2 -->			
+		<result column="qrcode_url" property="qrcodeUrl"/><!-- 二维码url -->			
+		<result column="search_control_switch" property="searchControlSwitch"/><!-- 搜索控制开关 -->			
+		<result column="gmt_create_card" property="gmtCreateCard"/><!-- 创建时间名片 -->			
+		<result column="ent_id" property="entId"/><!-- 企业id -->			
+		<result column="org_name" property="orgName"/><!-- 组织机构名称 -->			
+		<result column="org_ename" property="orgEname"/><!-- 机构英文名称 -->			
+		<result column="official_website" property="officialWebsite"/><!-- 企业官网 -->			
+		<result column="ent_address" property="entAddress"/><!-- 企业地址 -->			
+		<result column="certification_status" property="certificationStatus"/><!-- 认证状态 -->			
+		<result column="logo_url" property="logoUrl"/><!-- 机构logoURL -->			
+		<result column="ent_active_status" property="entActiveStatus"/><!-- 在职状态 -->			
+		<result column="snapshot_date" property="snapshotDate"/><!-- 快照时间 -->
+		<result column="is_exchange" property="isExchange"/><!-- 是否交换 -->
+		<result column="apply_type" property="applyType"/><!-- 申请类型 -->
+		<result column="apply_note" property="applyNote"/><!-- 申请说明 -->
+		<result column="tn_first_spell" property="tnFirstSpell"/><!-- 申请说明 -->
+		<result column="gmt_dynamic_last_read" property="gmtDynamicLastRead"/><!-- 动态最后读取时间 -->
+		<result column="apply_id" property="applyId"/><!-- 名片申请记录id -->
+		<result column="gmt_apply" property="gmtApply"/><!-- 名片申请时间 -->
+		<result column="gmt_exchange" property="gmtExchange"/><!-- 名片交换时间 -->
+	</resultMap>
+
+	<insert id="insert" parameterType="cardInfoSnapshot"  useGeneratedKeys="true" keyProperty="id" >
+		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+			select SEQ_card_info_snapshot.nextval from dual
+		</selectKey>
+				insert into
+		card_info_snapshot(
+		<if test="_databaseId == 'oracle'">ID,</if>
+		<trim prefix="" prefixOverrides=",">
+			<if test="cardId != null">,card_id</if>
+			<if test="userId != null">,user_id</if>
+			<if test="cardType != null">,card_type</if>
+			<if test="mobile != null">,mobile</if>
+			<if test="activationStatus != null">,activation_status</if>
+			<if test="userIdcard != null">,user_idcard</if>
+			<if test="trueName != null">,true_name</if>
+			<if test="nickName != null">,nick_name</if>
+			<if test="sex != null">,sex</if>
+			<if test="iconUrl != null">,icon_url</if>
+			<if test="motto != null">,motto</if>
+			<if test="ename != null">,ename</if>
+			<if test="phone != null">,phone</if>
+			<if test="phoneShort != null">,phone_short</if>
+			<if test="fax != null">,fax</if>
+			<if test="qq != null">,qq</if>
+			<if test="weiXin != null">,wei_xin</if>
+			<if test="email != null">,email</if>
+			<if test="email2 != null">,email2</if>
+			<if test="qrcodeUrl != null">,qrcode_url</if>
+			<if test="searchControlSwitch != null">,search_control_switch</if>
+			<if test="gmtCreateCard != null">,gmt_create_card</if>
+			<if test="entId != null">,ent_id</if>
+			<if test="orgName != null">,org_name</if>
+			<if test="orgEname != null">,org_ename</if>
+			<if test="officialWebsite != null">,official_website</if>
+			<if test="entAddress != null">,ent_address</if>
+			<if test="certificationStatus != null">,certification_status</if>
+			<if test="logoUrl != null">,logo_url</if>
+			<if test="entActiveStatus != null">,ent_active_status</if>
+			<if test="snapshotDate != null">,snapshot_date</if>
+			<if test="entEntryDate != null">,ent_entry_date</if>
+		</trim>		)values(
+		<if test="_databaseId == 'oracle'">#{id},</if>
+		<trim prefix="" prefixOverrides=",">
+			<if test="cardId != null">,#{cardId,jdbcType=INTEGER}</if>
+			<if test="userId != null">,#{userId,jdbcType=INTEGER}</if>
+			<if test="cardType != null">,#{cardType,jdbcType=INTEGER}</if>
+			<if test="mobile != null">,#{mobile,jdbcType=VARCHAR}</if>
+			<if test="activationStatus != null">,#{activationStatus,jdbcType=INTEGER}</if>
+			<if test="userIdcard != null">,#{userIdcard,jdbcType=VARCHAR}</if>
+			<if test="trueName != null">,#{trueName,jdbcType=VARCHAR}</if>
+			<if test="nickName != null">,#{nickName,jdbcType=VARCHAR}</if>
+			<if test="sex != null">,#{sex,jdbcType=VARCHAR}</if>
+			<if test="iconUrl != null">,#{iconUrl,jdbcType=VARCHAR}</if>
+			<if test="motto != null">,#{motto,jdbcType=VARCHAR}</if>
+			<if test="ename != null">,#{ename,jdbcType=VARCHAR}</if>
+			<if test="phone != null">,#{phone,jdbcType=VARCHAR}</if>
+			<if test="phoneShort != null">,#{phoneShort,jdbcType=VARCHAR}</if>
+			<if test="fax != null">,#{fax,jdbcType=VARCHAR}</if>
+			<if test="qq != null">,#{qq,jdbcType=VARCHAR}</if>
+			<if test="weiXin != null">,#{weiXin,jdbcType=VARCHAR}</if>
+			<if test="email != null">,#{email,jdbcType=VARCHAR}</if>
+			<if test="email2 != null">,#{email2,jdbcType=VARCHAR}</if>
+			<if test="qrcodeUrl != null">,#{qrcodeUrl,jdbcType=VARCHAR}</if>
+			<if test="searchControlSwitch != null">,#{searchControlSwitch,jdbcType=VARCHAR}</if>
+			<if test="gmtCreateCard != null">,#{gmtCreateCard,jdbcType=TIMESTAMP}</if>
+			<if test="entId != null">,#{entId,jdbcType=INTEGER}</if>
+			<if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+			<if test="orgEname != null">,#{orgEname,jdbcType=VARCHAR}</if>
+			<if test="officialWebsite != null">,#{officialWebsite,jdbcType=VARCHAR}</if>
+			<if test="entAddress != null">,#{entAddress,jdbcType=VARCHAR}</if>
+			<if test="certificationStatus != null">,#{certificationStatus,jdbcType=INTEGER}</if>
+			<if test="logoUrl != null">,#{logoUrl,jdbcType=VARCHAR}</if>
+			<if test="entActiveStatus != null">,#{entActiveStatus,jdbcType=INTEGER}</if>
+			<if test="snapshotDate != null">,#{snapshotDate,jdbcType=TIMESTAMP}</if>
+			<if test="entEntryDate != null">,#{entEntryDate,jdbcType=TIMESTAMP}</if>
+		</trim>		)
+	</insert>
+
+	<update id="update" parameterType="cardInfoSnapshot">
+		update card_info_snapshot
+		<set>			
+			<if test="cardId != null">card_id=#{cardId,jdbcType=INTEGER},</if>	
+			<if test="userId != null">user_id=#{userId,jdbcType=INTEGER},</if>	
+			<if test="cardType != null">card_type=#{cardType,jdbcType=INTEGER},</if>	
+			<if test="mobile != null">mobile=#{mobile,jdbcType=VARCHAR},</if>	
+			<if test="activationStatus != null">activation_status=#{activationStatus,jdbcType=INTEGER},</if>	
+			<if test="userIdcard != null">user_idcard=#{userIdcard,jdbcType=VARCHAR},</if>	
+			<if test="trueName != null">true_name=#{trueName,jdbcType=VARCHAR},</if>	
+			<if test="nickName != null">nick_name=#{nickName,jdbcType=VARCHAR},</if>	
+			<if test="sex != null">sex=#{sex,jdbcType=VARCHAR},</if>	
+			<if test="iconUrl != null">icon_url=#{iconUrl,jdbcType=VARCHAR},</if>	
+			<if test="motto != null">motto=#{motto,jdbcType=VARCHAR},</if>	
+			<if test="ename != null">ename=#{ename,jdbcType=VARCHAR},</if>	
+			<if test="phone != null">phone=#{phone,jdbcType=VARCHAR},</if>	
+			<if test="phoneShort != null">phone_short=#{phoneShort,jdbcType=VARCHAR},</if>	
+			<if test="fax != null">fax=#{fax,jdbcType=VARCHAR},</if>	
+			<if test="qq != null">qq=#{qq,jdbcType=VARCHAR},</if>	
+			<if test="weiXin != null">wei_xin=#{weiXin,jdbcType=VARCHAR},</if>	
+			<if test="email != null">email=#{email,jdbcType=VARCHAR},</if>	
+			<if test="email2 != null">email2=#{email2,jdbcType=VARCHAR},</if>	
+			<if test="qrcodeUrl != null">qrcode_url=#{qrcodeUrl,jdbcType=VARCHAR},</if>	
+			<if test="searchControlSwitch != null">search_control_switch=#{searchControlSwitch,jdbcType=VARCHAR},</if>	
+			<if test="gmtCreateCard != null">gmt_create_card=#{gmtCreateCard,jdbcType=TIMESTAMP},</if>	
+			<if test="entId != null">ent_id=#{entId,jdbcType=INTEGER},</if>	
+			<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>	
+			<if test="orgEname != null">org_ename=#{orgEname,jdbcType=VARCHAR},</if>	
+			<if test="officialWebsite != null">official_website=#{officialWebsite,jdbcType=VARCHAR},</if>	
+			<if test="entAddress != null">ent_address=#{entAddress,jdbcType=VARCHAR},</if>	
+			<if test="certificationStatus != null">certification_status=#{certificationStatus,jdbcType=INTEGER},</if>	
+			<if test="logoUrl != null">logo_url=#{logoUrl,jdbcType=VARCHAR},</if>	
+			<if test="entActiveStatus != null">ent_active_status=#{entActiveStatus,jdbcType=INTEGER},</if>	
+			<if test="snapshotDate != null">snapshot_date=#{snapshotDate,jdbcType=TIMESTAMP},</if>	
+		</set>		
+		where 					 id=#{id}
+	</update>
+	
+	<select id="load" parameterType="int" resultMap="cardInfoSnapshotMap" >
+    		select * from card_info_snapshot where id=#{id}
+	</select>
+	
+	<sql id="queryCommonSql">
+		FROM card_info_snapshot cis
+		<where>
+			<if test="idArray != null">
+						cis.id in
+				<foreach collection="idArray" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+			</if>
+			<if test="cardId != null">and cis.card_id = #{cardId}</if>												
+			<if test="userId != null">and cis.user_id = #{userId}</if>												
+			<if test="cardType != null">and cis.card_type = #{cardType}</if>												
+			<if test="mobile != null and mobile.trim() !=''">and cis.mobile = #{mobile}</if>
+			<if test="activationStatus != null">and cis.activation_status = #{activationStatus}</if>												
+			<if test="userIdcard != null and userIdcard.trim() !=''">and cis.user_idcard = #{userIdcard}</if>
+			<if test="trueName != null and trueName.trim() !=''">and cis.true_name = #{trueName}</if>
+			<if test="nickName != null and nickName.trim() !=''">and cis.nick_name = #{nickName}</if>
+			<if test="sex != null and sex.trim() !=''">and cis.sex = #{sex}</if>
+			<if test="iconUrl != null and iconUrl.trim() !=''">and cis.icon_url = #{iconUrl}</if>
+			<if test="motto != null and motto.trim() !=''">and cis.motto = #{motto}</if>
+			<if test="ename != null and ename.trim() !=''">and cis.ename = #{ename}</if>
+			<if test="phone != null and phone.trim() !=''">and cis.phone = #{phone}</if>
+			<if test="phoneShort != null and phoneShort.trim() !=''">and cis.phone_short = #{phoneShort}</if>
+			<if test="fax != null and fax.trim() !=''">and cis.fax = #{fax}</if>
+			<if test="qq != null and qq.trim() !=''">and cis.qq = #{qq}</if>
+			<if test="weiXin != null and weiXin.trim() !=''">and cis.wei_xin = #{weiXin}</if>
+			<if test="email != null and email.trim() !=''">and cis.email = #{email}</if>
+			<if test="email2 != null and email2.trim() !=''">and cis.email2 = #{email2}</if>
+			<if test="qrcodeUrl != null and qrcodeUrl.trim() !=''">and cis.qrcode_url = #{qrcodeUrl}</if>
+			<if test="searchControlSwitch != null and searchControlSwitch.trim() !=''">and cis.search_control_switch = #{searchControlSwitch}</if>
+			<if test="gmtCreateCardFrom != null">and cis.gmt_create_card >= #{gmtCreateCardFrom}</if>
+			<if test="gmtCreateCardTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and cis.gmt_create_card < #{gmtCreateCardTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and cis.gmt_create_card < date_add(#{gmtCreateCardTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+			<if test="entId != null">and cis.ent_id = #{entId}</if>												
+			<if test="orgName != null and orgName.trim() !=''">and cis.org_name = #{orgName}</if>
+			<if test="orgEname != null and orgEname.trim() !=''">and cis.org_ename = #{orgEname}</if>
+			<if test="officialWebsite != null and officialWebsite.trim() !=''">and cis.official_website = #{officialWebsite}</if>
+			<if test="entAddress != null and entAddress.trim() !=''">and cis.ent_address = #{entAddress}</if>
+			<if test="certificationStatus != null">and cis.certification_status = #{certificationStatus}</if>												
+			<if test="logoUrl != null and logoUrl.trim() !=''">and cis.logo_url = #{logoUrl}</if>
+			<if test="entActiveStatus != null">and cis.ent_active_status = #{entActiveStatus}</if>												
+			<if test="snapshotDateFrom != null">and cis.snapshot_date >= #{snapshotDateFrom}</if>
+			<if test="snapshotDateTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and cis.snapshot_date < #{snapshotDateTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and cis.snapshot_date < date_add(#{snapshotDateTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="sortSql">		
+		<choose>			
+			<when test="sort != null and sort.trim() !=''">
+				order by ${sort}
+			</when>
+			<otherwise>
+				<if test="sortByDefault">
+					order by cis.GMT_CREATE DESC
+				</if>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="queryList" parameterType="cardInfoSnapshotQuery" resultMap="cardInfoSnapshotMap">
+		<include refid="common.pageBegin" />
+		select cis.id				<choose>
+			<when test="columns != null and columns.length>0">
+				<foreach collection="columns" index="index" item="item">,${item}</foreach>
+			</when>
+			<otherwise>
+        		        			,cis.card_id
+        			        		        			,cis.user_id
+        			        		        			,cis.card_type
+        			        		        			,cis.mobile
+        			        		        			,cis.activation_status
+        			        		        			,cis.user_idcard
+        			        		        			,cis.true_name
+        			        		        			,cis.nick_name
+        			        		        			,cis.sex
+        			        		        			,cis.icon_url
+        			        		        			,cis.motto
+        			        		        			,cis.ename
+        			        		        			,cis.phone
+        			        		        			,cis.phone_short
+        			        		        			,cis.fax
+        			        		        			,cis.qq
+        			        		        			,cis.wei_xin
+        			        		        			,cis.email
+        			        		        			,cis.email2
+        			        		        			,cis.qrcode_url
+        			        		        			,cis.search_control_switch
+        			        		        			,cis.gmt_create_card
+        			        		        			,cis.ent_id
+        			        		        			,cis.org_name
+        			        		        			,cis.org_ename
+        			        		        			,cis.official_website
+        			        		        			,cis.ent_address
+        			        		        			,cis.certification_status
+        			        		        			,cis.logo_url
+        			        		        			,cis.ent_active_status
+        			        		        			,cis.snapshot_date
+			</otherwise>
+		</choose>
+		<include refid="queryCommonSql" />
+		<include refid="sortSql" />
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryCount" parameterType="cardInfoSnapshotQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryCommonSql" />
+	</select>
+	
+	<update id="updateStatus" parameterType="cardInfoSnapshot">		
+		update card_info_snapshot set status=#{status} where   id=#{id} 	
+	</update>
+	
+	<delete id="delete" parameterType="int">
+    	delete from card_info_snapshot where card_id=#{cardId}
+	</delete>
+    
+	<!-- 新名片内，已经交换的名片数据获取接口 -->
+	<sql id="queryExchangeNewCardCommonSql">
+		FROM (
+			select a.id card_id,a.icon_url,a.true_name,a.mobile,a.org_name,b.gmt_exchange,b.is_exchange 
+			,b.apply_type,b.apply_note,b.apply_id,b.gmt_apply
+		from <include refid="common.card_info_UNION_ALL_card_info_snapshot" /> a
+			inner join (
+				select id apply_id, card_id,gmt_exchange,(case when is_exchange='0' then '2' else is_exchange end) is_exchange
+				,apply_type,apply_note,gmt_apply from user_card_apply 
+				where card_id_from=#{id} and is_delete=0 
+		<if test="searchType == 'exchange'"> and is_exchange='1' </if>
+		<if test="searchTime != null "> and gmt_exchange >= #{searchTime} </if>
+				union all 
+				select id apply_id, card_id_from,gmt_exchange,is_exchange,apply_type,apply_note,gmt_apply from user_card_apply 
+				where card_id=#{id} and is_delete=0 
+		<if test="searchType == 'exchange'"> and is_exchange='1' </if>
+		<if test="searchTime != null "> and gmt_exchange >= #{searchTime} </if>
+			) b on a.id=b.card_id
+		) cis
+	</sql>
+	
+	<select id="queryExchangeNewCardList" parameterType="cardInfoSnapshotQuery" resultMap="cardInfoSnapshotMap">
+		<include refid="common.pageBegin" />
+		select cis.* 
+		<include refid="queryExchangeNewCardCommonSql" />
+		order by gmt_apply desc
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryExchangeNewCardCount" parameterType="cardInfoSnapshotQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryExchangeNewCardCommonSql" />
+	</select>
+	
+	<!-- 新名片内，已经交换的名片数据获取接口_单张名片 -->
+	<select id="queryExchangeNewCardOne" parameterType="int" resultMap="cardInfoSnapshotMap">
+		select a.id card_id,a.icon_url,a.true_name,a.mobile,a.org_name
+		from <include refid="common.card_info_UNION_ALL_card_info_snapshot" /> a
+		where a.id=#{id}
+	</select>
+	
+	<!-- 新名片内，已经交换的名片的详细获取接口 -->
+	<select id="getUserCardInfo" parameterType="int" resultMap="cardInfoSnapshotMap" >
+		select * from <include refid="common.card_info_UNION_ALL_card_info_snapshot" /> a where id=#{id}
+	</select>
+    
+	<!-- 搜索新名片，分类，精确查找接口（分页） -->
+	<sql id="queryNewCardCommonSql">
+		from card_info a
+		left join ent_info b on a.ent_id=b.id
+		left join (
+				select id apply_id, card_id,gmt_exchange,(case when is_exchange='0' then '2' else is_exchange end) is_exchange
+				,apply_type,apply_note,gmt_apply from user_card_apply 
+				where (card_id_from=#{cardId} or card_id=#{cardId} )and is_delete=0  
+			) uca on a.id=uca.card_id
+		<where>
+			<!--a.search_control_switch = #{controlSwitch}-->
+			<if test="searchType == 'cardId'"> and a.id = #{content} </if>
+			<if test="searchType == 'mobile'"> and a.mobile = #{content} </if>
+			<if test="searchType == 'email'"> and ( a.email = #{content} or a.email2 = #{content} ) </if>
+			<if test="searchType == 'nickName'"> and a.nick_name = #{content} </if>
+			<if test="searchType == 'orgName'"> and b.org_name = #{content} </if>
+			<if test="searchType == 'position'">
+				and exists (
+					select 1 from card_position_link cp 
+					inner join ent_position ep on cp.position_id=ep.id
+					where a.id=cp.card_id and ep.position_name = #{content}
+				)
+			</if>
+			
+			<!--暂时先注释掉 XYY-->
+			<if test="controlSwitch != null and controlSwitch.trim()!=''">
+				and substr(search_control_switch,${controlSwitch}+1,1)='1'
+			</if>
+			
+		</where>
+	</sql>
+	
+	<select id="queryNewCardList" parameterType="com.ancun.xinhu.domain.dto.XinHuQuery" resultMap="cardInfoSnapshotMap">
+		<include refid="common.pageBegin" />
+			select a.id card_id,a.icon_url,a.true_name,a.nick_name,b.org_name,b.certification_status 
+			,ifnull(uca.is_exchange,'0') isExchange 
+		<include refid="queryNewCardCommonSql" />
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryNewCardCount" parameterType="com.ancun.xinhu.domain.dto.XinHuQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryNewCardCommonSql" />
+	</select>
+	
+	<!-- 搜索结果为 企业 加 个人 接口——搜索个人 -->
+	<sql id="queryClientCardCommonSql">
+		from card_info ci
+		left join ent_info ei on ci.ent_id=ei.id
+		<where>
+			 ci.id = #{content} or ci.true_name like concat('%',#{content},'%')
+		</where>
+	</sql>
+	
+	<select id="queryClientCardList" parameterType="com.ancun.xinhu.domain.dto.XinHuQuery" resultMap="cardInfoSnapshotMap">
+		<include refid="common.pageBegin" />
+		select ci.id card_id,ci.icon_url,ci.true_name,ei.org_name,ei.certification_status 
+		<include refid="queryClientCardCommonSql" />
+		<!--include refid="sortSql" /-->
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryClientCardCount" parameterType="com.ancun.xinhu.domain.dto.XinHuQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryClientCardCommonSql" />
+	</select>
+	
+	<!-- 获取企业名片上的部分人脉 -->
+	<select id="getEntCardConnList" parameterType="com.ancun.xinhu.domain.dto.XinHuQuery" resultMap="cardInfoSnapshotMap">
+		select ci.icon_url from card_info ci 
+		inner join (
+			select card_id_from card_id from user_card_link where card_id=#{cardId}
+			union all 
+			select card_id from user_card_link where card_id_from=#{cardId}
+		) ucl on ci.id= ucl.card_id
+		where ci.ent_id=#{entId}
+		limit 4
+	</select>
+	
+	<!-- 企业下已绑定的名片获取接口 -->
+	<select id="getEntExchangeCardList" parameterType="com.ancun.xinhu.domain.dto.XinHuQuery" resultMap="cardInfoSnapshotMap">
+		select ci.id card_id,ci.icon_url,ci.true_name,cp.positionName,
+		(case when ci.tn_first_spell is null or ci.tn_first_spell='' then '#' else substr(ci.tn_first_spell,1,1) end) tn_first_spell
+		from card_info ci 
+		inner join (
+			select card_id_from card_id from user_card_link where card_id=#{cardId}
+			union all 
+			select card_id from user_card_link where card_id_from=#{cardId}
+		) ucl on ci.id= ucl.card_id
+		left join (
+			select a.card_id,group_concat(b.position_name) positionName from card_position_link a
+			inner join ent_position b on a.position_id=b.id
+			group by a.card_id
+		) cp on ci.id=cp.card_id
+		where ci.ent_id=#{entId}
+		order by ci.tn_first_spell
+	</select>
+	
+	<!-- 获取递交新名片接口 -->
+	<select id="getAcceptCardInfo" parameterType="int" resultMap="cardInfoSnapshotMap" >
+    		select a.id card_id,a.true_name,a.mobile,a.icon_url,a.org_name
+		from <include refid="common.card_info_UNION_ALL_card_info_snapshot" /> a where id=#{id}
+	</select>
+	
+</mapper>

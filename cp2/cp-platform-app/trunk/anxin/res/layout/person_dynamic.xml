@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pubTitle="http://schemas.android.com/apk/res/com.ciapc.anxin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/C5"
+    android:orientation="vertical" >
+
+    <com.ciapc.anxin.common.view.PubTitle
+        android:id="@+id/dynamic_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pubTitle:leftIcon="@drawable/back"
+        pubTitle:text="名片动态" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/home_person_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/left_right"
+                android:paddingBottom="@dimen/left_right"
+                android:background="@drawable/exchange_bg_top_bottom"
+                android:layout_marginTop="20dp" >
+
+                <com.ciapc.anxin.common.view.RoundView
+                    android:id="@+id/home_person_head"
+                    android:layout_width="67dp"
+                    android:layout_height="67dp"
+                    android:layout_marginLeft="@dimen/left_right"
+                    android:src="@drawable/toux_default" />
+
+                <TextView
+                    android:id="@+id/true_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/home_person_head"
+                    android:layout_marginLeft="@dimen/left_right"
+                    android:layout_toRightOf="@id/home_person_head"
+                    android:textColor="@color/C2"
+                    android:textSize="@dimen/H2" />
+
+                <TextView
+                    android:id="@+id/visiting_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/true_name"
+                    android:layout_marginLeft="@dimen/left_right"
+                    android:layout_toRightOf="@id/home_person_head"
+                    android:textColor="@color/C2"
+                    android:textSize="@dimen/H4" />
+
+                <TextView
+                    android:id="@+id/nickname_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/visiting_card"
+                    android:layout_marginLeft="@dimen/left_right"
+                    android:layout_toRightOf="@id/home_person_head"
+                    android:textColor="@color/C2"
+                    android:textSize="@dimen/H4" />
+            </RelativeLayout>
+            
+	
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/H4"
+                android:textColor="@color/C2"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/left_right"
+                android:text="名片更新记录"/>
+            
+            <com.ciapc.anxin.common.view.AxListView
+                android:id="@+id/dynamic_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:divider="@null"
+                android:scrollbars="@null" >
+            </com.ciapc.anxin.common.view.AxListView>
+            
+             <TextView 
+                 android:id="@+id/no_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/H4"
+                android:textColor="@color/C2"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

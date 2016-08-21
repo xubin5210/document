@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.CardDeptLinkMapper">
+	<resultMap id="cardDeptLinkMap" type="cardDeptLink">		
+		<result column="card_id" property="cardId"/><!-- 用户id -->			
+		<result column="dept_id" property="deptId"/><!-- 部门id -->			
+		<result column="gmt_bind" property="gmtBind"/><!-- 绑定时间 -->			
+	</resultMap>
+
+	<insert id="insert" parameterType="cardDeptLink" >
+				insert into
+		card_dept_link(
+		<if test="cardId != null">card_id</if>
+		<if test="deptId != null">,dept_id</if>
+		,gmt_bind
+									)values(
+		<if test="cardId != null">#{cardId,jdbcType=INTEGER}</if>
+		<if test="deptId != null">,#{deptId,jdbcType=INTEGER}</if>
+		,<include refid="common.now" />
+					        		)
+	</insert>
+
+	<update id="update" parameterType="cardDeptLink">
+		update card_dept_link
+		<set>			
+			<if test="cardId != null">card_id=#{cardId,jdbcType=INTEGER},</if>	
+			<if test="deptId != null">dept_id=#{deptId,jdbcType=INTEGER},</if>	
+			<if test="gmtBind != null">gmt_bind=#{gmtBind,jdbcType=TIMESTAMP},</if>	
+		</set>		
+		where 			</update>
+	
+	<select id="load" parameterType="cardDeptLink" resultMap="cardDeptLinkMap" >
+    		select * from card_dept_link where    		    	</select>
+	
+	<sql id="queryCommonSql">
+		FROM card_dept_link cdl
+		<where>
+			<if test="cardId != null">and cdl.card_id = #{cardId}</if>												
+			<if test="deptId != null">and cdl.dept_id = #{deptId}</if>												
+			<if test="gmtBindFrom != null">and cdl.gmt_bind >= #{gmtBindFrom}</if>
+			<if test="gmtBindTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and cdl.gmt_bind < #{gmtBindTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and cdl.gmt_bind < date_add(#{gmtBindTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="sortSql">		
+		<choose>			
+			<when test="sort != null and sort.trim() !=''">
+				order by ${sort}
+			</when>
+			<otherwise>
+				<if test="sortByDefault">
+					order by cdl.GMT_CREATE DESC
+				</if>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="queryList" parameterType="cardDeptLinkQuery" resultMap="cardDeptLinkMap">
+		<include refid="common.pageBegin" />
+		select 		<choose>
+			<when test="columns != null and columns.length>0">
+				<foreach collection="columns" index="index" item="item">,${item}</foreach>
+			</when>
+			<otherwise>
+        		        			,cdl.card_id
+        			        		        			,cdl.dept_id
+        			        		        			,cdl.gmt_bind
+			</otherwise>
+		</choose>
+		<include refid="queryCommonSql" />
+		<include refid="sortSql" />
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryCount" parameterType="cardDeptLinkQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryCommonSql" />
+	</select>
+	
+	<update id="updateStatus" parameterType="cardDeptLink">		
+		update card_dept_link set status=#{status} where 	</update>
+	
+	<delete id="delete" parameterType="int">
+    		delete from card_dept_link where  card_id = #{id}    	
+    </delete>
+    
+    <!-- 搜索企业部门的接口 -->
+    <select id="getEntDeptList" parameterType="com.ancun.xinhu.domain.dto.XinHuQuery" resultType="map">
+		select ed.id deptId,ed.dept_name deptName,count(cdl.dept_id) deptStaffNum 
+		from ent_department ed
+		left join card_dept_link cdl on cdl.dept_id=ed.id
+		inner join card_info ci on ci.id=cdl.card_id
+		where ed.ent_id=#{entId} and ed.dept_name like concat('%',#{content},'%')
+		group by ed.id,ed.dept_name
+	</select>
+    
+	</mapper>

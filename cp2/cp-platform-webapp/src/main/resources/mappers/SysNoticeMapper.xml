@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ancun.xinhu.biz.mappers.SysNoticeMapper">
+	<resultMap id="sysNoticeMap" type="sysNotice">		
+		<id column="id" property="id"/><!-- 公告id -->			
+		<result column="title" property="title"/><!-- 公告名称 -->			
+		<result column="content" property="content"/><!-- 公告内容 -->			
+		<result column="gmt_create" property="gmtCreate"/><!-- 创建时间 -->			
+		<result column="is_first" property="isFirst"/><!-- 是否置顶 -->			
+	</resultMap>
+
+	<insert id="insert" parameterType="sysNotice"  useGeneratedKeys="true" keyProperty="id" >
+		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+			select SEQ_sys_notice.nextval from dual
+		</selectKey>
+				insert into
+		sys_notice(
+		<if test="_databaseId == 'oracle'">ID,</if>
+		<trim prefix="" prefixOverrides=",">
+			<if test="title != null">,title</if>
+			<if test="content != null">,content</if>
+			<if test="gmtCreate != null">,gmt_create</if>
+			<if test="isFirst != null">,is_first</if>
+		</trim>		)values(
+		<if test="_databaseId == 'oracle'">#{id},</if>
+		<trim prefix="" prefixOverrides=",">
+			<if test="title != null">,#{title,jdbcType=VARCHAR}</if>
+			<if test="content != null">,#{content,jdbcType=VARCHAR}</if>
+			<if test="gmtCreate != null">,#{gmtCreate,jdbcType=TIMESTAMP}</if>
+			<if test="isFirst != null">,#{isFirst,jdbcType=INTEGER}</if>
+		</trim>		)
+	</insert>
+
+	<update id="update" parameterType="sysNotice">
+		update sys_notice
+		<set>			
+			<if test="title != null">title=#{title,jdbcType=VARCHAR},</if>	
+			<if test="content != null">content=#{content,jdbcType=VARCHAR},</if>	
+			<if test="gmtCreate != null">gmt_create=#{gmtCreate,jdbcType=TIMESTAMP},</if>	
+			<if test="isFirst != null">is_first=#{isFirst,jdbcType=INTEGER},</if>	
+		</set>		
+		where 					 id=#{id}
+	</update>
+	
+	<select id="load" parameterType="int" resultMap="sysNoticeMap" >
+    		select * from sys_notice where id=#{id}
+	</select>
+	
+	<sql id="queryCommonSql">
+		FROM sys_notice sn
+		<where>
+			<if test="idArray != null">
+						sn.id in
+				<foreach collection="idArray" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+			</if>
+			<if test="title != null and title.trim() !=''">and sn.title = #{title}</if>
+			<if test="content != null and content.trim() !=''">and sn.content = #{content}</if>
+			<if test="gmtCreateFrom != null">and sn.gmt_create >= #{gmtCreateFrom}</if>
+			<if test="gmtCreateTo != null">
+				<choose>
+					<when test="_databaseId == 'oracle'"><![CDATA[and sn.gmt_create < #{gmtCreateTo} + 1]]></when>
+					<when test="_databaseId == 'mysql'"><![CDATA[and sn.gmt_create < date_add(#{gmtCreateTo}, interval 1 day)]]></when>
+				</choose>							
+			</if>
+			<if test="isFirst != null">and sn.is_first = #{isFirst}</if>												
+		</where>
+	</sql>
+	
+	<sql id="sortSql">		
+		<choose>			
+			<when test="sort != null and sort.trim() !=''">
+				order by ${sort}
+			</when>
+			<otherwise>
+				<if test="sortByDefault">
+					order by sn.GMT_CREATE DESC
+				</if>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="queryList" parameterType="sysNoticeQuery" resultMap="sysNoticeMap">
+		<include refid="common.pageBegin" />
+		select sn.id				<choose>
+			<when test="columns != null and columns.length>0">
+				<foreach collection="columns" index="index" item="item">,${item}</foreach>
+			</when>
+			<otherwise>
+    			,sn.title
+    			,sn.content
+    			,sn.gmt_create
+    			,sn.is_first
+			</otherwise>
+		</choose>
+		<include refid="queryCommonSql" />
+		<include refid="sortSql" />
+		<include refid="common.pageEnd" />
+	</select>
+
+	<select id="queryCount" parameterType="sysNoticeQuery" resultType="java.lang.Integer">
+		select count(1)
+		<include refid="queryCommonSql" />
+	</select>
+	
+	<update id="updateStatus" parameterType="sysNotice">		
+		update sys_notice set status=#{status} where   id=#{id} 	</update>
+	
+	<delete id="delete" parameterType="int">
+    		delete from sys_notice where id=#{id}
+	</delete>
+</mapper>

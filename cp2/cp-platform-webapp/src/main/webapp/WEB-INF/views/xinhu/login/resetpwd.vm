@@ -1,0 +1,70 @@
+#set($layout="")
+
+<div class="fl_content" id="fl_content">
+    <div class="fl_w980 fl_w814">
+    	<div id="title">
+    	#if($rp)
+        <p class="fl_title">请重新设置您的密码</p>
+      	#else
+      	<p class="fl_title">请设置您的密码，完成注册</p>
+      	#end
+      	</div>
+        <div id="Tab1">
+            
+            <div class="Contentbox">
+                <div id="con_one_1">
+                    <div class="register_l">
+                        <form id="setpwd" >
+                            <div class="hide">
+                                <input type="text"  id="registerName" value="$!registerName">
+                                <input type="text"  id="rp" value="$!rp">	
+                            </div>
+                            <div class="entry">
+                                <label for="pwd">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                                <input type="password" class="form_input"  name="pwd" id="pwd"/>
+                                <span class="tip_show">密码需为6-20个字符,由字母、数字和符号组成</span>	
+                                <p class="msg">请输入密码</p>
+                            </div>
+                            <div class="entry">
+                                <label for="repwd">再次输入：</label>
+                                <input type="password" class="form_input" value="" name="repwd" id="repwd">	
+                                <p class="msg">请再次输入密码</p>
+                            </div>
+                            <input  class="regbt" name="" type="submit"  value="提&nbsp;交" id="setpwdSubmit"/>
+                        </form>
+					</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        ##<p class="fl_title hide" id="rps">找回密码：重置密码成功，请点击登录  </p>
+        
+        ##<p class="fl_title hide" id="res">注册成功：3秒后自动跳转到登录页面  </p>
+   	  
+        
+        
+    </div>
+</div>
+
+
+<div id="container">
+        <div class="fl_w980 mtop20 hide" id="rps">
+        <div class="prompt_b" >
+            <p class="ok">
+            <img src="#getWebresourcesUrl()/userIndex/images/icon_ok.png" />恭喜您：重置密码成功<br/>
+            <a href="#getAppServer()" style="font-size:30px;">请点击登录</a>
+            </p>
+        </div>
+	    </div>
+	    
+	    <div class="fl_w980 mtop20 hide" id="res">
+        <div class="prompt_b" >
+            <p class="ok">
+            <img src="#getWebresourcesUrl()/userIndex/images/icon_ok.png" />恭喜，注册成功<br/>
+            即将为您跳转到用户后台页面<br/>
+            <div id="mytime" style="font-size:30px; color:#ff2b32;">3</div>
+            </p>
+        </div>
+	    </div>
+    <div>  

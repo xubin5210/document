@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="pubTitle">
+        <attr name="leftIcon" format="string"></attr>
+        <attr name="leftStyle" format="string"></attr>
+        <attr name="text" format="string"></attr>
+        <attr name="rightIcon" format="string"></attr>
+        <attr name="rightStyle" format="string"></attr>
+        <attr name="rightText" format="string"></attr>
+    </declare-styleable>
+    <declare-styleable name="ZSwipeItem">
+        <attr name="drag_edge" format="enum">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+            <enum name="top" value="2" />
+            <enum name="bottom" value="3" />
+        </attr>
+        <attr name="horizontalSwipeOffset" format="dimension" />
+        <attr name="verticalSwipeOffset" format="dimension" />
+        <attr name="show_mode" format="enum">
+            <enum name="lay_down" value="0" />
+            <enum name="pull_out" value="1" />
+        </attr>
+    </declare-styleable>
+
+</resources>

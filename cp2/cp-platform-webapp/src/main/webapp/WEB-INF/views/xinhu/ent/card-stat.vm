@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>员工统计</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="css/common.css">
+        <link rel="stylesheet" type="text/css" href="css/statistics.css">
+    </head>
+    <body>
+        <div id="header">
+            <div id="header-main" class="w980">
+                    <a href="#" class="logo icon-bg"></a>
+                    <span class="copy green radius hei fl">企业版</span>
+                    <div class="company fr">
+                        <div class="company_logo fl">
+                            <img src="images/temp/logo.png"/>
+                        </div>
+                        <div class="company_infos fr">
+                            <div class="certification overhide">
+                                <span class="qiye green radius hei fl">企业</span>
+                                <span class="status fl">认证中</span>
+                            </div>
+                            <div class="name">
+                                <span class="fl">北京同达信恒知识产权代理有限公司</span>
+                                <i class="icon_down icon-bg fl"></i>
+                                <i class="icon_out icon-bg fl"></i>
+                                <a href="#" class="fl">退出</a>
+                           </div>                         
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div id="main" class="w980">
+            <div id="left">
+                <dl id="nav">
+                    <dt>
+                        <i class="icon_manage icon-bg fl"></i><span><a href="">管理</a></span>
+                    </dt>
+                    <dd><a href="#">花名册管理</a></dd>
+                    <dd><a href="#">标签管理</a></dd>
+                    <dt>
+                        <i class="icon_cf icon-bg fl"></i><span><a href="">财富</a></span>
+                    </dt>  
+                    <dd><a href="#">名片交换记录</a></dd>
+                    <dd><a href="#">通话记录</a></dd>
+                    <dd><a href="#">邮件记录</a></dd>
+                    <dt>
+                        <i class="icon_tj icon-bg fl"></i><span><a href="">统计</a></span>
+                    </dt>  
+                    <dd class="nav-cur"><a href="#">员工统计</a></dd>
+                    <dd><a href="#">名片统计</a></dd>
+                    <dd><a href="#">企业统计</a></dd>
+                    <dt>
+                        <i class="icon_kz icon-bg fl"></i><span><a href="">扩展</a></span>
+                    </dt>
+                    <dd><a href="#">机构实名验证</a></dd>
+                </dl>
+            </div>
+            <div id="right" class="rel">
+                <div id="staff-stat" class="right-inner">
+                    <h2 class="right-header">
+                        <em class="icon-bg"></em>
+                        <span class="hei">员工统计（77人）</span>
+                        <br class="clr"/>
+                    </h2>
+                    <div class="right-body">
+                        <div id="figure-1" class="figure"></div>
+                        <div id="figure-2" class="figure"></div>
+                        <div id="figure-3" class="figure"></div>
+                        <div id="figure-4" class="figure"></div>
+                        <br class="clr"/>
+                    </div>
+                </div>
+                <div id="abc">
+                </div>
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div id="footer">   
+            <div class="w980">
+                <h1 class="hei">见安存 · 即见真实</h1>
+                版权所有：杭州安存网络科技有限公司 Copyright2008-2014 ICP证：浙ICP备11033732号 增值电信业务经营许可证：浙B2-20120278
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/highcharts.src.js"></script>
+    <script type="text/javascript">
+        Highcharts.setOptions({
+
+        });
+
+        $('#figure-1').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: '职业人数分布图'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                type: 'category',
+                labels: {
+                    rotation: -35,
+                    style: {
+                        fontSize: '8px',
+                        fontFamily: ''
+                    },
+                    x: 10
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '人数（个）'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: '人数为<b>{point.y}</b>'
+            },
+            series: [{
+                name: 'Population',
+                data: [
+                    ['产品经理', 23],
+                    ['软件工程师', 16],
+                    ['测试工程师', 14],
+                    ['市场专员', 14],
+                    ['部门经理', 12],
+                    ['总裁', 12],
+                    ['总裁助理', 11],
+                ],
+                dataLabels: {
+                    enabled: true,
+                    rotation: -90,
+                    color: '#837d7b',
+                    align: 'right',
+                    format: '{point.y}', // one decimal
+                    y: 10, // 10 pixels down from the top
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: ''
+                    }
+                },
+                style:{
+                    backgroundColor: '#837d7b'
+                }
+            }],
+
+            credits:{
+                 enabled:false // 禁用版权信息
+            }
+        });
+
+        $('#figure-3').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: '部门人数分布图'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                type: 'category',
+                labels: {
+                    rotation: 0,
+                    style: {
+                        fontSize: '8px',
+                        fontFamily: ''
+                    }
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '人数（个）'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: '人数为<b>{point.y}</b>'
+            },
+            series: [{
+                name: 'Population',
+                data: [
+                    ['商务部', 23],
+                    ['市场部', 16],
+                    ['技术部', 14],
+                    ['运营部', 14],
+                    ['财务部', 12],
+                    ['总经办', 12]
+                ],
+                dataLabels: {
+                    enabled: true,
+                    rotation: -90,
+                    color: '#837d7b',
+                    align: 'right',
+                    format: '{point.y}', // one decimal
+                    y: 10, // 10 pixels down from the top
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: ''
+                    }
+                }
+            }],
+            credits:{
+                 enabled:false // 禁用版权信息
+            }
+        });
+
+        $('#figure-2').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '性别分布图'
+            },
+            tooltip: {
+                pointFormat: '人数:{point.y}<br/>{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '占比',
+                data: [
+                    ['男',   45],
+                    {
+                        name: '女',
+                        y: 12,
+                        sliced: true,
+                        selected: true
+                    }
+
+                ]
+            }],
+            credits:{
+                 enabled:false // 禁用版权信息
+            }
+        });
+
+        $('#figure-4').highcharts({
+            title: {
+                text: '部门名片激活情况'
+            },
+            
+            xAxis: {
+                categories: ['商务部', '市场部', '技术部', '运营部', '财务部', '总经办'],
+                labels: {
+                    rotation: 0,
+                    style: {
+                        fontSize: '8px',
+                        fontFamily: ''
+                    }
+                }
+            },
+            yAxis: {
+                title: {
+                    text: '名片激活人数（个）'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: ''
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: '部门人数',
+                data: [7, 6, 9, 14, 18, 21]
+            }, {
+                name: '激活人数',
+                data: [1, 3, 5, 11, 17, 5]
+            }],
+            credits:{
+                 enabled:false // 禁用版权信息
+            }
+        });
+    </script>
+</html>
